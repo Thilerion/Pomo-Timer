@@ -174,7 +174,7 @@ Timer.prototype.intervalTimer = function() {
   
 };
 
-Timer.prototype.resetTimer = function() {
+Timer.prototype.resetSession = function() {
   this.clearInterval();
   
   //reset currentTimeLeft by taking initialTimeLeft
@@ -229,8 +229,8 @@ var view = {
     this.displayTime();
     this.displaySession();
     this.displaySessionLengths();
-    //disable reset timer button
-    let resetBtn = document.getElementById("resetTimer");
+    //disable reset session button
+    let resetBtn = document.getElementById("resetSession");
     resetBtn.disabled = true;
     //enable start button
     let startBtn = document.getElementById("startTimer");
@@ -245,8 +245,8 @@ var view = {
     //enable pause/resume button
     let resumePauseBtn = document.getElementById("resumePauseTimer");
     resumePauseBtn.disabled = false;
-    //enable reset timer button
-    let resetBtn = document.getElementById("resetTimer");
+    //enable reset session button
+    let resetBtn = document.getElementById("resetSession");
     resetBtn.disabled = false;
     //disable start button
     let startBtn = document.getElementById("startTimer");
@@ -271,8 +271,8 @@ var eventHandling = {
   startTimer: function() {
     timer.startTimer();
   },
-  resetTimer: function() {
-    timer.resetTimer();
+  resetSession: function() {
+    timer.resetSession();
   },
   debugSkip: function() {
     timer.clearInterval();
@@ -296,7 +296,7 @@ var eventHandling = {
     if (session === pomodoro.currentSession.currentInfo.short) {
       timer.changeDuration(pomodoro.sessions[session].duration.current);
     }    
-    this.resetTimer();
+    this.resetSession();
     view.displaySessionLengths();
   }
 };
