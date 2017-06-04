@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h2>Time</h2>
+  <p id="time"></p>
+  <h3>Session</h3>
+  <p id="session"></p>
+  <h3>Session lengths</h3>
+  <p id="sessionLengths"></p>
+  
+  <div>
+    <input type="button" id="startTimer" value="Start Timer" onclick="eventHandling.startTimer()">
+    <input type="button" id="resumePauseTimer" value="Pause Timer" onclick="eventHandling.resumePauseTimer()">
+    <input type="button" id="resetTimer" value="Reset Timer" onclick="eventHandling.resetTimer()">
+    <input type="button" id="skipTimer" value="Skip Timer debug" onclick="eventHandling.debugSkip()">
+  </div>
+  <div>
+    <input type="button" id="decreaseWork" value="-" onclick="eventHandling.changeSessionTime('de', 'work')">
+    <span>Work</span>
+    <input type="button" id="increaseWork" value="+" onclick="eventHandling.changeSessionTime('in', 'work')">
+  </div>
+  <div>
+    <input type="button" id="decreaseSBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'sBreak')">
+    <span>Short Break</span>
+    <input type="button" id="increaseSBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'sBreak')">
+  </div>
+  <div>
+    <input type="button" id="decreaseLBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'lBreak')">
+    <span>Long Break</span>
+    <input type="button" id="increaseLBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'lBreak')">
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
