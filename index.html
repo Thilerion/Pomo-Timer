@@ -17,13 +17,8 @@
   </header>
   
   <main>
-         
-     <div class="currentTimer">
-      <p id="time"></p>
-      <p>Current session: <span id="session"></span></p>
-      <p>Session durations: <span id="sessionLengths"></span></p>
-    </div>
-    
+    <div id="time"></div>
+     
     <div class="buttonContainer">
       <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
       <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
@@ -32,6 +27,11 @@
       <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
       <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
     </div>
+      
+    <div class="timerInformation">
+      <p>Current session: <span id="session"></span></p>
+      <p>Session durations: <span id="sessionLengths"></span></p>
+    </div>    
     
     <div class="durations">
       <div>

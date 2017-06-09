@@ -48,13 +48,13 @@ h1 {
 
 #time {
   font-size: 7em;
-  margin-bottom: 30px;
+  margin: 30px 0;
   font-family: "Droid Sans Mono", monospace;
+  text-align: center;
 }
 
-.currentTimer {
+.timerInformation {
   text-align: center;
-  margin: 40px 0 40px 0;
 }
 
 main {
@@ -86,7 +86,7 @@ button {
 
 .durations {
   text-align: center;
-  margin: 30px 0;
+  margin: 10px 0;
 }
 
 .durations button {
@@ -100,4 +100,5 @@ button {
 
 .buttonContainer {
   text-align: center;
+  margin-bottom: 40px;
 }
