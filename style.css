@@ -80,3 +80,24 @@ button {
   margin: 2px;
 }
 
+.durations div {
+  display: inline-block;
+}
+
+.durations {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.durations button {
+  background: none;
+  cursor: pointer;
+}
+
+.durations i {
+  color: white;
+}
+
+.buttonContainer {
+  text-align: center;
+}

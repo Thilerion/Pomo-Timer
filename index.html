@@ -17,36 +17,38 @@
   </header>
   
   <main>
-    <div class="currentTimer">
+         
+     <div class="currentTimer">
       <p id="time"></p>
       <p>Current session: <span id="session"></span></p>
       <p>Session durations: <span id="sessionLengths"></span></p>
     </div>
     
-    <div>
+    <div class="buttonContainer">
       <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
       <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
       <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
       <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
       <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
-    </div>
-    <div>
-      <button type="button" id="decreaseWork" onclick="eventHandling.changeSessionTime('de', 'work')"><i class="fa fa-minus"></i></button>
-      <span>Work</span>
-      <button type="button" id="increaseWork" onclick="eventHandling.changeSessionTime('in', 'work')"><i class="fa fa-plus"></i></button>
-    </div>
-    <div>
-      <button type="button" id="decreaseSBreak" onclick="eventHandling.changeSessionTime('de', 'sBreak')"><i class="fa fa-minus"></i></button>
-      <span>Short Break</span>
-      <button type="button" id="increaseSBreak" onclick="eventHandling.changeSessionTime('in', 'sBreak')"><i class="fa fa-plus"></i></button>
-    </div>
-    <div>
-      <button type="button" id="decreaseLBreak" onclick="eventHandling.changeSessionTime('de', 'lBreak')"><i class="fa fa-minus"></i></button>
-      <span>Long Break</span>
-      <button type="button" id="increaseLBreak" onclick="eventHandling.changeSessionTime('in', 'lBreak')"><i class="fa fa-plus"></i></button>
-    </div>
-    <div>
       <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+    </div>
+    
+    <div class="durations">
+      <div>
+        <button type="button" id="decreaseWork" onclick="eventHandling.changeSessionTime('de', 'work')"><i class="fa fa-minus"></i></button>
+        <span>Work</span>
+        <button type="button" id="increaseWork" onclick="eventHandling.changeSessionTime('in', 'work')"><i class="fa fa-plus"></i></button>
+      </div>
+      <div>
+        <button type="button" id="decreaseSBreak" onclick="eventHandling.changeSessionTime('de', 'sBreak')"><i class="fa fa-minus"></i></button>
+        <span>Short Break</span>
+        <button type="button" id="increaseSBreak" onclick="eventHandling.changeSessionTime('in', 'sBreak')"><i class="fa fa-plus"></i></button>
+      </div>
+      <div>
+        <button type="button" id="decreaseLBreak" onclick="eventHandling.changeSessionTime('de', 'lBreak')"><i class="fa fa-minus"></i></button>
+        <span>Long Break</span>
+        <button type="button" id="increaseLBreak" onclick="eventHandling.changeSessionTime('in', 'lBreak')"><i class="fa fa-plus"></i></button>
+      </div>
     </div>
   </main>
   <script src="script.js"></script>
