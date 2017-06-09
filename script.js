@@ -71,12 +71,12 @@ var pomodoro = {
   newTimer: function(duration) {
     duration *= 60000;
     timer = new Timer(duration);
+    view.updateFreshTimer();
   },
   timerFinished: function() {
     this.nextSession();
     let duration = this.currentSession.currentInfo.duration.current;
     this.newTimer(duration);
-    view.updateFreshTimer();
   },
   nextSession: function() {
     if ((this.cycle.length - 1) <= this.currentSession.sessionNumber) {
@@ -107,6 +107,12 @@ var pomodoro = {
   changeCycle: function() {
     
   },
+  resetTimer: function() {
+    this.currentSession.sessionNumber = 0;
+    this.currentSession.cycleNumber = 0;
+    let duration = this.currentSession.currentInfo.duration.current;
+    this.newTimer(duration);
+  }
   //TODOOO BUTTON TO EXTEND PAUSE OR WORK FOR STATISTICSSSSSSS!!!
 };
 
@@ -273,6 +279,10 @@ var eventHandling = {
   },
   resetSession: function() {
     timer.resetSession();
+  },
+  resetTimer: function() {
+    timer.resetSession();
+    pomodoro.resetTimer();
   },
   debugSkip: function() {
     timer.clearInterval();
