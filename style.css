@@ -1,9 +1,10 @@
 /* blueprint-css reset.css, https://github.com/joshuaclayton/blueprint-css/blob/master/blueprint/src/reset.css */
 
-html {
+html, body {
   margin:0;
   padding:0;
   border:0;
+  height: 100%;
 }
 
 body, div, span, object, iframe,
@@ -30,6 +31,13 @@ footer, header, hgroup, menu, nav, section {
 
 /* end of reset */
 
+body {
+  background: #42A6DE;
+  background: -moz-linear-gradient(top, #0a5790 10%, #0097e6 100%);
+  background: -webkit-linear-gradient(top, #0a5790 10%, #0097e6 100%);
+  background: linear-gradient(to bottom, #0a5790 10%, #0097e6 100%);
+}
+
 h1 {
   text-align: center;
   font-size: 4em;
@@ -44,3 +52,5 @@ h1 {
   text-align: center;
   margin: 40px 0 40px 0;
 }
+
+
