@@ -69,4 +69,14 @@ main {
   }
 }
 
+button i {
+  color: #5d5d5d;
+}
+
+button {
+  border: 0;
+  background: #e0e0e0;
+  padding: 3px 6px;
+  margin: 2px;
+}
 
