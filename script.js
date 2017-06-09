@@ -112,6 +112,13 @@ var pomodoro = {
     this.currentSession.cycleNumber = 0;
     let duration = this.currentSession.currentInfo.duration.current;
     this.newTimer(duration);
+  },
+  resetDurations: function() {
+    let dur = pomodoro.sessions;
+    for (var key in dur) {
+      dur[key].duration.current = dur[key].duration.initial;
+      view.displaySessionLengths();
+    }
   }
   //TODOOO BUTTON TO EXTEND PAUSE OR WORK FOR STATISTICSSSSSSS!!!
 };
@@ -308,6 +315,10 @@ var eventHandling = {
     }    
     this.resetSession();
     view.displaySessionLengths();
+  },
+  resetDurations: function() {
+    pomodoro.resetDurations();   timer.changeDuration(pomodoro.sessions[pomodoro.currentSession.currentInfo.short].duration.current);
+    this.resetSession();
   }
 };
 
