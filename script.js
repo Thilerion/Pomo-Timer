@@ -265,7 +265,7 @@ var view = {
     let startBtn = document.getElementById("startTimer");
     startBtn.disabled = true;
     //set pause/resume button to "pause"
-    resumePauseBtn.value = "Pause Timer";
+    resumePauseBtn.innerHTML = "Pause Timer";
   },
   updateIntervalTimer: function() {
     //every tick of the interval
@@ -276,7 +276,7 @@ var view = {
     this.displayTime();
     //set pause/resume button to "resume"
     let resumePauseBtn = document.getElementById("resumePauseTimer");
-    resumePauseBtn.value = "Resume Timer";
+    resumePauseBtn.innerHTML = "Resume Timer";
   }
 };
 
