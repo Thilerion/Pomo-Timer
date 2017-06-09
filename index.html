@@ -9,38 +9,43 @@
 </head>
 
 <body>
-  <h2>Time</h2>
-  <p id="time"></p>
-  <h3>Session</h3>
-  <p id="session"></p>
-  <h3>Session lengths</h3>
-  <p id="sessionLengths"></p>
+  <header>
+    <h1>Pomodoro Timer</h1>
+  </header>
   
-  <div>
-    <input type="button" id="startTimer" value="Start Timer" onclick="eventHandling.startTimer()">
-    <input type="button" id="resumePauseTimer" value="Pause Timer" onclick="eventHandling.resumePauseTimer()">
-    <input type="button" id="resetSession" value="Reset Session" onclick="eventHandling.resetSession()">
-    <input type="button" id="resetTimer" value="Reset Timer" onclick="eventHandling.resetTimer()">
-    <input type="button" id="skipTimer" value="Skip Timer debug" onclick="eventHandling.debugSkip()">
-  </div>
-  <div>
-    <input type="button" id="decreaseWork" value="-" onclick="eventHandling.changeSessionTime('de', 'work')">
-    <span>Work</span>
-    <input type="button" id="increaseWork" value="+" onclick="eventHandling.changeSessionTime('in', 'work')">
-  </div>
-  <div>
-    <input type="button" id="decreaseSBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'sBreak')">
-    <span>Short Break</span>
-    <input type="button" id="increaseSBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'sBreak')">
-  </div>
-  <div>
-    <input type="button" id="decreaseLBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'lBreak')">
-    <span>Long Break</span>
-    <input type="button" id="increaseLBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'lBreak')">
-  </div>
-  <div>
-    <input type="button" id="resetDurations" value="Reset all durations" onclick="eventHandling.resetDurations()">
-  </div>
+  <main>
+    <div class="currentTimer">
+      <p id="time"></p>
+      <p>Current session: <span id="session"></span></p>
+      <p>Session durations: <span id="sessionLengths"></span></p>
+    </div>
+    
+    <div>
+      <input type="button" id="startTimer" value="Start Timer" onclick="eventHandling.startTimer()">
+      <input type="button" id="resumePauseTimer" value="Pause Timer" onclick="eventHandling.resumePauseTimer()">
+      <input type="button" id="resetSession" value="Reset Session" onclick="eventHandling.resetSession()">
+      <input type="button" id="resetTimer" value="Reset Timer" onclick="eventHandling.resetTimer()">
+      <input type="button" id="skipTimer" value="Skip Timer debug" onclick="eventHandling.debugSkip()">
+    </div>
+    <div>
+      <input type="button" id="decreaseWork" value="-" onclick="eventHandling.changeSessionTime('de', 'work')">
+      <span>Work</span>
+      <input type="button" id="increaseWork" value="+" onclick="eventHandling.changeSessionTime('in', 'work')">
+    </div>
+    <div>
+      <input type="button" id="decreaseSBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'sBreak')">
+      <span>Short Break</span>
+      <input type="button" id="increaseSBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'sBreak')">
+    </div>
+    <div>
+      <input type="button" id="decreaseLBreak" value="-" onclick="eventHandling.changeSessionTime('de', 'lBreak')">
+      <span>Long Break</span>
+      <input type="button" id="increaseLBreak" value="+" onclick="eventHandling.changeSessionTime('in', 'lBreak')">
+    </div>
+    <div>
+      <input type="button" id="resetDurations" value="Reset all durations" onclick="eventHandling.resetDurations()">
+    </div>
+  </main>
   <script src="script.js"></script>
 </body>
 
