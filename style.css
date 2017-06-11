@@ -33,10 +33,15 @@ footer, header, hgroup, menu, nav, section {
 
 /* begin van test selectors */
 
-main, footer, header {
+main, footer, header, nav {
   min-height: 20%;
   border: 5px solid black;
   flex: 0 0 auto;
+}
+
+nav {
+  background-color: coral;
+  min-height: 60px;
 }
 
 main {
@@ -59,3 +64,4 @@ body {
 }
 
 /* eind van test selectors */
+
