@@ -3,54 +3,67 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro</title>
   <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-  <script src="https://use.fontawesome.com/593ce00b08.js"></script>
+
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
   <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
   <header>
     <h1>Pomodoro</h1>
   </header>
-  
+
   <main>
-    <div id="time"></div>
-     
-    <div class="buttonContainer">
+    <div></div>
+
+    <div>
       <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
-      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
-      <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
+      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()">Pause Timer</button>
+      <button type="button" id="resetSession" onclick="eventHandling.resetSession()">Reset Session</button>
+      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()">Reset Timer</button>
+      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()">Skip Timer debug</button>
       <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
     </div>
-      
-    <div class="timerInformation">
-      <p>Current session: </p><p id="session"></p>
-      <p>Session durations: </p><p id="sessionLengths"></p>
-    </div>    
-    
-    <div class="durations">
+
+    <div>
+      <p>Current session: </p>
+      <p id="session"></p>
+      <p>Session durations: </p>
+      <p id="sessionLengths"></p>
+    </div>
+
+    <div>
       <div>
-        <button type="button" id="decreaseWork" onclick="eventHandling.changeSessionTime('de', 'work')"><i class="fa fa-minus"></i></button>
+        <button type="button" id="decreaseWork" onclick="eventHandling.changeSessionTime('de', 'work')">-</button>
         <span>Work</span>
-        <button type="button" id="increaseWork" onclick="eventHandling.changeSessionTime('in', 'work')"><i class="fa fa-plus"></i></button>
+        <button type="button" id="increaseWork" onclick="eventHandling.changeSessionTime('in', 'work')">+</button>
       </div>
       <div>
-        <button type="button" id="decreaseSBreak" onclick="eventHandling.changeSessionTime('de', 'sBreak')"><i class="fa fa-minus"></i></button>
+        <button type="button" id="decreaseSBreak" onclick="eventHandling.changeSessionTime('de', 'sBreak')">-</button>
         <span>Short Break</span>
-        <button type="button" id="increaseSBreak" onclick="eventHandling.changeSessionTime('in', 'sBreak')"><i class="fa fa-plus"></i></button>
+        <button type="button" id="increaseSBreak" onclick="eventHandling.changeSessionTime('in', 'sBreak')">+</button>
       </div>
       <div>
-        <button type="button" id="decreaseLBreak" onclick="eventHandling.changeSessionTime('de', 'lBreak')"><i class="fa fa-minus"></i></button>
+        <button type="button" id="decreaseLBreak" onclick="eventHandling.changeSessionTime('de', 'lBreak')">-</button>
         <span>Long Break</span>
-        <button type="button" id="increaseLBreak" onclick="eventHandling.changeSessionTime('in', 'lBreak')"><i class="fa fa-plus"></i></button>
+        <button type="button" id="increaseLBreak" onclick="eventHandling.changeSessionTime('in', 'lBreak')">+</button>
       </div>
     </div>
   </main>
+
+  <!--Import jQuery before materialize.js-->
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   <script src="script.js"></script>
 </body>
 
