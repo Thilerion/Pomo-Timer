@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 
 /* end of reset */
 
-/* begin van test selectors */
+/* begin van test selectors
 
 main, footer, header, nav {
   min-height: 20%;
@@ -63,5 +63,78 @@ body {
   background-color: lightgoldenrodyellow;
 }
 
-/* eind van test selectors */
+eind van test selectors */
 
+body {
+  color: #333;
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+}
+
+.flexLayout {
+  display: flex;
+  flex-direction: column;  
+}
+
+.flexLayout-standard {
+  flex: 0 0 auto;
+}
+
+.flexLayout-large {
+  flex: 1 0 auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  z-index: 8;
+}
+
+.header {
+  min-height: 60px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 5px 10px;
+}
+
+.header-logoText {
+  text-align: center;
+  color: #37474f; /* blue-grey-800 */
+}
+
+.timeSection {
+  background-color: #1e88e5; /*blue-600*/
+  color: #fff;
+  height: 325px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeSection-timer {
+  text-align: center;
+  font-family: "Droid Sans Mono", monospace;
+  font-size: 6em;
+  margin: auto;
+}
+
+.timeSection-controls {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.timeSection-counterBalance {
+  height: 50px;
+  /* display: hidden; */
+}
+
+h1 {
+  font-size: 56px;
+  font-family: Roboto, sans-serif;
+}
+
+.footer {
+  min-height: 150px;
+  background-color: #455a64;
+  color: white;
+  box-sizing: border-box;
+  padding: 10px;
+}
