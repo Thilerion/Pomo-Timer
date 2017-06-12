@@ -65,6 +65,13 @@ body {
 
 eind van test selectors */
 
+/*
+working: blue
+break: green / light green
+paused: deep orange / red
+end of session: purple
+*/
+
 body {
   color: #333;
   font-family: Roboto, sans-serif;
@@ -97,6 +104,7 @@ body {
 .header-logoText {
   text-align: center;
   color: #37474f; /* blue-grey-800 */
+  text-transform: lowercase;
 }
 
 .timeSection {
@@ -106,6 +114,8 @@ body {
   padding: 10px 0;
   display: flex;
   flex-direction: column;
+  /*background: linear-gradient(to bottom, #1976d2 10%, #2196f3 100%);*/
+  background: radial-gradient(#2196f3 20%, #1976d2);
 }
 
 .timeSection-timer {
@@ -115,15 +125,9 @@ body {
   margin: auto;
 }
 
-.timeSection-controls {
-  height: 50px;
-  display: flex;
-  align-items: flex-end;
-}
-
-.timeSection-counterBalance {
-  height: 50px;
-  /* display: hidden; */
+.underSection {
+  height: 120px;
+  background-color: #eceff1; /* blue-grey-50 */
 }
 
 h1 {
