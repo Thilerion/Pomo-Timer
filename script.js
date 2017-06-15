@@ -1,20 +1,5 @@
 /*
-variables for work, sbreak, lbreak, sessions
-convert those variables into text in the bar
-
-set variable for current session: work, sbreak, lbreak
-convert time for current session to minutes and seconds
-put time into DOM
-
-*/
-
-/*
-input:  minutes and seconds
-          session duration
-          session amount
-output: current session
-        number of cycles
-        time to go until end of session
+current: pomodoro (sessions, cycle, statistics, logic of session tracking and new timers), Timer (timer logic), view (change DOM), eventhandling (handle button clicks)
 */
 
 var pomodoro = {
@@ -214,7 +199,6 @@ Timer.prototype.finishedTimer = function() {
 };
 
 Timer.prototype.clearInterval = function() {
-  //TODO: misschien kijken of interval al gecleared is? met paused boolean?
   var that = this;
   clearInterval(that.interval);
 };
@@ -321,8 +305,6 @@ var eventHandling = {
     this.resetSession();
   }
 };
-
-//TODO: Add complete reset, and add the complete reset to change session time
 
 
 var timer;
