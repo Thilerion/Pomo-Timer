@@ -66,7 +66,10 @@ var timer = (function() {
     reset: resetSession,
     pause: pauseTimer,
     start: startTimer,
-    init: init
+    init: init,
+    getMinutes: getMinutesLeft,
+    getSeconds: getSecondsLeft,
+    paused: paused
   };
     
 })();

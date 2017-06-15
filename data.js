@@ -48,6 +48,11 @@ var pomodoro = (function () {
     return cycle[num];
   }
   
+  function getCurrentLongName() {
+    var name = getCurrentSessionName();
+    return sessions[name].long;
+  }
+  
   function getCurrentSessionDuration() {
     var name = getCurrentSessionName();
     return sessions[name].duration.current;
@@ -68,6 +73,7 @@ var pomodoro = (function () {
     getCurrent: {
       number: getCurrentSessionNumber,
       name: getCurrentSessionName,
+      longName: getCurrentLongName,
       duration: getCurrentSessionDuration
     },    
     getSessionLengths: getSessionLengths
