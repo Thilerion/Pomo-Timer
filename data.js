@@ -89,16 +89,28 @@ var pomodoro = (function () {
       currentSession.session++;
     }
     
+    buildCurrentSessionData();
+  }
+  
+  function buildCurrentSessionData() {
     currentSession.name = cycle[currentSession.session];
     currentSession.longName = sessions[currentSession.name].long;
     currentSession.length = sessions[currentSession.name].duration.current;
+  }
+  
+  function resetTimer() {
+    currentSession.session = 0;
+    currentSession.cycle = 0;
+    buildCurrentSessionData();
+    timer.init(currentSession.length);
   }
   
   return {
     getCurrent: getCurrentSessionInfo,
     getSessionLengths: getSessionLengths,
     finishedTimer: finishedTimer,
-    changeLength: changeSessionLength
+    changeLength: changeSessionLength,
+    resetTimer: resetTimer
   };
   
 })();

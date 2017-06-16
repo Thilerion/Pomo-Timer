@@ -80,6 +80,7 @@ var eventHandling = (function() {
   
   function resetTimer() {
     timer.reset();
+    pomodoro.resetTimer();
   }
   
   function debugSkip() {
