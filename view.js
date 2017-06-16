@@ -1,3 +1,5 @@
+/* global timer, pomodoro */
+
 var view = (function () {
   var timeP = document.getElementById("time");
   var sessionP = document.getElementById("session");
@@ -6,14 +8,14 @@ var view = (function () {
   var startBtn = document.getElementById("startTimer");
   var resumePauseBtn = document.getElementById("resumePauseTimer");
   let resetBtn = document.getElementById("resetSession");
-
+  
   function displayTime() {
     var time = timer.getTime();
     timeP.innerHTML = ("0" + time[0]).slice(-2) + ":" + ("0" + time[1]).slice(-2);
   }
 
   function displaySession() {
-    sessionP.innerHTML = pomodoro.getCurrent.longName();
+    sessionP.innerHTML = pomodoro.getCurrent().longName;
   }
 
   function displaySessionLengths() {
@@ -81,12 +83,12 @@ var eventHandling = (function() {
   }
   
   function debugSkip() {
-    console.log("TODO");
+    timer.debugSkip();
   }
   
   function resumePauseTimer() {
     let run = timer.getMode().running;
-    view.pauseResumeButton(false, run);
+    view.updateButtons(false, run);
     if (run === false) {
       timer.start();
     } else if (run === true) {
@@ -94,18 +96,15 @@ var eventHandling = (function() {
     }
   }
 
-  function changeSessionTime(plus, session) {
-    console.log(plus, session);
-    if (plus === "in") {
-      pomodoro.increaseDuration(session);
-    } else if (plus === "de") {
-      pomodoro.decreaseDuration(session);
-    }
-    if (session === pomodoro.currentSession.currentInfo.short) {
-      timer.changeDuration(pomodoro.sessions[session].duration.current);
-    }
-    this.resetSession();
-    view.displaySessionLengths();
+  function changeSessionTime(el) {
+    var classes = [el.classList[0], el.classList[1]];
+    console.log(classes);
+    var amount = (classes[0] === "increase") ? 1 : -1;
+    console.log(amount);
+    var session = classes[1];
+    console.log(session);
+    pomodoro.changeLength(session, amount);
+    view.updateDisplay(false, false, true);
   }
 
   function resetDurations() {

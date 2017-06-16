@@ -1,14 +1,18 @@
+/* global view, pomodoro */
+
 var timer = (function() {
   
   var startTime, timeLeft, endTime, interval;
   var _running = false;
   var _started = false;
+  var _speed = 10;
   
   function getTimeLeft() {
     return [Math.floor(Math.round(timeLeft / 1000) / 60 % 60), Math.floor(Math.round(timeLeft / 1000) % 60)];
   }
   
   function startTimer() {
+    var speed = 1000 / _speed;
     
     //decrease time left by 1 second to reduce delay after clicking button
     timeLeft -= 1000;
@@ -19,7 +23,7 @@ var timer = (function() {
     changeMode(true, true);
     
     //initialize setInterval on the timer-scoped interval variable
-    interval = setInterval(tick, 1000);
+    interval = setInterval(tick, speed);
   }
   
   function tick() {
@@ -28,6 +32,8 @@ var timer = (function() {
     if (timeLeft - 1000 < 50) {
       timeLeft = 0;
       finishedTimer();
+    } else if (_speed > 1) {
+      timeLeft -= 1000;
     } else {
       timeLeft = endTime - Date.now();
     }
@@ -50,10 +56,11 @@ var timer = (function() {
   }
   
   function finishedTimer() {
-    clearTimeout(interval);
+    clearInterval(interval);
+    pomodoro.finishedTimer();
   }
   
-  function init(minutes) {
+  function initTimer(minutes) {
     startTime = minutes * 60000;
     timeLeft = startTime;
     
@@ -62,6 +69,12 @@ var timer = (function() {
     
     //for debugging
     console.log(timeLeft + " milliseconds left, " + startTime + " milliseconds as start time.");
+  }
+  
+  function skipToEndDEBUG() {
+    pauseTimer();
+    timeLeft = 5000;
+    startTimer();
   }
   
   function changeMode(started, running) {
@@ -88,10 +101,11 @@ var timer = (function() {
     reset: resetSession,
     pause: pauseTimer,
     start: startTimer,
-    init: init,
+    init: initTimer,
     getTime: getTimeLeft,
     changeMode: changeMode,
-    getMode: getMode
+    getMode: getMode,
+    debugSkip: skipToEndDEBUG
   };
     
 })();
@@ -114,4 +128,4 @@ missing:
   interface with pomodoro when timer is finished etc
 */
 
-timer.init(0.09);
+timer.init(0.083333333333333333333);

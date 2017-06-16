@@ -35,19 +35,19 @@
     
     <div class="durations">
       <div>
-        <button type="button" id="decreaseWork" onclick="eventHandling.changeSessionTime('de', 'work')"><i class="fa fa-minus"></i></button>
+        <button type="button" class="decrease work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
         <span>Work</span>
-        <button type="button" id="increaseWork" onclick="eventHandling.changeSessionTime('in', 'work')"><i class="fa fa-plus"></i></button>
+        <button type="button" class="increase work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
       </div>
       <div>
-        <button type="button" id="decreaseSBreak" onclick="eventHandling.changeSessionTime('de', 'sBreak')"><i class="fa fa-minus"></i></button>
+        <button type="button" class="decrease sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
         <span>Short Break</span>
-        <button type="button" id="increaseSBreak" onclick="eventHandling.changeSessionTime('in', 'sBreak')"><i class="fa fa-plus"></i></button>
+        <button type="button" class="increase sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
       </div>
       <div>
-        <button type="button" id="decreaseLBreak" onclick="eventHandling.changeSessionTime('de', 'lBreak')"><i class="fa fa-minus"></i></button>
+        <button type="button" class="decrease lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
         <span>Long Break</span>
-        <button type="button" id="increaseLBreak" onclick="eventHandling.changeSessionTime('in', 'lBreak')"><i class="fa fa-plus"></i></button>
+        <button type="button" class="increase lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
       </div>
     </div>
   </main>

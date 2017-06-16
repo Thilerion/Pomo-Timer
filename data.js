@@ -36,28 +36,15 @@ var pomodoro = (function () {
   
   var currentSession = {
     session: 0,
+    name: "work",
+    longName: "Work",
+    length: 25,
     cycle: 0
   };
   
-  function getCurrentSessionNumber() {
-    return currentSession.session;
+  function getCurrentSessionInfo() {
+    return currentSession;
   }
-  
-  function getCurrentSessionName() {
-    var num = getCurrentSessionNumber();
-    return cycle[num];
-  }
-  
-  function getCurrentLongName() {
-    var name = getCurrentSessionName();
-    return sessions[name].long;
-  }
-  
-  function getCurrentSessionDuration() {
-    var name = getCurrentSessionName();
-    return sessions[name].duration.current;
-  }
-  //TODO: some way to store current name, number and duration, and change it each time a new timer begins
   
   function getSessionLengths() {
     let arr = [];
@@ -69,14 +56,37 @@ var pomodoro = (function () {
     return arr;
   }
   
+  function changeSessionLength(session, amount) {
+    console.log(sessions[session].duration.current + " was the length of " + session);
+    sessions[session].duration.current += amount;
+    console.log(sessions[session].duration.current + " is the new length of " + session);
+  }
+  
+  function finishedTimer() {
+    nextTimer();
+    timer.init(currentSession.length);
+  }
+  
+  function nextTimer() {
+    var end = (currentSession.session + 1 >= cycle.length) ? true : false;
+    
+    if (end) {
+      currentSession.session = 0;
+      currentSession.cycle++;
+    } else {
+      currentSession.session++;
+    }
+    
+    currentSession.name = cycle[currentSession.session];
+    currentSession.longName = sessions[currentSession.name].long;
+    currentSession.length = sessions[currentSession.name].duration.current;
+  }
+  
   return {
-    getCurrent: {
-      number: getCurrentSessionNumber,
-      name: getCurrentSessionName,
-      longName: getCurrentLongName,
-      duration: getCurrentSessionDuration
-    },    
-    getSessionLengths: getSessionLengths
+    getCurrent: getCurrentSessionInfo,
+    getSessionLengths: getSessionLengths,
+    finishedTimer: finishedTimer,
+    changeLength: changeSessionLength
   };
   
 })();
