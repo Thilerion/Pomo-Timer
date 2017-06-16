@@ -119,9 +119,19 @@ var eventHandling = (function() {
     
     view.updateDisplay(false, false, true);
   }
+  
+  function enableDurationButtons() {
+    var btns = document.querySelectorAll(".durations div > button");
+    console.log(btns);
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].disabled = false;
+    }
+  }
 
   function resetDurations() {
-    console.log("TODO");
+    pomodoro.resetDurations();
+    enableDurationButtons();
+    view.updateDisplay(true, true, true);
   }
   
   return {

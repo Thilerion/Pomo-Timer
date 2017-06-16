@@ -105,12 +105,19 @@ var pomodoro = (function () {
     timer.init(currentSession.length);
   }
   
+  function resetDurations() {
+    for (var sess in sessions) {
+      sessions[sess].duration.current = sessions[sess].duration.initial;
+    }
+  }
+  
   return {
     getCurrent: getCurrentSessionInfo,
     getSessionLengths: getSessionLengths,
     finishedTimer: finishedTimer,
     changeLength: changeSessionLength,
-    resetTimer: resetTimer
+    resetTimer: resetTimer,
+    resetDurations: resetDurations
   };
   
 })();
