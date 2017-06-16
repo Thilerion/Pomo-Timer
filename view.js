@@ -1,89 +1,90 @@
-var view = {
-  displayTime: function() {
-    var timeP = document.getElementById("time");
-    var minutes = Math.round(timer.getMinutes());
-    var seconds = Math.round(timer.getSeconds());
-    timeP.innerHTML = ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
-  },
-  
-  displaySession: function() {
-    var sessionP = document.getElementById("session");
+var view = (function () {
+  var timeP = document.getElementById("time");
+  var sessionP = document.getElementById("session");
+  var sessionLengthsP = document.getElementById("sessionLengths");
+
+  var startBtn = document.getElementById("startTimer");
+  var resumePauseBtn = document.getElementById("resumePauseTimer");
+  let resetBtn = document.getElementById("resetSession");
+
+  function displayTime() {
+    var time = timer.getTime();
+    timeP.innerHTML = ("0" + time[0]).slice(-2) + ":" + ("0" + time[1]).slice(-2);
+  }
+
+  function displaySession() {
     sessionP.innerHTML = pomodoro.getCurrent.longName();
-  },
-  
-  displaySessionLengths: function() {
-    var sessionLengthsP = document.getElementById("sessionLengths");
+  }
+
+  function displaySessionLengths() {
     var lengths = pomodoro.getSessionLengths();
     sessionLengthsP.innerHTML = lengths[0][0] + ": " + lengths[0][1];
     sessionLengthsP.innerHTML += "; " + lengths[1][0] + ": " + lengths[1][1];
     sessionLengthsP.innerHTML += "; " + lengths[2][0] + ": " + lengths[2][1];
-  },
-  
-  startButton: function(disable) {
-    let startBtn = document.getElementById("startTimer");
+  }
+
+  function startButton(disable) {
     startBtn.disabled = disable;
-  },
-  
-  pauseResumeButton: function(disable, mode) {
-    //mode: true for resume text, false for pause text
-    let resumePauseBtn = document.getElementById("resumePauseTimer");
+  }
+
+  function pauseResumeButton(disable, mode) {
     resumePauseBtn.disabled = disable;
     if (mode === false) {
       resumePauseBtn.innerHTML = "Pause Timer";
     } else if (mode === true) {
       resumePauseBtn.innerHTML = "Resume Timer";
-    }    
-  },
-  
-  resetSessionButton: function(disable) {
-    let resetBtn = document.getElementById("resetSession");
-    resetBtn.disabled = disable;
-  },
-  
-  resetTimerButton: function(disable) {
-    
-  },
-  
-  updateButtons: function(started, running) {
-    this.startButton(started);
-    this.pauseResumeButton(!started, !running);
-    this.resetSessionButton(!started);
-    
-    this.updateDisplay(true, true, false);
-  },
-  
-  updateDisplay: function(tick, mode, duration) {
-    if (tick) {
-      this.displayTime();
-    }
-    if (mode) {
-      this.displaySession();
-    }
-    if (duration) {
-      this.displaySessionLengths();
     }
   }
-};
 
-var eventHandling = {
-  startTimer: function() {
+  function resetSessionButton(disable) {
+    resetBtn.disabled = disable;
+  }
+
+  function updateButtons(started, running) {
+    startButton(started);
+    pauseResumeButton(!started, !running);
+    resetSessionButton(!started);
+
+    updateDisplay(true, true, false);
+  }
+
+  function updateDisplay(tick, mode, duration) {
+    if (tick) {
+      displayTime();
+    }
+    if (mode) {
+      displaySession();
+    }
+    if (duration) {
+      displaySessionLengths();
+    }
+  }
+
+  return {
+    updateDisplay: updateDisplay,
+    updateButtons: updateButtons
+  };
+
+})();
+
+var eventHandling = (function() {
+  function startTimer() {
     timer.start();
-  },
+  }
   
-  resetSession: function() {
+  function resetSession() {
     timer.reset();
-  },
+  }
   
-  resetTimer: function() {
+  function resetTimer() {
     timer.reset();
-    //TODO
-  },
+  }
   
-  debugSkip: function() {
-    //TODO
-  },
+  function debugSkip() {
+    console.log("TODO");
+  }
   
-  resumePauseTimer: function() {
+  function resumePauseTimer() {
     let run = timer.getMode().running;
     view.pauseResumeButton(false, run);
     if (run === false) {
@@ -91,9 +92,9 @@ var eventHandling = {
     } else if (run === true) {
       timer.pause();
     }
-  },
-  
-  changeSessionTime: function(plus, session) {
+  }
+
+  function changeSessionTime(plus, session) {
     console.log(plus, session);
     if (plus === "in") {
       pomodoro.increaseDuration(session);
@@ -102,12 +103,23 @@ var eventHandling = {
     }
     if (session === pomodoro.currentSession.currentInfo.short) {
       timer.changeDuration(pomodoro.sessions[session].duration.current);
-    }    
+    }
     this.resetSession();
     view.displaySessionLengths();
-  },
-  
-  resetDurations: function() {
-    //TODO
   }
-};
+
+  function resetDurations() {
+    console.log("TODO");
+  }
+  
+  return {
+    startTimer: startTimer,
+    resetSession: resetSession,
+    resetTimer: resetTimer,
+    debugSkip: debugSkip,
+    resumePauseTimer: resumePauseTimer,
+    changeSessionTime: changeSessionTime,
+    resetDurations: resetDurations
+  };
+  
+})();

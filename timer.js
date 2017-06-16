@@ -4,12 +4,8 @@ var timer = (function() {
   var _running = false;
   var _started = false;
   
-  function getMinutesLeft() {
-    return Math.floor(Math.round(timeLeft / 1000) / 60 % 60);
-  }
-  
-  function getSecondsLeft() {
-    return Math.floor(Math.round(timeLeft / 1000) % 60);
+  function getTimeLeft() {
+    return [Math.floor(Math.round(timeLeft / 1000) / 60 % 60), Math.floor(Math.round(timeLeft / 1000) % 60)];
   }
   
   function startTimer() {
@@ -39,7 +35,7 @@ var timer = (function() {
     view.updateDisplay(true, false, false);
     
     //for debugging
-    console.log(timeLeft, getMinutesLeft(), getSecondsLeft());
+    console.log(timeLeft, getTimeLeft()[0], getTimeLeft()[1]);
   }
   
   function resetSession() {
@@ -93,8 +89,7 @@ var timer = (function() {
     pause: pauseTimer,
     start: startTimer,
     init: init,
-    getMinutes: getMinutesLeft,
-    getSeconds: getSecondsLeft,
+    getTime: getTimeLeft,
     changeMode: changeMode,
     getMode: getMode
   };
