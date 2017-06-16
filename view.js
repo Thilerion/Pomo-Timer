@@ -103,7 +103,19 @@ var eventHandling = (function() {
     console.log(amount);
     var session = classes[1];
     console.log(session);
-    pomodoro.changeLength(session, amount);
+    
+    var disable = pomodoro.changeLength(session, amount);
+    
+    if (disable === true) {
+      el.disabled = true;
+    } else if (disable === false) {
+      var select = "." + session;
+      var sessionBtns = document.querySelectorAll(select);
+      for (var i = 0; i < 2; i++) {
+        sessionBtns[i].disabled = false;
+      }
+    }
+    
     view.updateDisplay(false, false, true);
   }
 

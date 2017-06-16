@@ -57,9 +57,21 @@ var pomodoro = (function () {
   }
   
   function changeSessionLength(session, amount) {
-    console.log(sessions[session].duration.current + " was the length of " + session);
-    sessions[session].duration.current += amount;
-    console.log(sessions[session].duration.current + " is the new length of " + session);
+    let cur = sessions[session].duration.current;
+    let max = sessions[session].duration.max;
+    let min = sessions[session].duration.min;    
+    
+    console.log(cur + " was the length of " + session);
+    cur += amount;
+    console.log(cur + " is the new length of " + session);
+    
+    sessions[session].duration.current = cur;
+    
+    if (cur >= max || cur <= min) {
+      return true;
+    } else {
+      return false;
+    }
   }
   
   function finishedTimer() {
