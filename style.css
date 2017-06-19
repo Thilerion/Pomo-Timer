@@ -31,40 +31,6 @@ footer, header, hgroup, menu, nav, section {
 
 /* end of reset */
 
-/* begin van test selectors
-
-main, footer, header, nav {
-  min-height: 20%;
-  border: 5px solid black;
-  flex: 0 0 auto;
-}
-
-nav {
-  background-color: coral;
-  min-height: 60px;
-}
-
-main {
-  background-color: red;
-  flex: 1 0 auto;
-}
-
-header {
-  background-color: blue;
-}
-
-footer {
-  background-color: green;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  background-color: lightgoldenrodyellow;
-}
-
-eind van test selectors */
-
 /*
 working: blue
 break: green / light green
@@ -133,6 +99,24 @@ body {
 h1 {
   font-size: 56px;
   font-family: Roboto, sans-serif;
+}
+
+@media only screen and (max-width: 500px) {
+  main {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    font-size: 3em;
+  }
+  
+  #time {
+    font-size: 4em;
+    font-size: 30vw;
+    margin: 10px 0;
+  }
 }
 
 .footer {
