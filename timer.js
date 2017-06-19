@@ -110,22 +110,4 @@ var timer = (function() {
     
 })();
 
-/*
-initialTimeLeft > startTime
-currentTimeLeft > timeLeft
-startTimer > initTimer
-*/
-
-/*
-view is not updated, maybe use observer for that?
-maybe convert ms to seconds
-*/
-
-/*
-missing:
-  way to create a new timer
-  way to update the view
-  interface with pomodoro when timer is finished etc
-*/
-
 timer.init(0.083333333333333333333);

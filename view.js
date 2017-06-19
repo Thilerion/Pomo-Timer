@@ -134,6 +134,12 @@ var eventHandling = (function() {
     view.updateDisplay(true, true, true);
   }
   
+  function changeCycle() {
+    var amount = prompt("Choose how often the work-break should be repeated before a long break.", 3);
+    pomodoro.changeCycle(amount);
+    alert("The cycle will be repeated " + amount + " times.");
+  }
+  
   return {
     startTimer: startTimer,
     resetSession: resetSession,
@@ -141,7 +147,8 @@ var eventHandling = (function() {
     debugSkip: debugSkip,
     resumePauseTimer: resumePauseTimer,
     changeSessionTime: changeSessionTime,
-    resetDurations: resetDurations
+    resetDurations: resetDurations,
+    changeCycle: changeCycle
   };
   
 })();

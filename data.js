@@ -1,3 +1,5 @@
+/* global timer */
+
 var pomodoro = (function () {
   var sessions = {
     work: {
@@ -111,13 +113,29 @@ var pomodoro = (function () {
     }
   }
   
+  function changeCycle(repeats) {
+    //min 2, max 10
+    console.log(cycle);
+    if (repeats > 1 && repeats < 11) {
+      cycle = [];
+      for (var i = 0; i < repeats; i++) {
+        cycle.push("work", "sBreak");
+      }
+      cycle[cycle.length - 1] = "lBreak";
+    } else {
+      cycle = ["work", "sBreak", "work", "sBreak", "work", "lBreak"];
+    }
+    console.log(cycle);
+  }
+  
   return {
     getCurrent: getCurrentSessionInfo,
     getSessionLengths: getSessionLengths,
     finishedTimer: finishedTimer,
     changeLength: changeSessionLength,
     resetTimer: resetTimer,
-    resetDurations: resetDurations
+    resetDurations: resetDurations,
+    changeCycle: changeCycle
   };
   
 })();
