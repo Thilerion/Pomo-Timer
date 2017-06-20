@@ -28,7 +28,13 @@
       <div class="progressBar-progress" id="pBar"></div>
     </div>
     <section class="underSection">
-      
+      <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
+      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
+      <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
+      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
+      <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+      <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
     </section>
   </main>
   
@@ -43,3 +49,38 @@
 </body>
 
 </html>
+
+<!--
+<div class="buttonContainer">
+      <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
+      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
+      <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
+      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
+      <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+      <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
+    </div>
+      
+    <div class="timerInformation">
+      <p>Current session: </p><p id="session"></p>
+      <p>Session durations: </p><p id="sessionLengths"></p>
+    </div>    
+    
+    <div class="durations">
+      <div>
+        <button type="button" class="decrease work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+        <span>Work</span>
+        <button type="button" class="increase work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <div>
+        <button type="button" class="decrease sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+        <span>Short Break</span>
+        <button type="button" class="increase sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <div>
+        <button type="button" class="decrease lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+        <span>Long Break</span>
+        <button type="button" class="increase lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+-->
