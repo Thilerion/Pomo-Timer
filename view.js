@@ -7,8 +7,7 @@ var view = (function () {
   var lbDur = document.getElementById("lBreakDuration");
   var wDur = document.getElementById("workDuration");
 
-  var startBtn = document.getElementById("startTimer");
-  var resumePauseBtn = document.getElementById("resumePauseTimer");
+  var resumePauseBtnText = document.getElementById("resumePauseTimerText");
   let resetBtn = document.getElementById("resetSession");
   
   function displayTime() {
@@ -55,16 +54,16 @@ var view = (function () {
     lbDur.innerHTML = lengths[2][1];
   }
 
-  function startButton(disable) {
-    startBtn.disabled = disable;
-  }
-
-  function pauseResumeButton(disable, mode) {
-    resumePauseBtn.disabled = disable;
-    if (mode === false) {
-      resumePauseBtn.innerHTML = "Pause Timer";
-    } else if (mode === true) {
-      resumePauseBtn.innerHTML = "Resume Timer";
+  function pauseResumeButton(started, running) {
+    if (started === false) {
+      //text = Start Session
+      resumePauseBtnText.innerHTML = "Start Session";
+    } else if (started === true && running === false) {
+      //text = Resume Session
+      resumePauseBtnText.innerHTML = "Resume Session";
+    } else if (started === true && running === true) {
+      //text = Pause Session
+      resumePauseBtnText.innerHTML = "Pause Session";
     }
   }
 
@@ -73,8 +72,10 @@ var view = (function () {
   }
 
   function updateButtons(started, running) {
-    startButton(started);
-    pauseResumeButton(!started, !running);
+    //if started === true > enable pauseResume
+    //if running === true > set pauseResume button to "Pause Timer"
+    pauseResumeButton(started, running);
+    //if started === true > enable resetSession button
     resetSessionButton(!started);
 
     updateDisplay(true, true, false);
@@ -100,10 +101,6 @@ var view = (function () {
 })();
 
 var eventHandling = (function() {
-  function startTimer() {
-    timer.start();
-  }
-  
   function resetSession() {
     timer.reset();
   }
@@ -118,11 +115,21 @@ var eventHandling = (function() {
   }
   
   function resumePauseTimer() {
-    let run = timer.getMode().running;
-    view.updateButtons(false, run);
-    if (run === false) {
+    let mode = timer.getMode();
+    
+    let running = mode.running;
+    let started = mode.started;
+    
+    view.updateButtons(started, running);
+    
+    if (started === false) {
+      //start Timer
       timer.start();
-    } else if (run === true) {
+    } else if (started === true && running === false) {
+      //resume Timer
+      timer.start();
+    } else if (started === true && running === true) {
+      //pause Timer
       timer.pause();
     }
   }
@@ -184,7 +191,6 @@ var eventHandling = (function() {
   }
   
   return {
-    startTimer: startTimer,
     resetSession: resetSession,
     resetTimer: resetTimer,
     debugSkip: debugSkip,
