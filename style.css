@@ -159,7 +159,6 @@ h1 {
 
 .sessionCards-card {
   width: 30%;
-  height: 200px;
   padding: 0;
   box-sizing: border-box;
   background-color: #fff;
@@ -214,4 +213,130 @@ footer {
 
 footer > p {
   opacity: 0.5;
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .header {
+    padding: 5px;
+  }
+  
+  .timeSection {
+    height: 150px;
+  }
+  
+  .timeSection-timer {
+    font-size: 6rem;
+  }
+  
+  .underSection-buttonContainer {
+    width: 100%;
+    padding: 10px 5px;
+  }
+
+  .underSection-buttonContainer > button {
+    margin: 5px 5px;
+    cursor: pointer;
+    font-size: 0.7rem;
+  }
+  
+  .sessionCards {
+    width: 100%;
+    padding: 10px 4px;
+  }
+  
+  .sessionCards-card {
+    margin: 0;
+    width: auto;
+    margin: 0 2px;
+  }
+  
+  .sessionCards-content {
+    position:relative;
+  }
+  
+  .sessionCards-content button {
+    position: absolute;
+    top: 10px;    
+  }
+  
+  .sessionCards-content .decrease {
+    left: 17px;
+  }
+  
+  .sessionCards-content .increase {
+    right: 17px;
+  }
+  
+  .sessionCards button + span::before {
+    content: " ";
+    display: block;
+    height: 30px;
+  }
+}
+  
+  /*
+  .sessionCards {
+    margin: auto;
+    width: 80%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sessionCards-card {
+    width: 30%;
+    height: 200px;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #fff;
+    margin: 0 10px;
+    border-radius: 2px;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.25);
+    position: relative;
+  }
+
+  .sessionCards-card > h2 {
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin: 0;
+    background: #1976d2;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .sessionCards-content {
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .sessionCards button {
+    display: inline-block;
+    background-color: white;
+    border: none;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    cursor: pointer;
+    font-family: Roboto, sans-serif;
+    color: #333;
+  }
+
+  .sessionCards button[disabled] {
+    background-color: #eee;
+    color: #999;
+    cursor: default;
+  }
+
+  .sessionCards button + span {
+    margin: 0 5px;
+}
+  */
 }
