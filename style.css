@@ -116,6 +116,6 @@ h1 {
 
 .progressBar-progress {
   height: 8px;
-  width: 0.13333%;
+  width: 0;
   background-color: #8bc6ff;
 }

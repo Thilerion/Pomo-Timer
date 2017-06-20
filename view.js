@@ -1,4 +1,4 @@
-/* global timer, pomodoro */
+/* global timer, pomodoro, progress */
 
 var view = (function () {
   var timeP = document.getElementById("time");
@@ -12,6 +12,16 @@ var view = (function () {
   function displayTime() {
     var time = timer.getTime();
     timeP.innerHTML = ("0" + time[0]).slice(-2) + ":" + ("0" + time[1]).slice(-2);
+    updateProgressBar();
+  }
+  
+  function updateProgressBar() {
+    var max = pomodoro.getCurrent().length * 60;
+    var timeLeft = timer.getTime();
+    var secondsLeft = timeLeft[0] * 60 + timeLeft[1];
+    var current = max - secondsLeft;
+    
+    progress.updateBar(current, max);
   }
 
   function displaySession() {
