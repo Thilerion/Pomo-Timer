@@ -166,8 +166,21 @@ var eventHandling = (function() {
   
   function changeCycle() {
     var amount = prompt("Choose how often the work-break should be repeated before a long break.", 3);
-    pomodoro.changeCycle(amount);
-    alert("The cycle will be repeated " + amount + " times.");
+    
+    if (amount < 2) {
+      amount = 2;
+      alert("Too low, minimum is 2. Amount of cycles is now 2.");
+    } else if (amount > 10) {
+      amount = 10;
+      alert("Too high, maximum is 10. Amount of cycles is now 10.");
+    } else if (Number.isInteger(amount) === false) {
+      amount = 3;
+      alert("Invalid number, number of cycles defaults to 3.");
+    } else {
+      amount = Number.parseInt(amount);
+      alert("The cycle will be repeated " + amount + " times.");
+    }    
+    pomodoro.changeCycle(amount);    
   }
   
   return {
