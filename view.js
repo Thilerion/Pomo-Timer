@@ -131,7 +131,7 @@ var eventHandling = (function() {
   }
   
   function enableDurationButtons() {
-    var btns = document.querySelectorAll(".durations div > button");
+    var btns = document.querySelectorAll(".underSection-buttonContainer > button");
     console.log(btns);
     for (var i = 0; i < btns.length; i++) {
       btns[i].disabled = false;

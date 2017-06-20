@@ -15,11 +15,11 @@
 </head>
 
 <body class="flexLayout">
-  
+
   <header class="flexLayout-block header">
     <h1 class="header-logoText">Pomodoro</h1>
   </header>
-  
+
   <main class="flexLayout-large">
     <section class="timeSection">
       <p id="time" class="timeSection-timer">25:00</p>
@@ -38,43 +38,66 @@
         <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
       </div>
     </section>
+    <section class="sessionCards">
+      <div class="sessionCards-card">
+        <h2>Work</h2>
+        <div class="sessionCards-content">
+          <div>
+            <button type="button" class="decrease work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <span>Work</span>
+            <button type="button" class="increase work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="sessionCards-card">
+        <h2>Short Break</h2>
+        <div class="sessionCards-content">
+          <div>
+            <button type="button" class="decrease sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <span>Short Break</span>
+            <button type="button" class="increase sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="sessionCards-card">
+        <h2>Long Break</h2>
+        <div class="sessionCards-content">
+          <div>
+            <button type="button" class="decrease lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <span>Long Break</span>
+            <button type="button" class="increase lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="buttonContainer">
+
+      <div class="timerInformation">
+        <p>Current session: </p>
+        <p id="session"></p>
+        <p>Session durations: </p>
+        <p id="sessionLengths"></p>
+      </div>
+
+      <div class="durations">
+
+
+
+      </div>
+    </div>
   </main>
-  
+
   <footer class="flexLayout-block footer">
     Footer
   </footer>
-  
-  <!--<script src="data.js"></script>
-  <script src="view.js"></script>
-  <script src="timer.js"></script>-->
+
   <script src="progress.js"></script>
+  <script src="data.js"></script>
+  <script src="view.js"></script>
+  <script src="timer.js"></script>
+
 </body>
 
 </html>
-
-<!--
-<div class="buttonContainer">
-      
-    <div class="timerInformation">
-      <p>Current session: </p><p id="session"></p>
-      <p>Session durations: </p><p id="sessionLengths"></p>
-    </div>    
-    
-    <div class="durations">
-      <div>
-        <button type="button" class="decrease work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-        <span>Work</span>
-        <button type="button" class="increase work" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-      </div>
-      <div>
-        <button type="button" class="decrease sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-        <span>Short Break</span>
-        <button type="button" class="increase sBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-      </div>
-      <div>
-        <button type="button" class="decrease lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-        <span>Long Break</span>
-        <button type="button" class="increase lBreak" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-      </div>
-    </div>
--->
