@@ -184,10 +184,6 @@ h1 {
   text-align: center;
 }
 
-.sessionCards i {
-  color: #333;
-}
-
 .sessionCards button {
   display: inline-block;
   background-color: white;
@@ -199,6 +195,13 @@ h1 {
   box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
   cursor: pointer;
   font-family: Roboto, sans-serif;
+  color: #333;
+}
+
+.sessionCards button[disabled] {
+  background-color: #eee;
+  color: #999;
+  cursor: default;
 }
 
 .sessionCards button + span {
