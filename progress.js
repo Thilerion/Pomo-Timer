@@ -20,19 +20,3 @@ var progress = (function() {
   };
   
 })();
-
-/*var current = 0;
-var max = 1500;
-
-var intervalTest = setInterval(function() {
-  if (current >= max) {
-    clearInterval(intervalTest);
-  } else if (max - current < 3.4) {
-    current = max;
-    progress(current, max);
-    clearInterval(intervalTest);
-  } else {
-    current += 3.4;
-    progress(current, max);
-  }  
-}, 10);*/
