@@ -219,7 +219,7 @@ h1 {
   height: 8px;
   width: 0;
   background-color: #8bc6ff;
-  /*transition: width 0.9s;*/
+  transition: width 0.9s;
 }
 
 .sessionCards {

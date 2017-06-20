@@ -84,6 +84,16 @@ var timer = (function() {
   
   function changeSpeedDEBUG(inp) {
     pauseTimer();
+    
+    var transitionSpeed = 1;
+    if (inp > 1) {
+      transitionSpeed = (transitionSpeed / inp).toFixed(1);
+    }
+    transitionSpeed -= (transitionSpeed / 10);
+    console.log("Transition speed: " + transitionSpeed);
+    progress.progressTransition(transitionSpeed);
+    
+    
     if (inp >= 1 && inp <= 50) {
       _speed = inp;
       _intervalSpeed = 1000 / inp;
