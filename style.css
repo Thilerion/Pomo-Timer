@@ -115,13 +115,13 @@ body {
   left: 0;
   width: 100%;
   height: 345px;
-  background: radial-gradient(rgba(255, 255, 255, 0.3) 30%, rgba(255, 255, 255, 0));
+  background: radial-gradient(rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0));
   mix-blend-mode: overlay;
 }
 
 @supports not (mix-blend-mode: overlay) {
   .timeSection-gradient {
-    display: none;
+    background: radial-gradient(rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0));
   }
 }
 
