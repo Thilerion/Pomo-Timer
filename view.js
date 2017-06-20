@@ -49,9 +49,18 @@ var view = (function () {
 
   function displaySessionLengths() {
     var lengths = pomodoro.getSessionLengths();
-    wDur.innerHTML = lengths[0][1];
-    sbDur.innerHTML = lengths[1][1];
-    lbDur.innerHTML = lengths[2][1];
+    
+    var oldWDur = wDur.innerHTML;
+    var oldSbDur = sbDur.innerHTML;
+    var oldLbDur = lbDur.innerHTML;
+    
+    var newWDur = lengths[0][1];
+    var newSbDur = lengths[1][1];
+    var newLbDur = lengths[2][1];
+    
+    wDur.innerHTML = newWDur;
+    sbDur.innerHTML = newSbDur;
+    lbDur.innerHTML = newLbDur;
   }
 
   function pauseResumeButton(started, running) {
@@ -154,7 +163,7 @@ var eventHandling = (function() {
   }
   
   function enableDurationButtons() {
-    var btns = document.querySelectorAll(".underSection-buttonContainer > button");
+    var btns = document.querySelectorAll(".durBtn");
     console.log(btns);
     for (var i = 0; i < btns.length; i++) {
       btns[i].disabled = false;
