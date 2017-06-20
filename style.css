@@ -44,6 +44,10 @@ body {
   font-weight: normal;
 }
 
+button {
+  outline: none;
+}
+
 .flexLayout {
   display: flex;
   flex-direction: column;  
