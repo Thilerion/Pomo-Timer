@@ -15,7 +15,12 @@ var timer = (function() {
   
   function startTimer() {
     //decrease time left by 1 second to reduce delay after clicking button
-    timeLeft -= 1000;
+    if (timeLeft > 1000) {
+      timeLeft -= 1000;
+    } else {
+      timeLeft = 0;
+      finishedTimer();
+    }
     
     //the end time of the current timer is the amount of time left + the start time
     endTime = Date.now() + timeLeft;
