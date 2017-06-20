@@ -169,15 +169,15 @@ body {
 
 #resumePauseTimer {
   color: white;
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   font-size: 3em;
 }
 
 #resumePauseTimer > .fa-play {
   position: relative;
-  left: 2px;
+  left: 1px;
   color: white;
 }
 

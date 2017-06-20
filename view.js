@@ -68,22 +68,27 @@ var view = (function () {
   function pauseResumeButton(started, running) {
     if (started === false) {
       //text = Start Session
-      resumePauseBtnIcon.classList.remove("fa-pause");
-      resumePauseBtnIcon.classList.add("fa-play");
-      resumePauseBtnBg.classList.remove("playButton-pause");
-      resumePauseBtnBg.classList.add("playButton-play");
+      changePauseResumeButton(false);
     } else if (started === true && running === false) {
       //text = Resume Session
-      resumePauseBtnIcon.classList.remove("fa-pause");
-      resumePauseBtnIcon.classList.add("fa-play");
-      resumePauseBtnBg.classList.remove("playButton-pause");
-      resumePauseBtnBg.classList.add("playButton-play");
+      changePauseResumeButton(false);
     } else if (started === true && running === true) {
       //text = Pause Session
+      changePauseResumeButton(true);
+    }
+  }
+  
+  function changePauseResumeButton(showPause) {
+    if (showPause) {
       resumePauseBtnIcon.classList.remove("fa-play");
       resumePauseBtnIcon.classList.add("fa-pause");
       resumePauseBtnBg.classList.remove("playButton-play");
       resumePauseBtnBg.classList.add("playButton-pause");
+    } else {
+      resumePauseBtnIcon.classList.remove("fa-pause");
+      resumePauseBtnIcon.classList.add("fa-play");
+      resumePauseBtnBg.classList.remove("playButton-pause");
+      resumePauseBtnBg.classList.add("playButton-play");
     }
   }
 
