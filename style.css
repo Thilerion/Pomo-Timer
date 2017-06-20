@@ -130,7 +130,7 @@ h1 {
 }
 
 .footer {
-  min-height: 150px;
+  min-height: 50px;
   background-color: #455a64;
   color: white;
   box-sizing: border-box;
@@ -203,4 +203,12 @@ h1 {
 
 .sessionCards button + span {
   margin: 0 5px;
+}
+
+footer {
+  font-size: 0.7rem;
+}
+
+footer > p {
+  opacity: 0.5;
 }
