@@ -13,6 +13,14 @@ var current = 0;
 var max = 1500;
 
 var intervalTest = setInterval(function() {
-  progress(current, max);
-  current++;
+  if (current >= max) {
+    clearInterval(intervalTest);
+  } else if (max - current < 50) {
+    current = max;
+    progress(current, max);
+    clearInterval(intervalTest);
+  } else {
+    current += 50;
+    progress(current, max);
+  }  
 }, 100);
