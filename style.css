@@ -92,8 +92,37 @@ body {
 }
 
 .underSection {
-  height: 120px;
   background-color: #eceff1; /* blue-grey-50 */
+}
+
+.underSection-buttonContainer {
+  margin: auto;
+  width: 80%;
+  max-width: 1000px;
+  text-align: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.underSection-buttonContainer > button {
+  display: block;
+  background-color: white;
+  border: none;
+  padding: 10px 8px;
+  margin: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+}
+
+#startTimer {
+  background-color: #1976d2;
+  color: white;
 }
 
 h1 {

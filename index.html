@@ -28,13 +28,15 @@
       <div class="progressBar-progress" id="pBar"></div>
     </div>
     <section class="underSection">
-      <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
-      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
-      <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
-      <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
-      <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
+      <div class="underSection-buttonContainer">
+        <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
+        <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
+        <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
+        <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+        <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
+        <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+        <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
+      </div>
     </section>
   </main>
   
@@ -52,14 +54,6 @@
 
 <!--
 <div class="buttonContainer">
-      <button type="button" id="startTimer" onclick="eventHandling.startTimer()">Start Timer</button>
-      <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play"></i> Pause Timer</button>
-      <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-      <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-      <button type="button" id="skipTimer" onclick="eventHandling.debugSkip()"><i class="fa fa-step-forward"></i> Skip Timer debug</button>
-      <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
-      <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
-    </div>
       
     <div class="timerInformation">
       <p>Current session: </p><p id="session"></p>
