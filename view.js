@@ -42,9 +42,10 @@ var view = (function () {
     
     for (var i = 0; i < cardHeaders.length; i++) {
       if (session === i) {
-        cardHeaders[i].style.background = "#499df0";
-      } else {
         cardHeaders[i].style.background = "#1976d2";
+      } else {
+        //cardHeaders[i].style.background = "#1976d2";
+        cardHeaders[i].style.background = "#455a64";
       }
     }
   }
