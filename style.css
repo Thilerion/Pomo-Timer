@@ -182,3 +182,20 @@ h1 {
   padding: 5px;
   font-size: 0.9rem;
 }
+
+.sessionCards i {
+  color: #333;
+}
+
+.sessionCards button {
+  display: inline-block;
+  background-color: white;
+  border: none;
+  height: 30px;
+  width: 30px;
+  line-height: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+}
