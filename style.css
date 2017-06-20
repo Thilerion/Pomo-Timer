@@ -179,18 +179,22 @@ body {
   position: relative;
   left: 1px;
   color: white;
+  transition: color 1s;
 }
 
 #resumePauseTimer > .fa-pause {
   color: #1976d2;
+  transition: color 1s;
 }
 
 .playButton-pause {
   background-color: white;
+  transition: background-color 0.5s;
 }
 
 .playButton-play {
   background-color: #1976d2;
+  transition: background-color 0.5s;
 }
 
 h1 {
@@ -215,6 +219,7 @@ h1 {
   height: 8px;
   width: 0;
   background-color: #8bc6ff;
+  /*transition: width 0.9s;*/
 }
 
 .sessionCards {
@@ -245,6 +250,7 @@ h1 {
   margin: 0;
   background: #1976d2;
   border-radius: 2px 2px 0 0;
+  transition: background-color 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
 .sessionCards-content {
