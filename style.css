@@ -155,6 +155,7 @@ h1 {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  align-items: stretch;
 }
 
 .sessionCards-card {
@@ -250,7 +251,7 @@ footer > p {
   
   .sessionCards-card {
     margin: 0;
-    width: auto;
+    width: 100%;
     margin: 0 2px;
   }
   
