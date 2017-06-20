@@ -2,8 +2,10 @@
 
 var view = (function () {
   var timeP = document.getElementById("time");
-  var sessionP = document.getElementById("session");
-  var sessionLengthsP = document.getElementById("sessionLengths");
+  
+  var sbDur = document.getElementById("sBreakDuration");
+  var lbDur = document.getElementById("lBreakDuration");
+  var wDur = document.getElementById("workDuration");
 
   var startBtn = document.getElementById("startTimer");
   var resumePauseBtn = document.getElementById("resumePauseTimer");
@@ -25,14 +27,32 @@ var view = (function () {
   }
 
   function displaySession() {
-    sessionP.innerHTML = pomodoro.getCurrent().longName;
+    var session = pomodoro.getCurrent().name;
+    if (session === "work") {
+      session = 0;
+    } else if (session === "sBreak") {
+      session = 1;
+    } else if (session === "lBreak") {
+      session = 2;
+    }
+    
+    var cardHeaders = document.querySelectorAll(".sessionCards-card > h2");
+    console.log(cardHeaders);
+    
+    for (var i = 0; i < cardHeaders.length; i++) {
+      if (session === i) {
+        cardHeaders[i].style.background = "#499df0";
+      } else {
+        cardHeaders[i].style.background = "#1976d2";
+      }
+    }
   }
 
   function displaySessionLengths() {
     var lengths = pomodoro.getSessionLengths();
-    sessionLengthsP.innerHTML = lengths[0][0] + ": " + lengths[0][1];
-    sessionLengthsP.innerHTML += "; " + lengths[1][0] + ": " + lengths[1][1];
-    sessionLengthsP.innerHTML += "; " + lengths[2][0] + ": " + lengths[2][1];
+    wDur.innerHTML = lengths[0][1];
+    sbDur.innerHTML = lengths[1][1];
+    lbDur.innerHTML = lengths[2][1];
   }
 
   function startButton(disable) {
