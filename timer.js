@@ -5,15 +5,15 @@ var timer = (function() {
   var startTime, timeLeft, endTime, interval;
   var _running = false;
   var _started = false;
-  var _speed = 10;
+  
+  var _speed = 1;
+  var _intervalSpeed = 1000; 
   
   function getTimeLeft() {
     return [Math.floor(Math.round(timeLeft / 1000) / 60 % 60), Math.floor(Math.round(timeLeft / 1000) % 60)];
   }
   
   function startTimer() {
-    var speed = 1000 / _speed;
-    
     //decrease time left by 1 second to reduce delay after clicking button
     timeLeft -= 1000;
     
@@ -23,7 +23,7 @@ var timer = (function() {
     changeMode(true, true);
     
     //initialize setInterval on the timer-scoped interval variable
-    interval = setInterval(tick, speed);
+    interval = setInterval(tick, _intervalSpeed);
   }
   
   function tick() {
@@ -77,6 +77,15 @@ var timer = (function() {
     startTimer();
   }
   
+  function changeSpeedDEBUG(inp) {
+    pauseTimer();
+    if (inp >= 1 && inp <= 50) {
+      _speed = inp;
+      _intervalSpeed = 1000 / inp;
+    }
+    startTimer();
+  }
+  
   function changeMode(started, running) {
     _started = started;
     _running = running;
@@ -105,7 +114,8 @@ var timer = (function() {
     getTime: getTimeLeft,
     changeMode: changeMode,
     getMode: getMode,
-    debugSkip: skipToEndDEBUG
+    debugSkip: skipToEndDEBUG,
+    changeSpeed: changeSpeedDEBUG
   };
     
 })();

@@ -72,6 +72,30 @@ body {
   text-transform: lowercase;
 }
 
+.tester-button {
+  position: absolute;
+  top: 10px;
+  height: 25px;
+  width: 25px;
+  padding: 0;
+  text-align: center;
+  background: white;
+  border-radius: 50%;
+  border: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  cursor: pointer;
+  color: #777;
+  line-height: 25px;
+}
+
+.tester-speed {
+  right: 10px;
+}
+
+.tester-skip {
+  right: 45px;
+}
+
 .timeSection {
   background-color: #1e88e5; /*blue-600*/
   color: #fff;

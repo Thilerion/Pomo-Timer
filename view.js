@@ -110,10 +110,6 @@ var eventHandling = (function() {
     pomodoro.resetTimer();
   }
   
-  function debugSkip() {
-    timer.debugSkip();
-  }
-  
   function resumePauseTimer() {
     let mode = timer.getMode();
     
@@ -193,7 +189,6 @@ var eventHandling = (function() {
   return {
     resetSession: resetSession,
     resetTimer: resetTimer,
-    debugSkip: debugSkip,
     resumePauseTimer: resumePauseTimer,
     changeSessionTime: changeSessionTime,
     resetDurations: resetDurations,
