@@ -55,7 +55,8 @@ var progress = (function () {
   return {
     updateBar: updateBar,
     setSpeed: setSpeed,
-    setTransitionTiming: setTransitionTiming
+    setTransitionTiming: setTransitionTiming,
+    updateTransition: _updateTransition
   };
 
 })();
