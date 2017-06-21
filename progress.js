@@ -45,11 +45,17 @@ var progress = (function () {
   }
   
   function _updateTransition() {
+    var el = document.getElementById("pBar");
     
+    el.style.transitionProperty = "width";
+    el.style.transitionDuration = "" + _speed + "s";
+    el.style.transitionTimingFunction = _transition;
   }
 
   return {
     updateBar: updateBar,
+    setSpeed: setSpeed,
+    setTransitionTiming: setTransitionTiming
   };
 
 })();
