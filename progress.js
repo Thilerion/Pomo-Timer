@@ -48,7 +48,13 @@ var progress = (function () {
     var el = document.getElementById("pBar");
     
     el.style.transitionProperty = "width";
-    el.style.transitionDuration = "" + _speed + "s";
+    
+    if (_transition === "linear") {
+      el.style.transitionDuration = "" + _speed + "s";
+    } else if (_transition === "ease") {
+      el.style.transitionDuration = "" + 1.5 + "s";
+    }
+    
     el.style.transitionTimingFunction = _transition;
     el.style.width = "" + _width + "%";
   }
