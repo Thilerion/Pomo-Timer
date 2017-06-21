@@ -50,6 +50,7 @@ var progress = (function () {
     el.style.transitionProperty = "width";
     el.style.transitionDuration = "" + _speed + "s";
     el.style.transitionTimingFunction = _transition;
+    el.style.width = "" + _width + "%";
   }
 
   return {

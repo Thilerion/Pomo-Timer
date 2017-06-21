@@ -25,6 +25,7 @@ var timer = (function() {
     //the end time of the current timer is the amount of time left + the start time
     endTime = Date.now() + timeLeft;
     
+    progress.setTransitionTiming(0);
     changeMode(true, true);
     
     //initialize setInterval on the timer-scoped interval variable
@@ -61,6 +62,7 @@ var timer = (function() {
   }
   
   function finishedTimer() {
+    progress.setTransitionTiming(1);
     clearInterval(interval);
     pomodoro.finishedTimer();
   }
@@ -83,6 +85,7 @@ var timer = (function() {
   }
   
   function changeSpeedDEBUG(inp) {
+    progress.setSpeed(inp);
     pauseTimer();
       
     if (inp >= 1 && inp <= 50) {
