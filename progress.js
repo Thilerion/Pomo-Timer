@@ -1,10 +1,13 @@
 var progress = (function () {
 
   var el = document.getElementById("pBar");
-  var width = 0;
+  
+  var _width = 0;
+  var _speed = 0.95;
+  var _transition = "linear";
 
   function updateBar(current, max) {
-    width = ((current / max) * 100).toFixed(4);
+    var width = ((current / max) * 100).toFixed(4);
     
     if (width < 0) {
       width = 0;
@@ -12,7 +15,37 @@ var progress = (function () {
       width = 100;
     }
     
-    el.style.width = width + "%";
+    _width = width;
+    
+    _updateTransition();
+  }
+  
+  function setSpeed(speed) {
+    //speed is the amount of ticks per second
+    //transition speed should be the length of a tick -5%
+    var tSpeed = 1 / speed;
+    var fivePercent = tSpeed * 0.05;
+    
+    _speed = tSpeed - fivePercent;
+    
+    _updateTransition();
+  }
+  
+  function setTransitionTiming(fn) {
+    //can be either 0 for linear of 1 for ease
+    if (fn === 0) {
+      _transition = "linear";
+    } else if (fn === 1) {
+      _transition = "ease";
+    } else {
+      _transition = "linear";
+    }
+    
+    _updateTransition();    
+  }
+  
+  function _updateTransition() {
+    
   }
 
   return {
