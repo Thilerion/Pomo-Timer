@@ -125,5 +125,3 @@ var timer = (function() {
   };
     
 })();
-
-timer.init(0.083333333333333333333);
