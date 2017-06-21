@@ -8,20 +8,15 @@ var progress = (function () {
     
     if (width < 0) {
       width = 0;
-    } else if (width > 99.9) {
+    } else if (max - current <= 1) {
       width = 100;
     }
     
     el.style.width = width + "%";
   }
 
-  function progressTransition(speed) {
-    el.style.transition = "width " + speed + "s";
-  } 
-
   return {
     updateBar: updateBar,
-    progressTransition: progressTransition
   };
 
 })();
