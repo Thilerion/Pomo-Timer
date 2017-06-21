@@ -20,3 +20,13 @@ var progress = (function () {
   };
 
 })();
+
+
+/*
+Todo:
+  set transition speed (for debug mode when speed is faster)
+  set transition type (ease when new timer, linear when ticking)
+  
+Maybe:
+  way to change color depending on time-background color
+*/
