@@ -1,2 +1,2 @@
 //progress.updateTransition();
-timer.init(0.083333333333333333333);
+timer.init(25);
