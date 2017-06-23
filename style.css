@@ -306,6 +306,7 @@ footer > p {
   
   .timeSection {
     height: 150px;
+    z-index: -10;
   }
   
   .timeSection-timer {
@@ -321,18 +322,29 @@ footer > p {
     margin: 0;
     cursor: pointer;
     font-size: 0.75rem;
-    flex: 3 0 0;
+    flex: 3 0 25%;
     height: 50px;
+    box-shadow: none;
+    z-index: 100;    
+  }
+  
+  .underSection-buttonContainer > .rectButton {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+  }
+  
+  .underSection-buttonContainer > .rectButton:first-child {
+    border-left: none;
   }
   
   #resumePauseTimer {
-    order: 10;
     border-radius: 0;
-    height: 50px;
-    flex: 5 0 0;
+    height: 70px;
+    flex: 5 0 100%;
     font-size: 2rem;
-    line-height: 50px;
     padding: 0;
+    order: -1;
   }
   
   .sessionCards {
