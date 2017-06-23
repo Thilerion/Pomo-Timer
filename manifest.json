@@ -4,5 +4,11 @@
   "display": "standalone",
   "orientation": "portrait",
   "background-color": "white",
-  "theme_color": "#1976d2"
+  "theme_color": "#1976d2",
+  "icons": [
+    {
+      "src": "icon/web_hi_res_512.png",
+      "sizes:" "512x512"
+    }
+  ]
 }
