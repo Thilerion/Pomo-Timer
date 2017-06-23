@@ -1,0 +1,8 @@
+{
+  "name": "Pomo-Timer",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background-color": "white",
+  "theme_color": "1976d2"
+}
