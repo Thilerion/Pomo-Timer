@@ -8,19 +8,23 @@
   "icons": [
     {
       "src": "icon/web_hi_res_512.png",
-      "sizes:" "512x512"
+      "sizes": "512x512",
+      "type": "image/png"
     },
     {
       "src": "icon/pomo-timer-48.png",
-      "sizes:" "48x48"
+      "sizes": "48x48",
+      "type": "image/png"
     },
     {
       "src": "icon/pomo-timer-72.png",
-      "sizes:" "72x72"
+      "sizes": "72x72",
+      "type": "image/png"
     },
     {
       "src": "icon/pomo-timer-96.png",
-      "sizes:" "96x96"
+      "sizes": "96x96",
+      "type": "image/png"
     }
   ]
 }
