@@ -380,6 +380,10 @@ footer > p {
     display: block;
     height: 30px;
   }
+  
+  footer {
+    display: none;
+  }
 }
   
   /*
