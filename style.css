@@ -101,7 +101,7 @@ button {
 }
 
 .timeSection {
-  background-color: #1e88e5; /*blue-600*/
+  background-color: #1e88e5; /*blue-600 #1e88e5*/ /*dark orange 800 #d84315*/
   color: #fff;
   height: 325px;
   padding: 10px 0;
@@ -112,6 +112,7 @@ button {
   background: #1976d2;
   /*background: #1eb930;*/
   position: relative;
+  transition: background-color 1s;
 }
 
 .timeSection-gradient {

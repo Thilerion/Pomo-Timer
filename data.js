@@ -44,6 +44,8 @@ var pomodoro = (function () {
     cycle: 0
   };
   
+  var hasStarted = false;
+  
   function getCurrentSessionInfo() {
     return currentSession;
   }
@@ -135,7 +137,8 @@ var pomodoro = (function () {
     changeLength: changeSessionLength,
     resetTimer: resetTimer,
     resetDurations: resetDurations,
-    changeCycle: changeCycle
+    changeCycle: changeCycle,
+    hasStarted: hasStarted
   };
   
 })();

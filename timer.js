@@ -14,6 +14,8 @@ var timer = (function() {
   }
   
   function startTimer() {
+    pomodoro.hasStarted = true;
+    
     //decrease time left by 1 second to reduce delay after clicking button
     if (timeLeft > 1000) {
       timeLeft -= 1000;
@@ -100,6 +102,8 @@ var timer = (function() {
     _running = running;
     
     view.updateButtons(started, running);
+    
+    view.changeBgColor(pomodoro.hasStarted, started, running);
     //for debugging
     console.log("Is running: " + _running, "Is started: " + _started);
   }

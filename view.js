@@ -12,6 +12,8 @@ var view = (function () {
   
   let resetBtn = document.getElementById("resetSession");
   
+  var timeSectionDiv = document.querySelector(".timeSection");
+  
   function displayTime() {
     var time = timer.getTime();
     timeP.innerHTML = ("0" + time[0]).slice(-2) + ":" + ("0" + time[1]).slice(-2);
@@ -118,10 +120,24 @@ var view = (function () {
       displaySessionLengths();
     }
   }
+  
+  function changeBgColor(hasStarted, started, running) {
+    //hasStarted = true after first time start
+    //started = true whenever a certain session has ran
+    //running = true when the current session is still running
+    
+    if (hasStarted === true && started === false && running === false) {
+        timeSectionDiv.style.backgroundColor = "#d84315";
+    }
+    else {
+        timeSectionDiv.style.backgroundColor = "#1e88e5";
+    }
+  }
 
   return {
     updateDisplay: updateDisplay,
-    updateButtons: updateButtons
+    updateButtons: updateButtons,
+    changeBgColor: changeBgColor
   };
 
 })();
@@ -132,6 +148,7 @@ var eventHandling = (function() {
   }
   
   function resetTimer() {
+    pomodoro.hasStarted = false;
     timer.reset();
     pomodoro.resetTimer();
   }
