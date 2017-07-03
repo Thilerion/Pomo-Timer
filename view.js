@@ -133,11 +133,17 @@ var view = (function () {
         timeSectionDiv.style.backgroundColor = "#1e88e5";
     }
   }
+  
+  var audio = new Audio("alarm.mp3");
+  function nextTimerSound() {
+    audio.play();
+  }
 
   return {
     updateDisplay: updateDisplay,
     updateButtons: updateButtons,
-    changeBgColor: changeBgColor
+    changeBgColor: changeBgColor,
+    playSound: nextTimerSound
   };
 
 })();
