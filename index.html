@@ -27,53 +27,35 @@
 	</header>
 
 	<main>
-		<section>
-			<p id="time">25:00</p>
-		</section>
+		<p id="time">25:00</p>
 		<div>
-			<div id="pBar"></div>
+			<button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
+			<button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+			<button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
+			<button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+			<button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
 		</div>
-		<section>
-			<div>
-				<button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-				<button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-				<button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
-				<button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
-				<button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
-			</div>
-		</section>
-		<section>
-			<div>
-				<h2>Work</h2>
-				<div>
-					<div>
-						<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-						Duration: <span id="workDuration"></span>
-						<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-					</div>
-				</div>
-			</div>
-			<div>
-				<h2>Short Break</h2>
-				<div>
-					<div>
-						<button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-						<span>Duration: <span id="sBreakDuration"></span></span>
-						<button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-					</div>
-				</div>
-			</div>
-			<div>
-				<h2>Long Break</h2>
-				<div>
-					<div>
-						<button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-						<span>Duration: <span id="lBreakDuration"></span></span>
-						<button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-					</div>
-				</div>
-			</div>
-		</section>
+		<div>
+			<h2>Work</h2>
+			<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button> Duration: <span id="workDuration"></span>
+			<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+		</div>
+		<div>
+			<h2>Short Break</h2>
+
+			<button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+			<span>Duration: <span id="sBreakDuration"></span></span>
+			<button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+
+		</div>
+		<div>
+			<h2>Long Break</h2>
+
+			<button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+			<span>Duration: <span id="lBreakDuration"></span></span>
+			<button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+
+		</div>
 	</main>
 
 	<footer>
