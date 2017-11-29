@@ -162,11 +162,6 @@ var eventHandling = (function() {
   function resumePauseTimer() {
     let mode = timer.getMode();
     
-    let running = mode.running;
-    let started = mode.started;
-    
-    view.updateButtons(started, running);
-    
     if (started === false) {
       //start Timer
       timer.start();
@@ -198,8 +193,6 @@ var eventHandling = (function() {
         sessionBtns[i].disabled = false;
       }
     }
-    
-    view.updateDisplay(false, false, true);
   }
   
   function enableDurationButtons() {
@@ -213,7 +206,6 @@ var eventHandling = (function() {
   function resetDurations() {
     pomodoro.resetDurations();
     enableDurationButtons();
-    view.updateDisplay(true, true, true);
   }
   
   function changeCycle() {

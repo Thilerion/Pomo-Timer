@@ -46,8 +46,6 @@ var timer = (function () {
 			timeLeft = endTime - Date.now();
 		}
 
-		view.updateDisplay(true, false, false);
-
 		//for debugging
 		console.log(timeLeft, getTimeLeft()[0], getTimeLeft()[1]);
 	}
@@ -74,7 +72,6 @@ var timer = (function () {
 		timeLeft = startTime;
 
 		changeMode(false, false);
-		view.updateDisplay(false, false, true);
 
 		//for debugging
 		console.log(timeLeft + " milliseconds left, " + startTime + " milliseconds as start time.");
@@ -101,9 +98,6 @@ var timer = (function () {
 		_started = started;
 		_running = running;
 
-		view.updateButtons(started, running);
-
-		view.changeBgColor(pomodoro.hasStarted, started, running);
 		//for debugging
 		console.log("Is running: " + _running, "Is started: " + _started);
 	}

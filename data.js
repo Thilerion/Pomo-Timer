@@ -80,7 +80,6 @@ var pomodoro = (function () {
 
 	function finishedTimer() {
 		nextTimer();
-		view.playSound();
 		timer.init(currentSession.length);
 	}
 
