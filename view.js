@@ -218,6 +218,7 @@ var eventHandling = (function() {
   
   function changeCycle() {
     var amount = prompt("Choose how often the work-break should be repeated before a long break.", 3);
+		amount = parseInt(amount); 
     
     if (amount < 2) {
       amount = 2;
