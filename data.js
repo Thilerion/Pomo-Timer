@@ -3,11 +3,11 @@
 
 /*
 relevant information:
-    ispaused/isrunning
-    hasinitialised
-    hasStarted
-    currentSession
-    sessionDuration
+    *ispaused/isrunning
+    *hasinitialised
+    *hasStarted
+    *currentSession
+    *sessionDurations
     
 but also long-term information:
     totalTimePlayed
@@ -28,9 +28,9 @@ var data = (function() {
         this.name = name;
         this.fullName = fullName;
         this.dur = {};
-        this.dur.current = this.dur.initial = initialDur;
-        this.dur.max = maxDur;
-        this.dur.min = minDur;
+        this.dur.current = this.dur.initial = convertToMS(initialDur);
+        this.dur.max = convertToMS(maxDur);
+        this.dur.min = convertToMS(minDur);
     }
     
     //adds method to prototype to reset duration to initial duration
@@ -40,13 +40,13 @@ var data = (function() {
     };
     
     Session.prototype.increaseDur = function() {
-        this.dur.current += 1;
-        console.log("Duration of " + this.long + " has been increased by one to " + this.dur.current);
+        this.dur.current += 60000;
+        console.log("Duration of " + this.long + " has been increased by one minute to " + this.dur.current + " ms");
     };
     
     Session.prototype.decreaseDur = function() {
-        this.dur.current -= 1;
-        console.log("Duration of " + this.long + " has been decreased by one to " + this.dur.current);
+        this.dur.current -= 60000;
+        console.log("Duration of " + this.long + " has been decreased by one minute to " + this.dur.current + " ms");
     };
     
     //creates the three session types and assigns them to the above "sessions" variable
@@ -56,20 +56,29 @@ var data = (function() {
     console.log("Sessions:");
     console.log(sessions);
     
-    //a currentSession object which references the sessions variable, and lists whether it is running or not etc
+    //continually updates object with currentSession information
     var currentSession = {
-        //as part of initializing the program, fills in the currentSession with information
         "type": "work",
         "hasStarted": false,
         "isPaused": false,
-        "isPlaying": false
+        "isPlaying": false,
+        "dur": function() {
+            let sess = currentSession.type;
+            return sessions[sess].dur.current;
+        }
     };
     
     console.log("Current session:");
     console.log(currentSession);
     
+    //converts numbers in minutes to milliseconds
+    function convertToMS(min) {
+        return min * 60000;
+    }
+    
     return {
-        
+        currentSession: currentSession,
+        sessions: sessions
     };
 })();
 
