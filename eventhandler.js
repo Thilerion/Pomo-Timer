@@ -1,5 +1,4 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-//handles events (onclicks) and sends them to... controller?
 
 /*
 events to handle:
@@ -11,8 +10,6 @@ events to handle:
     changeCycle
     changeSessionDurations
 */
-
-//TODO: increase speed, skip session buttons
 
 //module for everything that handles events
 var eventHandling = (function () {
@@ -138,10 +135,6 @@ var eventHandling = (function() {
     }
   }
 
-  function resetDurations() {
-    pomodoro.resetDurations();
-    enableDurationButtons();
-  }
   
   function changeCycle() {
     var amount = prompt("Choose how often the work-break should be repeated before a long break.", 3);
@@ -162,16 +155,6 @@ var eventHandling = (function() {
     }    
     pomodoro.changeCycle(amount);    
   }
-  
-  return {
-    resetSession: resetSession,
-    resetTimer: resetTimer,
-    resumePauseTimer: resumePauseTimer,
-    changeSessionTime: changeSessionTime,
-    resetDurations: resetDurations,
-    changeCycle: changeCycle
-  };
-  
-})();
+
 
 */

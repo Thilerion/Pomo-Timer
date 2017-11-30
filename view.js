@@ -15,23 +15,14 @@ var view = (function () {
     //module whose only function is to change the view
     //first declares variables for each element in the document that can be changed
     let documentElements = {};
-    //time element for the timer (time remaining)
     documentElements.time = document.getElementById("time");
-    //span between session duration change buttons, showing the current duration
     documentElements.workDurationTime = document.getElementById("workDuration");
     documentElements.sBreakDurationTime = document.getElementById("sBreakDuration");
     documentElements.lBreakDurationTime = document.getElementById("lBreakDuration");
-    //list of every (6) duration change buttons
     documentElements.durationChangeButtonList = document.querySelectorAll(".durBtn");
-    //span after h2 current session heading showing the current session
     documentElements.currentSession = document.getElementById("currentSession");
-    //start/resume/pause button
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
-    //reset session button: disabling
     documentElements.resetSessionButton = document.getElementById("resetSession");
-
-    console.log("Document Elements:");
-    console.log(documentElements);
 
     return {
 
@@ -63,14 +54,6 @@ var view = (function () {
     updateProgressBar();
   }
   
-  function updateProgressBar() {
-    var max = pomodoro.getCurrent().length * 60;
-    var timeLeft = timer.getTime();
-    var secondsLeft = timeLeft[0] * 60 + timeLeft[1];
-    var current = max - secondsLeft;
-    
-    progress.updateBar(current, max);
-  }
 
   function displaySession() {
     var session = pomodoro.getCurrent().name;
@@ -80,18 +63,6 @@ var view = (function () {
       session = 1;
     } else if (session === "lBreak") {
       session = 2;
-    }
-    
-    var cardHeaders = document.querySelectorAll(".sessionCards-card > h2");
-    console.log(cardHeaders);
-    
-    for (var i = 0; i < cardHeaders.length; i++) {
-      if (session === i) {
-        cardHeaders[i].style.background = "#1976d2";
-      } else {
-        //cardHeaders[i].style.background = "#1976d2";
-        cardHeaders[i].style.background = "#455a64";
-      }
     }
   }
 
@@ -142,53 +113,13 @@ var view = (function () {
     resetBtn.disabled = disable;
   }
 
-  function updateButtons(started, running) {
-    //if started === true > enable pauseResume
-    //if running === true > set pauseResume button to "Pause Timer"
-    pauseResumeButton(started, running);
-    //if started === true > enable resetSession button
-    resetSessionButton(!started);
 
-    updateDisplay(true, true, false);
-  }
-
-  function updateDisplay(tick, mode, duration) {
-    if (tick) {
-      displayTime();
-    }
-    if (mode) {
-      displaySession();
-    }
-    if (duration) {
-      displaySessionLengths();
-    }
-  }
   
-  function changeBgColor(hasStarted, started, running) {
-    //hasStarted = true after first time start
-    //started = true whenever a certain session has ran
-    //running = true when the current session is still running
-    
-    if (hasStarted === true && started === false && running === false) {
-        timeSectionDiv.style.backgroundColor = "#d84315";
-    }
-    else {
-        timeSectionDiv.style.backgroundColor = "#1e88e5";
-    }
-  }
   
   var audio = new Audio("alarm.mp3");
   function nextTimerSound() {
     audio.play();
   }
 
-  return {
-    updateDisplay: updateDisplay,
-    updateButtons: updateButtons,
-    changeBgColor: changeBgColor,
-    playSound: nextTimerSound
-  };
-
-})();
 
 */

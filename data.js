@@ -66,11 +66,24 @@ var data = (function() {
         return min * 60000;
     }
     
+    
+    
+    
+    
     return {
         currentSession: currentSession,
         sessions: sessions
     };
+    
+    
+    
+    
+    
 })();
+
+
+
+
 
 var stats = (function() {
     //module keeps track of long-term statistics
