@@ -24,9 +24,9 @@ var data = (function() {
     var sessions = {};
     
     //creates a prototype from which sessions are made
-    function Session(short, long, initialDur, maxDur, minDur) {
-        this.short = short;
-        this.long = long;
+    function Session(name, fullName, initialDur, maxDur, minDur) {
+        this.name = name;
+        this.fullName = fullName;
         this.dur = {};
         this.dur.current = this.dur.initial = initialDur;
         this.dur.max = maxDur;
@@ -54,6 +54,18 @@ var data = (function() {
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
     console.log(sessions);
+    
+    //a currentSession object which references the sessions variable, and lists whether it is running or not etc
+    var currentSession = {};
+    
+    //as part of initializing the program, fills in the currentSession with information
+    //the first session is work
+    currentSession.type = "work";
+    //information about whether the timer is running or not
+    currentSession.hasStarted = false;
+    currentSession.isPaused = false;
+    currentSession.isPlaying = false;
+    console.log(currentSession);
     
     return {
         
