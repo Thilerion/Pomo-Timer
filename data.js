@@ -57,15 +57,13 @@ var data = (function() {
     console.log(sessions);
     
     //a currentSession object which references the sessions variable, and lists whether it is running or not etc
-    var currentSession = {};
-    
-    //as part of initializing the program, fills in the currentSession with information
-    //the first session is work
-    currentSession.type = "work";
-    //information about whether the timer is running or not
-    currentSession.hasStarted = false;
-    currentSession.isPaused = false;
-    currentSession.isPlaying = false;
+    var currentSession = {
+        //as part of initializing the program, fills in the currentSession with information
+        "type": "work",
+        "hasStarted": false,
+        "isPaused": false,
+        "isPlaying": false
+    };
     console.log("Current session:");
     console.log(currentSession);
     
