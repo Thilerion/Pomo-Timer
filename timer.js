@@ -36,6 +36,7 @@ var timer = (function() {
     
     function tick() {
         //set timePassed to +1000 ms
+        //this is actually not the right way, it should check the current time against the start time because the interval might not actually run every 1000ms
         timePassed += 1000;
         getTimeLeft();
     }
