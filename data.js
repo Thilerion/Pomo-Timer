@@ -55,10 +55,6 @@ var data = (function() {
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
     console.log(sessions);
     
-    //the timerData variable contains all information about the current timer: whether it is running, paused, started, finished, timerspeed, intervalspeed and more
-    //also contains the current time and the remaining time
-    var timerData = {};
-    
     return {
         
     };
