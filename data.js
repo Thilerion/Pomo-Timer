@@ -53,6 +53,7 @@ var data = (function() {
     sessions.work = new Session("work", "Work", 25, 60, 25);
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
+    console.log("Sessions:");
     console.log(sessions);
     
     //a currentSession object which references the sessions variable, and lists whether it is running or not etc
@@ -65,6 +66,7 @@ var data = (function() {
     currentSession.hasStarted = false;
     currentSession.isPaused = false;
     currentSession.isPlaying = false;
+    console.log("Current session:");
     console.log(currentSession);
     
     return {

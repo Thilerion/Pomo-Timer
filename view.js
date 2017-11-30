@@ -30,6 +30,7 @@ var view = (function () {
     //reset session button: disabling
     documentElements.resetSessionButton = document.getElementById("resetSession");
 
+    console.log("Document Elements:");
     console.log(documentElements);
 
     return {
