@@ -2,73 +2,71 @@
 <html lang="nl">
 
 <head>
-	<meta charset="utf-8">
-	<title>Pomodoro</title>
-	<link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Simonetta" rel="stylesheet">
-	<link rel="shortcut icon" sizes="512x512" href="icon/web_hi_res_512.png">
-	<link rel="shortcut icon" sizes="96x96" href="icon/pomo-timer-96.png">
-	<link rel="manifest" href="manifest.json">
+    <meta charset="utf-8">
+    <title>Pomodoro</title>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Simonetta" rel="stylesheet">
+    <link rel="shortcut icon" sizes="512x512" href="icon/web_hi_res_512.png">
+    <link rel="shortcut icon" sizes="96x96" href="icon/pomo-timer-96.png">
+    <link rel="manifest" href="manifest.json">
 
-	<!--Import Google Icon Font-->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="https://use.fontawesome.com/593ce00b08.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://use.fontawesome.com/593ce00b08.js"></script>
 
-	<link rel="stylesheet" href="style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
-	<header>
-		<h1>Pomodoro</h1>
-		<button type="button" id="increaseSpeedBtn" onclick="tester.changeSpeed()" alt="Change Speed"><i class="fa fa-forward"></i></button>
-		<button type="button" id="skipSessionBtn" onclick="tester.skip()" alt="Skip to end of session"><i class="fa fa-step-forward"></i></button>
-	</header>
+    <header>
+        <h1>Pomodoro</h1>
+        <button type="button" id="increaseSpeedBtn" onclick="tester.changeSpeed()" alt="Change Speed"><i class="fa fa-forward"></i></button>
+        <button type="button" id="skipSessionBtn" onclick="tester.skip()" alt="Skip to end of session"><i class="fa fa-step-forward"></i></button>
+    </header>
 
-	<main>
-		<p id="time">25:00</p>
-		<div>
-			<button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-			<button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-			<button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
-			<button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
-			<button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
-		</div>
-		<div>
-			<h2>Work</h2>
-			<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button> Duration: <span id="workDuration"></span>
-			<button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
-		</div>
-		<div>
-			<h2>Short Break</h2>
+    <main>
+        <p id="time">25:00</p>
+        <div>
+            <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
+            <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+            <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
+            <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
+            <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
+        </div>
+        <div>
+            <h2>Work</h2>
+            <button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button> Duration: <span id="workDuration"></span>
+            <button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+        </div>
+        <div>
+            <h2>Short Break</h2>
 
-			<button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-			<span>Duration: <span id="sBreakDuration"></span></span>
-			<button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <span>Duration: <span id="sBreakDuration"></span></span>
+            <button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
 
-		</div>
-		<div>
-			<h2>Long Break</h2>
+        </div>
+        <div>
+            <h2>Long Break</h2>
 
-			<button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
-			<span>Duration: <span id="lBreakDuration"></span></span>
-			<button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <span>Duration: <span id="lBreakDuration"></span></span>
+            <button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
 
-		</div>
-	</main>
+        </div>
+    </main>
 
-	<footer>
-		<p>Copyright Michael van Meerwijk 2017</p>
-	</footer>
+    <footer>
+        <p>Copyright Michael van Meerwijk 2017</p>
+    </footer>
 
-	<script src="tester.js"></script>
-	<!-- <script src="progress.js"></script> -->
-	<script src="data.js"></script>
-	<script src="statistics.js"></script>
-	<script src="view.js"></script>
-	<script src="timer.js"></script>
-	<script src="runonce.js"></script>
+    <!-- <script src="progress.js"></script> -->
+    <script src="data.js"></script>
+    <script src="statistics.js"></script>
+    <script src="view.js"></script>
+    <script src="timer.js"></script>
 
 </body>
 
