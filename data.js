@@ -1,14 +1,6 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-//keeps track of most information
 
 /*
-relevant information:
-    *ispaused/isrunning
-    *hasinitialised
-    *hasStarted
-    *currentSession
-    *sessionDurations
-    
 but also long-term information:
     totalTimePlayed
     totalSessions
@@ -20,7 +12,7 @@ but also long-term information:
 
 var data = (function() {
     //module keeps track of information
-    //the session variable contains all information about the different session types, as well as the current session
+    //the session variable contains all information about the different session types
     var sessions = {};
     
     //creates a prototype from which sessions are made
@@ -53,25 +45,23 @@ var data = (function() {
     sessions.work = new Session("work", "Work", 25, 60, 25);
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
-    console.log("Sessions:");
-    console.log(sessions);
     
-    //continually updates object with currentSession information
     var currentSession = {
         "type": "work",
         "hasStarted": false,
         "isPaused": false,
         "isPlaying": false,
+        //checks to see what the initial duration is
         "dur": function() {
             let sess = currentSession.type;
             return sessions[sess].dur.current;
-        }
+        },
+        //needs to be calculated when the timer starts/resumes
+        "endTime": null,
+        //a better way I think to use the timer than timeLeft which I had before
+        "timePassed": 0
     };
     
-    console.log("Current session:");
-    console.log(currentSession);
-    
-    //converts numbers in minutes to milliseconds
     function convertToMS(min) {
         return min * 60000;
     }
@@ -95,39 +85,6 @@ var stats = (function() {
 /* OLD CODE
 
 var pomodoro = (function () {
-    var sessions = {
-        work: {
-            short: "work",
-            long: "Work",
-            duration: {
-                current: 25,
-                max: 60,
-                min: 15,
-                initial: 25
-            }
-        },
-        sBreak: {
-            short: "sBreak",
-            long: "Short Break",
-            duration: {
-                current: 5,
-                max: 15,
-                min: 2,
-                initial: 5
-            }
-        },
-        lBreak: {
-            short: "lBreak",
-            long: "Long Break",
-            duration: {
-                current: 20,
-                max: 60,
-                min: 5,
-                initial: 20
-            }
-        }
-    };
-
     var cycle = ["work", "sBreak", "work", "sBreak", "work", "lBreak"];
 
     var currentSession = {
@@ -223,18 +180,5 @@ var pomodoro = (function () {
         }
         console.log(cycle);
     }
-
-    return {
-        getCurrent: getCurrentSessionInfo,
-        getSessionLengths: getSessionLengths,
-        finishedTimer: finishedTimer,
-        changeLength: changeSessionLength,
-        resetTimer: resetTimer,
-        resetDurations: resetDurations,
-        changeCycle: changeCycle,
-        hasStarted: hasStarted
-    };
-
-})();
-
+    
 */
