@@ -64,6 +64,7 @@ var data = (function() {
         "isPaused": false,
         "isPlaying": false
     };
+    
     console.log("Current session:");
     console.log(currentSession);
     
@@ -79,9 +80,6 @@ var stats = (function() {
         
     };
 })();
-
-
-
 
 
 
