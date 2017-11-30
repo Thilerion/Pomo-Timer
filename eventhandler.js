@@ -11,6 +11,8 @@ events to handle:
     changeSessionDurations
 */
 
+//TODO: increase speed, skip session buttons
+
 //module for everything that handles events
 var eventHandling = (function () {
     

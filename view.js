@@ -7,6 +7,7 @@ things to change in display:
     disable resetsession and resettimer button
     currentSession
     sessionDurations
+    disable duration change buttons when limit is reached
 */
 
 
