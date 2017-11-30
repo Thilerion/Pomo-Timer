@@ -2,13 +2,40 @@
 
 /*
 things to change in display:
-    timer
-    resumePauseButton icon
-    disable resetsession and resettimer button
-    currentSession
-    sessionDurations
-    disable duration change buttons when limit is reached
+    *timer
+    *resumePauseButton icon
+    disable resetsession button
+    *currentSession
+    *sessionDurations
+    *disable duration change buttons when limit is reached
 */
+
+var view = (function () {
+    //module whose only function is to change the view
+    //first declares variables for each element in the document that can be changed
+    let documentElements = {};
+    //time element for the timer (time remaining)
+    documentElements.time = document.getElementById("time");
+    //span between session duration change buttons, showing the current duration
+    documentElements.workDurationTime = document.getElementById("workDuration");
+    documentElements.sBreakDurationTime = document.getElementById("sBreakDuration");
+    documentElements.lBreakDurationTime = document.getElementById("lBreakDuration");
+    //list of every (6) duration change buttons
+    documentElements.durationChangeButtonList = document.querySelectorAll(".durBtn");
+    //span after h2 current session heading showing the current session
+    documentElements.currentSession = document.getElementById("currentSession");
+    //start/resume/pause button
+    documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
+    //reset session button: disabling
+    documentElements.resetSessionButton = document.getElementById("resetSession");
+
+    console.log(documentElements);
+
+    return {
+
+    };
+
+})();
 
 
 

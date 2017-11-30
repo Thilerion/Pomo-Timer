@@ -31,9 +31,12 @@
         <div>
             <button type="button" id="resetSession" onclick="eventHandling.resetSessionEvent()"><i class="fa fa-step-backward"></i> Reset Session</button>
             <button type="button" id="resetTimer" onclick="eventHandling.resetTimerEvent()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-            <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimerEvent()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
+            <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimerEvent()"><i class="fa fa-play"></i></button>
             <button type="button" id="resetDurations" onclick="eventHandling.resetDurationsEvent()">Reset all durations</button>
             <button type="button" id="changeCycle" onclick="eventHandling.changeCycleEvent()">Change Cycle</button>
+        </div>
+        <div>
+            <h2>Current session: <span id="currentSession">Work</span></h2>
         </div>
         <div>
             <h2>Work</h2>
