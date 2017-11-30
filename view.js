@@ -1,3 +1,4 @@
+/*jshint devel: true, esversion: 6, browser: true*/
 // changes the display whenever the controller sends a command
 
 /*

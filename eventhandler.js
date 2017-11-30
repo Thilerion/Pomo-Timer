@@ -1,3 +1,4 @@
+/*jshint devel: true, esversion: 6, browser: true*/
 //handles events (onclicks) and sends them to... controller?
 
 /*

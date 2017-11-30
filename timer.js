@@ -1,3 +1,4 @@
+/*jshint devel: true, esversion: 6, browser: true*/
 //controls the timer, and sends relevant information to the controller
 
 /*
