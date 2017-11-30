@@ -32,6 +32,22 @@ var data = (function() {
         this.dur.min = minDur;
     }
     
+    //adds method to prototype to reset duration to initial duration
+    Session.prototype.resetDur = function() {
+        this.dur.current = this.dur.initial;
+        console.log("Duration of " + this.long + " has been reset to " + this.dur.current);
+    }
+    
+    Session.prototype.increaseDur = function() {
+        this.dur.current += 1;
+        console.log("Duration of " + this.long + " has been increased by one to " + this.dur.current);
+    }
+    
+    Session.prototype.decreaseDur = function() {
+        this.dur.current -= 1;
+        console.log("Duration of " + this.long + " has been decreased by one to " + this.dur.current);
+    }
+    
     //creates the three session types and assigns them to the above "sessions" variable
     sessions.work = new Session("work", "Work", 25, 60, 25);
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
