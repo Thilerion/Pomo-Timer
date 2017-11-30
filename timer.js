@@ -8,26 +8,46 @@ relevant information:
 
 var timer = (function() {
     //module contains the timer
+    var endTime, interval;
+    var timePassed = 0;
+    var initialDuration = 25 * 60000;
     
-    function init(duration, speed) {
+    function start(duration, speed) {
         //requires duration (in MS) and speed
         //speed of 1 is a tick per second, and 50 is 50 ticks per second
+        
+        //set hasStarted to true
+        //set isPlaying to true
+        //set isPaused to false?
+        //set new endTime
+        var endTime = Date.now() + duration;
+        //set interval named tick every 1000 ms
+        interval = setInterval(tick, 1000);
     }
     
     function pause() {
-        
+        clearInterval(interval);
+        //set paused and not playing and has started etc
     }
     
     function resume() {
-        
+        start();
     }
     
     function tick() {
-        
+        //set timePassed to +1000 ms
+        timePassed += 1000;
+        getTimeLeft();
+    }
+    
+    function getTimeLeft() {
+        console.log(timePassed + " ms have passed.");
+        console.log(initialDuration + " was the initial duration.");
+        console.log(Math.floor(initialDuration - timePassed) + " is the amount of ms left.");
     }
     
     return {
-        init: init,
+        start: start,
         pause: pause,
         resume: resume
     };
