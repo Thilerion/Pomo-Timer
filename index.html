@@ -22,8 +22,8 @@
 
     <header>
         <h1>Pomodoro</h1>
-        <button type="button" id="increaseSpeedBtn" onclick="tester.changeSpeed()" alt="Change Speed"><i class="fa fa-forward"></i></button>
-        <button type="button" id="skipSessionBtn" onclick="tester.skip()" alt="Skip to end of session"><i class="fa fa-step-forward"></i></button>
+        <button type="button" id="increaseSpeedBtn" onclick="eventHandling.increaseTimerSpeedEvent()" alt="Change Speed"><i class="fa fa-forward"></i></button>
+        <button type="button" id="skipSessionBtn" onclick="eventHandling.skipSessionEvent()" alt="Skip to end of session"><i class="fa fa-step-forward"></i></button>
     </header>
 
     <main>
@@ -37,24 +37,24 @@
         </div>
         <div>
             <h2>Work</h2>
-            <button type="button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
+            <button type="button" class="decrease work durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
             <span id="workDuration">Duration: 25</span>
-            <button type="button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" class="increase work durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
         </div>
         <div>
             <h2>Short Break</h2>
 
-            <button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <button type="button" class="decrease sBreak durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
             <span id="sBreakDuration">Duration: 5</span>
-            <button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" class="increase sBreak durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
 
         </div>
         <div>
             <h2>Long Break</h2>
 
-            <button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <button type="button" class="decrease lBreak durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
             <span id="lBreakDuration">Duration: 20</span>
-            <button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" class="increase lBreak durBtn" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
 
         </div>
     </main>
@@ -64,6 +64,7 @@
     </footer>
 
     <!-- <script src="progress.js"></script> -->
+    <script src="eventhandler.js"></script>
     <script src="data.js"></script>
     <script src="statistics.js"></script>
     <script src="view.js"></script>

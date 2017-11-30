@@ -15,29 +15,50 @@ events to handle:
 
 //module for everything that handles events
 var eventHandling = (function () {
-    
+
     function resetSessionEvent() {
-        
+        //resets current timer, with timer set to initial time of current session, enabling the play/resume button
+        console.log("Event: reset current session");
     }
 
     function resetTimerEvent() {
-
+        //completely resets timers, returning to initial session
+        console.log("Event: reset entire timer");
     }
 
     function resumePauseTimerEvent() {
-
+        //checks whether timer has started or is running
+        console.log("Event: play/resume/pause timer");
     }
-    
-    function changeSessionTimeEvent() {
 
+    function changeSessionTimeEvent(el) {
+        //first checks to see which of the duration buttons is clicked
+        //then sends this information to another module
+        
+        //registers the classes of "this", the button pressed
+        let sessionToChange = [el.classList[1]];
+        let signOfChange = [el.classList[0]];
+        console.log("Event: " + signOfChange + " duration of " + sessionToChange);
     }
 
     function resetDurationsEvent() {
-
+        //resets all session durations to their initial length
+        console.log("Event: reset durations of all sessions");
     }
 
     function changeCycleEvent() {
-
+        //lets user adjust how many cycles before a long break
+        console.log("Event: change amount of cycles before long break");
+    }
+    
+    function increaseTimerSpeedEvent() {
+        //increases speed at which timer runs, mainly for debugging purposes
+        console.log("Event: change speed of timer");
+    }
+    
+    function skipSessionEvent() {
+        //skips current session to the end
+        console.log("Event: skip current session");
     }
 
     return {
@@ -46,7 +67,9 @@ var eventHandling = (function () {
         resumePauseTimerEvent: resumePauseTimerEvent,
         changeSessionTimeEvent: changeSessionTimeEvent,
         resetDurationsEvent: resetDurationsEvent,
-        changeCycleEvent: changeCycleEvent
+        changeCycleEvent: changeCycleEvent,
+        increaseTimerSpeedEvent: increaseTimerSpeedEvent,
+        skipSessionEvent: skipSessionEvent
     };
 })();
 
