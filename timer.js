@@ -9,8 +9,27 @@ relevant information:
 var timer = (function() {
     //module contains the timer
     
-    return {
+    function init(duration, speed) {
+        //requires duration (in MS) and speed
+        //speed of 1 is a tick per second, and 50 is 50 ticks per second
+    }
+    
+    function pause() {
         
+    }
+    
+    function resume() {
+        
+    }
+    
+    function tick() {
+        
+    }
+    
+    return {
+        init: init,
+        pause: pause,
+        resume: resume
     };
 })();
 
