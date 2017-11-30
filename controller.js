@@ -55,6 +55,10 @@ var controller = (function() {
     function sessionFinished() {
         
     }
+    
+    function timerTick() {
+        
+    }
         
     return {
         init: init,
@@ -69,6 +73,7 @@ var controller = (function() {
         resetTimer: resetTimer,
         increaseSpeed: increaseSpeed,
         skipSession: skipSession,
-        sessionFinished: sessionFinished
+        sessionFinished: sessionFinished,
+        timerTick: timerTick
     };
 })();
