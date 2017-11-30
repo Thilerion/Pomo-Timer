@@ -17,7 +17,13 @@ but also long-term information:
     etc etc
 */
 
+var data = (function() {
+    //module keeps track of information
+})();
 
+var stats = (function() {
+    //module keeps track of long-term statistics
+})();
 
 
 

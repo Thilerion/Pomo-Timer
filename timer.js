@@ -5,7 +5,13 @@ relevant information:
     current time
 */
 
-
+var timer = (function() {
+    //module contains the timer
+    
+    return {
+        
+    };
+})();
 
 
 
