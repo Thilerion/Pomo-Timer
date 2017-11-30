@@ -62,6 +62,34 @@ var data = (function() {
         "timePassed": 0
     };
     
+    var cycleData = {
+        //Placeholder: return next session type
+        "sessionNumber": 1,
+        "nextSession": function() {
+            let next;
+            if (currentSession.type === "work" && this.sessionNumber > 5) {
+                next = "long";
+                this.sessionNumber = 1;
+            } else if (currentSession.type === "work") {
+                next = "short";
+            } else if (currentSession.type === "short") {
+                next = "work";
+            }
+        }
+        
+        /* THIS IS ALL FOR THE FUTURE, NOW FOCUS ON JUST LETTING THE TIMER RUN!!
+        //data for the cycle, with standard cycle being 3x work and short break, then long break
+        "amount": 3,
+        //needs to be updated at the end of every session
+        "sessionNumber": 1,
+        "nextSessionType": function() {
+            let n = cycleData.sessionNumber;
+            let max = cycleData.amount * 2;
+            //NOT FINISHED, depends on who requests this method to be run
+            //important to keep in mind if sessionNumber is increased first, or if nextSessionType is requested first
+        } */
+    };
+    
     function convertToMS(min) {
         return min * 60000;
     }
