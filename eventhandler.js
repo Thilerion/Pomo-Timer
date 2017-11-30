@@ -11,6 +11,43 @@ events to handle:
     changeSessionDurations
 */
 
+//module for everything that handles events
+var eventHandling = (function () {
+    
+    function resetSessionEvent() {
+
+    }
+
+    function resetTimerEvent() {
+
+    }
+
+    function resumePauseTimerEvent() {
+
+    }
+    
+    function changeSessionTimeEvent() {
+
+    }
+
+    function resetDurationsEvent() {
+
+    }
+
+    function changeCycleEvent() {
+
+    }
+
+    return {
+        resetSessionEvent: resetSessionEvent,
+        resetTimerEvent: resetTimerEvent,
+        resumePauseTimerEvent: resumePauseTimerEvent,
+        changeSessionTimeEvent: changeSessionTimeEvent,
+        resetDurationsEvent: resetDurationsEvent,
+        changeCycleEvent: changeCycleEvent
+    };
+})();
+
 
 
 
