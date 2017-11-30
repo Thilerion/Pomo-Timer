@@ -19,10 +19,40 @@ but also long-term information:
 
 var data = (function() {
     //module keeps track of information
+    //the session variable contains all information about the different session types, as well as the current session
+    var sessions = {};
+    
+    //creates a prototype from which sessions are made
+    function Session(short, long, initialDur, maxDur, minDur) {
+        this.short = short;
+        this.long = long;
+        this.dur = {};
+        this.dur.current = this.dur.initial = initialDur;
+        this.dur.max = maxDur;
+        this.dur.min = minDur;
+    }
+    
+    //creates the three session types and assigns them to the above "sessions" variable
+    sessions.work = new Session("work", "Work", 25, 60, 25);
+    sessions.short = new Session("short", "Short Break", 5, 15, 2);
+    sessions.long = new Session("long", "Long Break", 20, 60, 5);
+    console.log(sessions);
+    
+    //the timerData variable contains all information about the current timer: whether it is running, paused, started, finished, timerspeed, intervalspeed and more
+    //also contains the current time and the remaining time
+    var timerData = {};
+    
+    return {
+        
+    };
 })();
 
 var stats = (function() {
     //module keeps track of long-term statistics
+    
+    return {
+        
+    };
 })();
 
 
