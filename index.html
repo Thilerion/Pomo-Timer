@@ -29,17 +29,17 @@
     <main>
         <p id="time">25:00</p>
         <div>
-            <button type="button" id="resetSession" onclick="eventHandling.resetSession()"><i class="fa fa-step-backward"></i> Reset Session</button>
-            <button type="button" id="resetTimer" onclick="eventHandling.resetTimer()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
-            <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimer()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
-            <button type="button" id="resetDurations" onclick="eventHandling.resetDurations()">Reset all durations</button>
-            <button type="button" id="changeCycle" onclick="eventHandling.changeCycle()">Change Cycle</button>
+            <button type="button" id="resetSession" onclick="eventHandling.resetSessionEvent()"><i class="fa fa-step-backward"></i> Reset Session</button>
+            <button type="button" id="resetTimer" onclick="eventHandling.resetTimerEvent()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+            <button type="button" id="resumePauseTimer" onclick="eventHandling.resumePauseTimerEvent()"><i class="fa fa-play resumePauseTimerIcon" id="resumePauseTimerIcon"></i></button>
+            <button type="button" id="resetDurations" onclick="eventHandling.resetDurationsEvent()">Reset all durations</button>
+            <button type="button" id="changeCycle" onclick="eventHandling.changeCycleEvent()">Change Cycle</button>
         </div>
         <div>
             <h2>Work</h2>
-            <button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-minus"></i></button>
+            <button type="button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
             <span id="workDuration">Duration: 25</span>
-            <button type="button" onclick="eventHandling.changeSessionTime(this)"><i class="fa fa-plus"></i></button>
+            <button type="button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
         </div>
         <div>
             <h2>Short Break</h2>

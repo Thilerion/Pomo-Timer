@@ -17,7 +17,7 @@ events to handle:
 var eventHandling = (function () {
     
     function resetSessionEvent() {
-
+        
     }
 
     function resetTimerEvent() {
