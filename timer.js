@@ -8,21 +8,22 @@ relevant information:
 
 var timer = (function() {
     //module contains the timer
-    var endTime, interval;
-    var timePassed = 0;
-    var initialDuration = 25 * 60000;
+    var currentTick, previousTick, interval, timeLeft;
     
     function start(duration, speed) {
-        //requires duration (in MS) and speed
-        //speed of 1 is a tick per second, and 50 is 50 ticks per second
+        if (duration === undefined) {
+            duration = 25*60000;
+        }        
+        if (speed === undefined) {
+            speed = 1000;
+        }        
         
-        //set hasStarted to true
-        //set isPlaying to true
-        //set isPaused to false?
-        //set new endTime
-        var endTime = Date.now() + duration;
-        //set interval named tick every 1000 ms
-        interval = setInterval(tick, 1000);
+        timeLeft = duration;
+        previousTick = Date.now();
+        
+        console.log("Starting with duration: " + duration + ", speed: " + speed + ", timeLeft: " + timeLeft + ", previousTick: " + previousTick);
+        
+        interval = setInterval(tick, speed);
     }
     
     function pause() {
@@ -31,19 +32,19 @@ var timer = (function() {
     }
     
     function resume() {
-        start();
+        timeLeft -= 1000;
+        start(timeLeft, 1000);
     }
     
     function tick() {
-        //set timePassed to +1000 ms
-        //this is actually not the right way, it should check the current time against the start time because the interval might not actually run every 1000ms
-        timePassed += 1000;
+        currentTick = Date.now();
+        timeLeft -= (currentTick - previousTick);
+        previousTick = currentTick;
         getTimeLeft();
     }
     
     function getTimeLeft() {
-        console.log(timePassed + " ms have passed.");
-        console.log(Math.floor(initialDuration - timePassed)/1000 + " seconds, or " + Math.floor(initialDuration - timePassed) + " ms left.");
+        console.log("Previous tick: " + previousTick + ", currentTick: " + currentTick + ", timeLeft: " + timeLeft);
     }
     
     return {
