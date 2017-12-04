@@ -43,8 +43,7 @@ var timer = (function() {
     
     function getTimeLeft() {
         console.log(timePassed + " ms have passed.");
-        console.log(initialDuration + " was the initial duration.");
-        console.log(Math.floor(initialDuration - timePassed) + " is the amount of ms left.");
+        console.log(Math.floor(initialDuration - timePassed)/1000 + " seconds, or " + Math.floor(initialDuration - timePassed) + " ms left.");
     }
     
     return {
