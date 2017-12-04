@@ -1,4 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
+/* globals controller */
 
 /*
 events to handle:
@@ -24,9 +25,13 @@ var eventHandling = (function () {
         
     }
 
-    function resumePauseTimerEvent() {
+    function resumePauseTimerEvent(el) {
         //checks whether timer has started or is running
+        let buttonName = el.name;
+        controller.determineResumePauseButton(buttonName);
         
+        console.log("This button can start, resume or pause");
+        console.log("It is now configured for: " + buttonName);
     }
 
     function changeSessionTimeEvent(el) {
