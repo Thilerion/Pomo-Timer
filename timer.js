@@ -8,7 +8,7 @@ relevant information:
 
 var timer = (function() {
     //module contains the timer
-    var currentTick, previousTick, interval, timeLeft;
+    var currentTick, previousTick, interval, timeLeft, tickDelta;
     
     function start(duration, speed) {
         if (duration === undefined) {
@@ -38,7 +38,8 @@ var timer = (function() {
     
     function tick() {
         currentTick = Date.now();
-        timeLeft -= (currentTick - previousTick);
+        tickDelta = currentTick - previousTick;
+        timeLeft -= tickDelta;
         previousTick = currentTick;
         getTimeLeft();
     }
