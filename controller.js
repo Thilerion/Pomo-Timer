@@ -1,5 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-/* globals timer */
+/* globals timer, data*/
 
 //interface between every other module
 //no module can exchange information without it going through this module
@@ -25,14 +25,17 @@ var controller = (function() {
     
     function start() {
         timer.start();
+        data.setSessionPlayingProperties(true, false, true);
     }
     
     function resume() {
         timer.resume();
+        data.setSessionPlayingProperties(true, false, true);
     }
     
     function pause() {
         timer.pause();
+        data.setSessionPlayingProperties(true, true, false);
     }
     
     function changeDuration(session, sign) {

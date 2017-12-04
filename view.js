@@ -23,6 +23,8 @@ var view = (function () {
     documentElements.currentSession = document.getElementById("currentSession");
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
     documentElements.resetSessionButton = document.getElementById("resetSession");
+    
+    
 
     return {
 

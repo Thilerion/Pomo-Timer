@@ -113,13 +113,21 @@ var data = (function() {
         return currentSession.speed;
     }
     
+    function setSessionPlayingProperties(started, paused, playing) {
+        currentSession.hasStarted = started;
+        currentSession.isPaused = paused;
+        currentSession.isPlaying = playing;
+        console.log("Set properties to (started, paused, playing): " + currentSession.hasStarted + " " + currentSession.isPaused + " " + currentSession.isPlaying);
+    }
+    
     return {
         decreaseTimeLeft: decreaseTimeLeft,
         increaseTimeLeft: increaseTimeLeft,
         getTimeLeft: getTimeLeft,
         resetTimeLeft: resetTimeLeft,
         initialDur: currentSession.dur,
-        getSpeed: getSpeed
+        getSpeed: getSpeed,
+        setSessionPlayingProperties: setSessionPlayingProperties
     };
     
     
