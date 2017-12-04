@@ -24,10 +24,15 @@ var view = (function () {
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
     documentElements.resetSessionButton = document.getElementById("resetSession");
     
-    
+    function changeResumePauseButton(action) {
+        let newButtonName = action + "Timer";
+        
+        documentElements.resumePauseButton.name = newButtonName;
+        documentElements.resumePauseButton.innerHTML = action;
+    }
 
     return {
-
+        changeResumePauseButton: changeResumePauseButton
     };
 
 })();

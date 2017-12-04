@@ -1,5 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-/* globals timer, data*/
+/* globals timer, data, view*/
 
 //interface between every other module
 //no module can exchange information without it going through this module
@@ -36,6 +36,22 @@ var controller = (function() {
     function pause() {
         timer.pause();
         data.setSessionPlayingProperties(true, true, false);
+    }
+    
+    function changeResumePauseButton() {
+        let props = data.getSessionPlayingProperties();
+        console.log(props);
+        let action;
+        
+        if (props[0] === false) {
+            action = "start";
+        } else if (props[0] === true && props[1] === true) {
+            action = "resume";
+        } else if (props[0] === true && props[1] === false) {
+            action = "pause";
+        }
+        
+        view.changeResumePauseButton(action);
     }
     
     function changeDuration(session, sign) {
@@ -77,6 +93,7 @@ var controller = (function() {
     return {
         init: init,
         determineResumePauseButton: determineResumePauseButton,
+        changeResumePauseButton: changeResumePauseButton,
         start: start,
         resume: resume,
         pause: pause,

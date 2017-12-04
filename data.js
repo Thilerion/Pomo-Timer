@@ -118,6 +118,11 @@ var data = (function() {
         currentSession.isPaused = paused;
         currentSession.isPlaying = playing;
         console.log("Set properties to (started, paused, playing): " + currentSession.hasStarted + " " + currentSession.isPaused + " " + currentSession.isPlaying);
+        controller.changeResumePauseButton();
+    }
+    
+    function getSessionPlayingProperties() {
+        return [currentSession.hasStarted, currentSession.isPaused, currentSession.isPlaying];
     }
     
     return {
@@ -127,7 +132,8 @@ var data = (function() {
         resetTimeLeft: resetTimeLeft,
         initialDur: currentSession.dur,
         getSpeed: getSpeed,
-        setSessionPlayingProperties: setSessionPlayingProperties
+        setSessionPlayingProperties: setSessionPlayingProperties,
+        getSessionPlayingProperties: getSessionPlayingProperties
     };
     
     
