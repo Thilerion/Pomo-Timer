@@ -56,10 +56,8 @@ var data = (function() {
             let sess = currentSession.type;
             return sessions[sess].dur.current;
         },
-        //needs to be calculated when the timer starts/resumes
-        "endTime": null,
-        //a better way I think to use the timer than timeLeft which I had before
-        "timePassed": 0
+        "timeLeft": 1500000, //25 minutes in milliseconds, maybe change on init...
+        "speed": 1000
     };
     
     var cycleData = {
@@ -94,13 +92,28 @@ var data = (function() {
         return min * 60000;
     }
     
+    function decreaseTimeLeft(n) {
+        currentSession.timeLeft -= n;
+    }
     
+    function increaseTimeLeft(n) {
+        currentSession.timeLeft += n;
+    }
     
+    function getTimeLeft() {
+        return currentSession.timeLeft;
+    }
     
+    function getSpeed() {
+        return currentSession.speed;
+    }
     
     return {
-        currentSession: currentSession,
-        sessions: sessions
+        decreaseTimeLeft: decreaseTimeLeft,
+        increaseTimeLeft: increaseTimeLeft,
+        getTimeLeft: getTimeLeft,
+        initialDur: currentSession.dur,
+        getSpeed: getSpeed
     };
     
     

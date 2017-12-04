@@ -8,44 +8,38 @@ relevant information:
 
 var timer = (function() {
     //module contains the timer
-    var currentTick, previousTick, interval, timeLeft, tickDelta;
+    var _currentTick, _previousTick, _interval, _tickDelta;
     
-    function start(duration, speed) {
-        if (duration === undefined) {
-            duration = 25*60000;
-        }        
-        if (speed === undefined) {
-            speed = 1000;
-        }        
+    function start() {
+        _previousTick = Date.now();
         
-        timeLeft = duration;
-        previousTick = Date.now();
+        let _speed = data.getSpeed();
         
-        console.log("Starting with duration: " + duration + ", speed: " + speed + ", timeLeft: " + timeLeft + ", previousTick: " + previousTick);
+        console.log("Starting interval with speed: " + _speed + ", timeLeft: " + data.getTimeLeft());
         
-        interval = setInterval(tick, speed);
+        _interval = setInterval(tick, _speed);
     }
     
     function pause() {
-        clearInterval(interval);
+        clearInterval(_interval);
         //set paused and not playing and has started etc
     }
     
     function resume() {
-        timeLeft -= 1000;
-        start(timeLeft, 1000);
+        data.decreaseTimeLeft(1000);
+        start();
     }
     
     function tick() {
-        currentTick = Date.now();
-        tickDelta = currentTick - previousTick;
-        timeLeft -= tickDelta;
-        previousTick = currentTick;
+        _currentTick = Date.now();
+        _tickDelta = _currentTick - _previousTick;
+        data.decreaseTimeLeft(_tickDelta);
+        _previousTick = _currentTick;
         getTimeLeft();
     }
     
     function getTimeLeft() {
-        console.log("Previous tick: " + previousTick + ", currentTick: " + currentTick + ", timeLeft: " + timeLeft);
+        console.log("Previous tick: " + _previousTick + ", currentTick: " + _currentTick + ", timeLeft: " + data.getTimeLeft());
     }
     
     return {
