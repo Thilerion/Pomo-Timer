@@ -104,6 +104,11 @@ var data = (function() {
         return currentSession.timeLeft;
     }
     
+    function resetTimeLeft() {
+        //resets timeLeft according to the duration of the current session
+        currentSession.timeLeft = currentSession.dur();
+    }
+    
     function getSpeed() {
         return currentSession.speed;
     }
@@ -112,6 +117,7 @@ var data = (function() {
         decreaseTimeLeft: decreaseTimeLeft,
         increaseTimeLeft: increaseTimeLeft,
         getTimeLeft: getTimeLeft,
+        resetTimeLeft: resetTimeLeft,
         initialDur: currentSession.dur,
         getSpeed: getSpeed
     };
