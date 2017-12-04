@@ -1,4 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
+/* globals data */
 //controls the timer, and sends relevant information to the controller
 
 /*

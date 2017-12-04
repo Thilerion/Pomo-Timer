@@ -16,17 +16,17 @@ var eventHandling = (function () {
 
     function resetSessionEvent() {
         //resets current timer, with timer set to initial time of current session, enabling the play/resume button
-        console.log("Event: reset current session");
+        
     }
 
     function resetTimerEvent() {
         //completely resets timers, returning to initial session
-        console.log("Event: reset entire timer");
+        
     }
 
     function resumePauseTimerEvent() {
         //checks whether timer has started or is running
-        console.log("Event: play/resume/pause timer");
+        
     }
 
     function changeSessionTimeEvent(el) {
@@ -41,22 +41,22 @@ var eventHandling = (function () {
 
     function resetDurationsEvent() {
         //resets all session durations to their initial length
-        console.log("Event: reset durations of all sessions");
+        
     }
 
     function changeCycleEvent() {
         //lets user adjust how many cycles before a long break
-        console.log("Event: change amount of cycles before long break");
+        
     }
     
     function increaseTimerSpeedEvent() {
         //increases speed at which timer runs, mainly for debugging purposes
-        console.log("Event: change speed of timer");
+        
     }
     
     function skipSessionEvent() {
         //skips current session to the end
-        console.log("Event: skip current session");
+        
     }
 
     return {
