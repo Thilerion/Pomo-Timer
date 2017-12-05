@@ -76,7 +76,7 @@ var controller = (function () {
     }
 
     function changeCycle() {
-
+        let shouldPause = checkIfShouldPause();
     }
 
     function resetSession() {
@@ -89,15 +89,23 @@ var controller = (function () {
     function resetTimer() {
 
     }
+    
+    function checkIfShouldPause() {
+        let props = data.getSessionPlayingProperties();
+        if (props.isPlaying === true) {
+            return true;
+        } else if (props.isPlaying === false) {
+            return false;
+        }
+    }
 
     function increaseSpeed() {
         //first check to see if timer should be paused and store this
-        let props = data.getSessionPlayingProperties();
-        let shouldResume = false;
-        if (props.isPlaying === true) {
-            shouldResume = true;
+        let shouldPause = checkIfShouldPause();
+        if (shouldPause === true) {
             pause();
         }
+        
         let currSpeedMult = data.getSpeedMult();
         let nMult = prompt("How much should the speed by multiplied? (min 1, max with interval 25, total max 300)", currSpeedMult);
         if (Number.isNaN(parseInt(nMult))) {
@@ -109,7 +117,7 @@ var controller = (function () {
             data.setSpeedMult(parseInt(nMult));
         }
         //if the timer was paused because of this, resume again
-        if (shouldResume === true) {
+        if (shouldPause === true) {
             resume();
         }
     }

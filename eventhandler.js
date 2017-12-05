@@ -50,7 +50,7 @@ var eventHandling = (function () {
 
     function changeCycleEvent() {
         //lets user adjust how many cycles before a long break
-        
+        controller.changeCycle();
     }
     
     function changeTimerSpeedEvent() {        
