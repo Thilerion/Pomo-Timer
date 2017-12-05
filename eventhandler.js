@@ -53,9 +53,19 @@ var eventHandling = (function () {
         
     }
     
-    function increaseTimerSpeedEvent() {
-        //increases speed at which timer runs, mainly for debugging purposes
-        
+    function changeTimerSpeedEvent() {
+        timer.pause();
+        let currSpeedMult = data.getSpeedMult();
+        let nMult = prompt("How much should the speed by multiplied? (min 1, max 50)", currSpeedMult);
+        if (Number.isNaN(parseInt(nMult))) {
+            alert("Invalid value, multiplier stays the same (" + nMult + ").");
+        } else if (parseInt(nMult) < 1 || parseInt(nMult) > 50) {
+            alert("Invalid value, multiplier stays the same (" + nMult + ").");
+        } else {
+            alert("Timer speed will be multiplied by " + parseInt(nMult) + ".");
+            data.setSpeedMult(parseInt(nMult));
+        }
+        timer.resume();
     }
     
     function skipSessionEvent() {
@@ -70,7 +80,7 @@ var eventHandling = (function () {
         changeSessionTimeEvent: changeSessionTimeEvent,
         resetDurationsEvent: resetDurationsEvent,
         changeCycleEvent: changeCycleEvent,
-        increaseTimerSpeedEvent: increaseTimerSpeedEvent,
+        changeTimerSpeedEvent: changeTimerSpeedEvent,
         skipSessionEvent: skipSessionEvent
     };
 })();

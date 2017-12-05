@@ -58,7 +58,7 @@ var data = (function() {
             return sessions[sess].dur.current;
         },
         "timeLeft": 10000, //starting time in ms, maybe change on init...
-        "speed": 1000
+        "speedMult": 1
     };
     
     /*var cycleData = {
@@ -123,8 +123,14 @@ var data = (function() {
         currentSession.timeLeft = currentSession.dur();
     }
     
-    function getSpeed() {
-        return currentSession.speed;
+    function getSpeedMult() {
+        return currentSession.speedMult;
+    }
+    
+    function setSpeedMult(mult) {
+        let updSpeedMult = parseInt(mult);
+        currentSession.speedMult = parseInt(Math.floor(updSpeedMult));
+        console.log("New speed multiplier is: " + currentSession.speedMult);
     }
     
     function setStartedPlaying() {
@@ -181,7 +187,8 @@ var data = (function() {
         getTimeLeft: getTimeLeft,
         resetTimeLeft: resetTimeLeft,
         initialDur: currentSession.dur,
-        getSpeed: getSpeed,
+        getSpeedMult: getSpeedMult,
+        setSpeedMult: setSpeedMult,
         setStartedPlaying: setStartedPlaying,
         setPaused: setPaused,
         setNotStarted: setNotStarted,

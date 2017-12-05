@@ -14,11 +14,9 @@ var timer = (function() {
     function start() {
         _previousTick = Date.now();
         
-        let _speed = data.getSpeed();
+        console.log("Starting interval with interval: " + 1000 + ", timeLeft: " + data.getTimeLeft());
         
-        console.log("Starting interval with speed: " + _speed + ", timeLeft: " + data.getTimeLeft());
-        
-        _interval = setInterval(tick, _speed);
+        _interval = setInterval(tick, 1000);
     }
     
     function pause() {
@@ -33,6 +31,8 @@ var timer = (function() {
     function tick() {
         _currentTick = Date.now();
         _tickDelta = _currentTick - _previousTick;
+        //multiply tick delta with speed multiplier
+        _tickDelta *= data.getSpeedMult();
         data.decreaseTimeLeft(_tickDelta);
         _previousTick = _currentTick;
         controller.timerTick();
