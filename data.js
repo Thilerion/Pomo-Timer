@@ -145,6 +145,11 @@ var data = (function() {
         };
     }
     
+    function init(startingTime) {
+        //for testing purposes, allows changing initial time on window load (controller)
+        currentSession.timeLeft = startingTime;
+    }
+    
     return {
         decreaseTimeLeft: decreaseTimeLeft,
         increaseTimeLeft: increaseTimeLeft,
@@ -157,7 +162,8 @@ var data = (function() {
         setNotStarted: setNotStarted,
         getSessionPlayingProperties: getSessionPlayingProperties,
         convertToMS: convertToMS,
-        convertToMinSec: convertToMinSec
+        convertToMinSec: convertToMinSec,
+        init: init
     };
     
     

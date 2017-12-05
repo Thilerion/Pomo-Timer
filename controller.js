@@ -7,8 +7,9 @@
 
 var controller = (function() {
     
-    function init() {
+    function init(startingTime) {
         //when page is loaded, call for a non-started timer to be created, with session work (and initial duration), and display this on the screen
+        data.init(startingTime);
         updateTimeView();
     }
     
@@ -122,4 +123,4 @@ var controller = (function() {
     };
 })();
 
-controller.init();
+controller.init(7000);
