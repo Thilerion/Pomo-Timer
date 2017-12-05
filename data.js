@@ -50,7 +50,6 @@ var data = (function() {
     var currentSession = {
         "type": "work",
         "hasStarted": false,
-        "isPaused": false,
         "isPlaying": false,
         //checks to see what the initial duration is
         "dur": function() {
@@ -133,6 +132,12 @@ var data = (function() {
         controller.changeResumePauseButton();
     }
     
+    function setNotStarted() {
+        currentSession.hasStarted = false;
+        currentSession.isPlaying = false;
+        controller.changeResumePauseButton();
+    }
+    
     function getSessionPlayingProperties() {
         return {
             hasStarted: currentSession.hasStarted,
@@ -149,6 +154,7 @@ var data = (function() {
         getSpeed: getSpeed,
         setStartedPlaying: setStartedPlaying,
         setPaused: setPaused,
+        setNotStarted: setNotStarted,
         getSessionPlayingProperties: getSessionPlayingProperties,
         convertToMS: convertToMS,
         convertToMinSec: convertToMinSec

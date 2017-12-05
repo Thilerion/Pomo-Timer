@@ -26,16 +26,19 @@ var controller = (function() {
     function start() {
         timer.start();
         data.setStartedPlaying();
+        updateTimeView();
     }
     
     function resume() {
         timer.resume();
         data.setStartedPlaying();
+        updateTimeView();
     }
     
     function pause() {
         timer.pause();
         data.setPaused();
+        updateTimeView();
     }
     
     function changeResumePauseButton() {
@@ -66,7 +69,10 @@ var controller = (function() {
     }
     
     function resetSession() {
-        
+        timer.pause();
+        data.resetTimeLeft();
+        data.setNotStarted();
+        updateTimeView();
     }
     
     function resetTimer() {
@@ -87,6 +93,10 @@ var controller = (function() {
     
     function timerTick() {
         //maybe remove this in favor of a request from data.js to update the view, and then controller collects data and checks what needs to be updated and what is still the same
+        updateTimeView();
+    }
+    
+    function updateTimeView() {
         let tms = data.getTimeLeft();
         let t = data.convertToMinSec(tms);
         view.updateTime(t);

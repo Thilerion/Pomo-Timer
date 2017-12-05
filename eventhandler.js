@@ -17,12 +17,11 @@ var eventHandling = (function () {
 
     function resetSessionEvent() {
         //resets current timer, with timer set to initial time of current session, enabling the play/resume button
-        
+        controller.resetSession();
     }
 
     function resetTimerEvent() {
-        //completely resets timers, returning to initial session
-        
+        //completely resets timers, returning to initial session        
     }
 
     function resumePauseTimerEvent(el) {

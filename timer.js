@@ -23,7 +23,6 @@ var timer = (function() {
     
     function pause() {
         clearInterval(_interval);
-        //set paused and not playing and has started etc
     }
     
     function resume() {
