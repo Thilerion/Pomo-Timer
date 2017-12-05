@@ -123,6 +123,10 @@ var data = (function() {
         currentSession.timeLeft = currentSession.dur();
     }
     
+    function skipSession() {
+        currentSession.timeLeft = 3000;
+    }
+    
     function getSpeedMult() {
         return currentSession.speedMult;
     }
@@ -215,7 +219,8 @@ var data = (function() {
         init: init,
         getCurrentSessionInfo: getCurrentSessionInfo,
         increaseSessionNumber: increaseSessionNumber,
-        getIntervalTime: getIntervalTime
+        getIntervalTime: getIntervalTime,
+        skipSession: skipSession
     };
     
     

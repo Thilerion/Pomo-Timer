@@ -115,7 +115,13 @@ var controller = (function () {
     }
 
     function skipSession() {
-
+        //check if should be paused first
+        let props = data.getSessionPlayingProperties();
+        if (props.isPlaying === true) {
+            pause();
+        }
+        data.skipSession();
+        resume();
     }
 
     function timerTick() {

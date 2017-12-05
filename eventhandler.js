@@ -59,7 +59,7 @@ var eventHandling = (function () {
     
     function skipSessionEvent() {
         //skips current session to the end
-        
+        controller.skipSession();
     }
 
     return {
