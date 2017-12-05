@@ -9,14 +9,16 @@ relevant information:
 
 var timer = (function() {
     //module contains the timer
-    var _currentTick, _previousTick, _interval, _tickDelta;
+    var _currentTick, _previousTick, _interval, _tickDelta, _intTime;
     
     function start() {
         _previousTick = Date.now();
         
-        console.log("Starting interval with interval: " + 1000 + ", timeLeft: " + data.getTimeLeft());
+        _intTime = data.getIntervalTime();
         
-        _interval = setInterval(tick, 1000);
+        console.log("Starting interval with interval: " + _intTime + ", timeLeft: " + data.getTimeLeft());
+        
+        _interval = setInterval(tick, _intTime);
     }
     
     function pause() {

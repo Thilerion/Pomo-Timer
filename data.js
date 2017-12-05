@@ -133,6 +133,13 @@ var data = (function() {
         console.log("New speed multiplier is: " + currentSession.speedMult);
     }
     
+    function getIntervalTime() {
+        let s = currentSession.speedMult;
+        let i = 1000 / currentSession.speedMult;
+        console.log("Current speed mult is: " + s + ", so interval time should be: " + i);
+        return i;
+    }
+    
     function setStartedPlaying() {
         currentSession.hasStarted = true;
         currentSession.isPlaying = true;
@@ -197,7 +204,8 @@ var data = (function() {
         convertToMinSec: convertToMinSec,
         init: init,
         getCurrentSessionInfo: getCurrentSessionInfo,
-        increaseSessionNumber: increaseSessionNumber
+        increaseSessionNumber: increaseSessionNumber,
+        getIntervalTime: getIntervalTime
     };
     
     
