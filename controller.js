@@ -45,9 +45,9 @@ var controller = (function () {
 
     function finishedSession() {
         timer.pause();
-        data.increaseSessionNumber();
-        data.resetTimeLeft();
         data.setNotStarted();
+        data.increaseSessionNumber();
+        data.resetTimeLeft();        
         updateTimeView();
         updateCurrentSessionView();
     }
@@ -121,7 +121,7 @@ var controller = (function () {
             pause();
         }
         data.skipSession();
-        resume();
+        start();
     }
 
     function timerTick() {
