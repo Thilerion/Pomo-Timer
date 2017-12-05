@@ -235,6 +235,10 @@ var data = (function() {
             nextSName = "short";
         } else if (currS < sBeforeLong && currentSession.type === "short") {
             nextSName = "work";
+        } else if (currS > sBeforeLong) {
+            console.log("Something happened with changing the cycle, while being ahead of the cycle. Or something. So next thing session is a long break, with the current session number reverting back.");
+            nextSName = "long";
+            nextS = sBeforeLong;
         } else {
             console.log("ERROR: increase session number doesn't know which session is next!");
         }
