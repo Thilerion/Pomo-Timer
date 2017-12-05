@@ -137,6 +137,16 @@ var data = (function() {
         let s = currentSession.speedMult;
         let i = 1000 / currentSession.speedMult;
         console.log("Current speed mult is: " + s + ", so interval time should be: " + i);
+        if (i < 40) {
+            console.log("Defaulting to a minimum interval time of 40 ms.");
+            i = 40;
+        } else if (i > 1000) {
+            console.log("Defaulting to a maximum interval time of 1000 ms.");
+            i = 1000;
+        } else {
+            i = Math.floor(i);
+            console.log("Interval time is rounded to " + i);
+        }
         return i;
     }
     
