@@ -186,7 +186,18 @@ var data = (function() {
     }
     
     function getCurrentSessionInfo() {
-        return sessions[currentSession.type];
+        let t = sessions[currentSession.type];
+        let n = currentSession.sessionNumber;
+        return {
+            type: t,
+            number: n,
+            cycleLength: getCycleLength(),
+            workSessionsLeft: calcWorkSessionsLeft(n, getCycleLength())
+        };
+    }
+    
+    function calcWorkSessionsLeft(curSesN, cycleLength) {
+        return (cycleLength - Math.floor(curSesN/2));
     }
     
     function getNumberOfSessionsBeforeLong() {
@@ -202,7 +213,7 @@ var data = (function() {
         currentSession.cyclesBeforeLong = n;
     } 
     
-    function resetCycle() {
+    function restartCycle() {
         //set sessNumber to 1, set sessType to work
         currentSession.sessionNumber = 1;
         currentSession.type = "work";
@@ -218,7 +229,7 @@ var data = (function() {
         if (currS === sBeforeLong && currentSession.type === "work") { 
             nextSName = "long";
         } else if (currS === (sBeforeLong+1) && currentSession.type === "long") {
-            resetCycle();
+            restartCycle();
             return;
         } else if (currS < sBeforeLong && currentSession.type === "work") {
             nextSName = "short";

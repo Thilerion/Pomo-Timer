@@ -21,6 +21,9 @@ var view = (function () {
     documentElements.lBreakDurationTime = document.getElementById("lBreakDuration");
     documentElements.durationChangeButtonList = document.querySelectorAll(".durBtn");
     documentElements.currentSession = document.getElementById("currentSession");
+    documentElements.currentSessionNumber = document.getElementById("currentSessionNumber");
+    documentElements.currentCycleLength = document.getElementById("currentCycleLength");
+    documentElements.workUntilLong = document.getElementById("workUntilLong");    
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
     documentElements.resetSessionButton = document.getElementById("resetSession");
     
@@ -47,9 +50,11 @@ var view = (function () {
         documentElements.time.innerHTML = ("0" + obj.min).slice(-2) + ":" + ("0" + obj.sec).slice(-2);
     }
     
-    function updateCurrentSession(obj) {
-        let s = obj.fullName;
-        documentElements.currentSession.innerHTML = s;
+    function updateCurrentSession(currSessName) {
+        documentElements.currentSession.innerHTML = currSessName.type.fullName;
+        documentElements.currentSessionNumber.innerHTML = currSessName.number;
+        documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
+        documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;        
     }
 
     return {

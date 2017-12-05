@@ -11,6 +11,7 @@ var controller = (function () {
         //when page is loaded, call for a non-started timer to be created, with session work (and initial duration), and display this on the screen
         data.init(startingTime);
         updateTimeView();
+        updateCurrentSessionView();
     }
 
     function determineResumePauseButton(buttonName) {
@@ -95,6 +96,7 @@ var controller = (function () {
         if (shouldPause === true) {
             resume();
         }
+        updateCurrentSessionView();
     }
 
     function resetSession() {
@@ -162,9 +164,9 @@ var controller = (function () {
     }
 
     function updateCurrentSessionView() {
-        let curSes = data.getCurrentSessionInfo();
-        console.log(curSes);
-        view.updateCurrentSession(curSes);
+        let curSesInfo = data.getCurrentSessionInfo();
+        console.log(curSesInfo);
+        view.updateCurrentSession(curSesInfo);
     }
 
     return {
