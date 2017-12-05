@@ -77,6 +77,24 @@ var controller = (function () {
 
     function changeCycle() {
         let shouldPause = checkIfShouldPause();
+        if (shouldPause === true) {
+            pause();
+        }
+        
+        let currLength = data.getCycleLength();
+        
+        let inputLength = prompt("How many work sessions before a longer break? (min 2, max 8)", currLength);
+        inputLength = parseInt(inputLength);
+        if (Number.isNaN(inputLength) || inputLength < 2 || inputLength > 8) {
+            alert("Invalid value, multiplier stays the same (" + currLength + ").");
+        } else {
+            alert("The amount of work sessions before a long break will be changed to " + inputLength);
+            data.setCycleLength(inputLength);
+        }
+        
+        if (shouldPause === true) {
+            resume();
+        }
     }
 
     function resetSession() {

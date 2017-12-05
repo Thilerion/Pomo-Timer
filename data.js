@@ -194,6 +194,14 @@ var data = (function() {
         return parseInt((currentSession.cyclesBeforeLong * 2)-1);
     }
     
+    function getCycleLength() {
+        return currentSession.cyclesBeforeLong;
+    }
+    
+    function setCycleLength(n) {
+        currentSession.cyclesBeforeLong = n;
+    } 
+    
     function resetCycle() {
         //set sessNumber to 1, set sessType to work
         currentSession.sessionNumber = 1;
@@ -242,7 +250,9 @@ var data = (function() {
         getCurrentSessionInfo: getCurrentSessionInfo,
         increaseSessionNumber: increaseSessionNumber,
         getIntervalTime: getIntervalTime,
-        skipSession: skipSession
+        skipSession: skipSession,
+        getCycleLength: getCycleLength,
+        setCycleLength: setCycleLength
     };
     
     
