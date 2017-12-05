@@ -77,6 +77,7 @@ var controller = (function () {
     }
 
     function changeCycle() {
+        //REMINDER TO SELF: what to do when the cycle is changed, which means the user is ahead of the cycle?
         let shouldPause = checkIfShouldPause();
         if (shouldPause === true) {
             pause();
