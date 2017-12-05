@@ -25,33 +25,32 @@ var controller = (function() {
     
     function start() {
         timer.start();
-        data.setSessionPlayingProperties(true, false, true);
+        data.setStartedPlaying();
     }
     
     function resume() {
         timer.resume();
-        data.setSessionPlayingProperties(true, false, true);
+        data.setStartedPlaying();
     }
     
     function pause() {
         timer.pause();
-        data.setSessionPlayingProperties(true, true, false);
+        data.setPaused();
     }
     
     function changeResumePauseButton() {
         let props = data.getSessionPlayingProperties();
-        console.log(props);
         let action;
         
-        if (props[0] === false) {
-            action = "start";
-        } else if (props[0] === true && props[1] === true) {
-            action = "resume";
-        } else if (props[0] === true && props[1] === false) {
-            action = "pause";
+        if (props.hasStarted === false) {
+            view.setStartTimerButton();
+        } else if (props.hasStarted === true && props.isPlaying === false) {
+            view.setResumeTimerButton();
+        } else if (props.hasStarted === true && props.hasStarted === true) {
+            view.setPauseTimerButton();
+        } else {
+            console.log("Error in controller: props gives wrong session playing information");
         }
-        
-        view.changeResumePauseButton(action);
     }
     
     function changeDuration(session, sign) {

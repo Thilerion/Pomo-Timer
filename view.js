@@ -30,9 +30,23 @@ var view = (function () {
         documentElements.resumePauseButton.name = newButtonName;
         documentElements.resumePauseButton.innerHTML = action;
     }
+    
+    function setStartTimerButton() {
+        changeResumePauseButton("start");
+    }
+    
+    function setPauseTimerButton() {
+        changeResumePauseButton("pause");
+    }
+    
+    function setResumeTimerButton() {
+        changeResumePauseButton("resume");
+    }
 
     return {
-        changeResumePauseButton: changeResumePauseButton
+        setStartTimerButton: setStartTimerButton,
+        setPauseTimerButton: setPauseTimerButton,
+        setResumeTimerButton: setResumeTimerButton
     };
 
 })();
