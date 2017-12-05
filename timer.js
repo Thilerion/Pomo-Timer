@@ -40,7 +40,8 @@ var timer = (function() {
     }
     
     function getTimeLeft() {
-        console.log("Previous tick: " + _previousTick + ", currentTick: " + _currentTick + ", timeLeft: " + data.getTimeLeft());
+        let t = data.getTimeLeft();
+        console.log(data.convertToMinSec(t));
     }
     
     return {

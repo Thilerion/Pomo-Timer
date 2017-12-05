@@ -93,6 +93,13 @@ var data = (function() {
         return min * 60000;
     }
     
+    function convertToMinSec(ms) {
+        return {
+            min: Math.floor(Math.round(ms / 1000) / 60 % 60),
+            sec: Math.floor(Math.round(ms / 1000) % 60)
+        };
+    }
+    
     function decreaseTimeLeft(n) {
         currentSession.timeLeft -= n;
     }
@@ -142,7 +149,9 @@ var data = (function() {
         getSpeed: getSpeed,
         setStartedPlaying: setStartedPlaying,
         setPaused: setPaused,
-        getSessionPlayingProperties: getSessionPlayingProperties
+        getSessionPlayingProperties: getSessionPlayingProperties,
+        convertToMS: convertToMS,
+        convertToMinSec: convertToMinSec
     };
     
     
