@@ -9,6 +9,7 @@ var controller = (function() {
     
     function init() {
         //when page is loaded, call for a non-started timer to be created, with session work (and initial duration), and display this on the screen
+        updateTimeView();
     }
     
     function determineResumePauseButton(buttonName) {
@@ -120,3 +121,5 @@ var controller = (function() {
         timerTick: timerTick
     };
 })();
+
+controller.init();

@@ -56,7 +56,7 @@ var data = (function() {
             let sess = currentSession.type;
             return sessions[sess].dur.current;
         },
-        "timeLeft": 1500000, //25 minutes in milliseconds, maybe change on init...
+        "timeLeft": 10000, //starting time in ms, maybe change on init...
         "speed": 1000
     };
     
