@@ -50,6 +50,7 @@ var data = (function() {
     var currentSession = {
         "type": "work",
         "sessionNumber": 1,
+        "cyclesBeforeLong": 3,
         "hasStarted": false,
         "isPlaying": false,
         //checks to see what the initial duration is
@@ -188,18 +189,39 @@ var data = (function() {
         return sessions[currentSession.type];
     }
     
+    function getNumberOfSessionsBeforeLong() {
+        //minus one because the long break takes the place of the last short break
+        return parseInt((currentSession.cyclesBeforeLong * 2)-1);
+    }
+    
+    function resetCycle() {
+        //set sessNumber to 1, set sessType to work
+        currentSession.sessionNumber = 1;
+        currentSession.type = "work";
+    }
+    
     function increaseSessionNumber() {
-        let nextSess;
-        if (currentSession.type === "work") {
-            nextSess = "short";
-        } else if (currentSession.type === "short") {
-            nextSess = "work";
-        } else if (currentSession.type === "long") {
-            nextSess = "work";
+        let currS = currentSession.sessionNumber;
+        let nextS = (currS + 1);
+        let nextSName;
+        let sBeforeLong = getNumberOfSessionsBeforeLong();
+        
+        //if the last session equals the amount of sessions before a long break, initiate long break
+        if (currS === sBeforeLong && currentSession.type === "work") { 
+            nextSName = "long";
+        } else if (currS === (sBeforeLong+1) && currentSession.type === "long") {
+            resetCycle();
+            return;
+        } else if (currS < sBeforeLong && currentSession.type === "work") {
+            nextSName = "short";
+        } else if (currS < sBeforeLong && currentSession.type === "short") {
+            nextSName = "work";
+        } else {
+            console.log("ERROR: increase session number doesn't know which session is next!");
         }
-        currentSession.sessionNumber++;
-        console.log("Last session was: " + currentSession.type + ", next session will be: " + nextSess);
-        currentSession.type = nextSess;
+        
+        currentSession.type = nextSName;
+        currentSession.sessionNumber = nextS;
     }
     
     return {
