@@ -49,6 +49,7 @@ var data = (function() {
     
     var currentSession = {
         "type": "work",
+        "sessionNumber": 1,
         "hasStarted": false,
         "isPlaying": false,
         //checks to see what the initial duration is
@@ -60,7 +61,7 @@ var data = (function() {
         "speed": 1000
     };
     
-    var cycleData = {
+    /*var cycleData = {
         //Placeholder: return next session type
         "sessionNumber": 1,
         "nextSession": function() {
@@ -73,9 +74,10 @@ var data = (function() {
             } else if (currentSession.type === "short") {
                 next = "work";
             }
+            currentSession.type = 
         }
         
-        /* THIS IS ALL FOR THE FUTURE, NOW FOCUS ON JUST LETTING THE TIMER RUN!!
+         THIS IS ALL FOR THE FUTURE, NOW FOCUS ON JUST LETTING THE TIMER RUN!!
         //data for the cycle, with standard cycle being 3x work and short break, then long break
         "amount": 3,
         //needs to be updated at the end of every session
@@ -85,8 +87,8 @@ var data = (function() {
             let max = cycleData.amount * 2;
             //NOT FINISHED, depends on who requests this method to be run
             //important to keep in mind if sessionNumber is increased first, or if nextSessionType is requested first
-        } */
-    };
+        } 
+    };*/
     
     function convertToMS(min) {
         return min * 60000;
@@ -100,7 +102,12 @@ var data = (function() {
     }
     
     function decreaseTimeLeft(n) {
-        currentSession.timeLeft -= n;
+        if (currentSession.timeLeft - n < 100) {
+            currentSession.timeLeft = 100;
+            controller.finishedSession();
+        } else {
+            currentSession.timeLeft -= n;
+        }        
     }
     
     function increaseTimeLeft(n) {
@@ -150,6 +157,24 @@ var data = (function() {
         currentSession.timeLeft = startingTime;
     }
     
+    function getCurrentSessionInfo() {
+        return sessions[currentSession.type];
+    }
+    
+    function increaseSessionNumber() {
+        let nextSess;
+        if (currentSession.type === "work") {
+            nextSess = "short";
+        } else if (currentSession.type === "short") {
+            nextSess = "work";
+        } else if (currentSession.type === "long") {
+            nextSess = "work";
+        }
+        currentSession.sessionNumber++;
+        console.log("Last session was: " + currentSession.type + ", next session will be: " + nextSess);
+        currentSession.type = nextSess;
+    }
+    
     return {
         decreaseTimeLeft: decreaseTimeLeft,
         increaseTimeLeft: increaseTimeLeft,
@@ -163,7 +188,9 @@ var data = (function() {
         getSessionPlayingProperties: getSessionPlayingProperties,
         convertToMS: convertToMS,
         convertToMinSec: convertToMinSec,
-        init: init
+        init: init,
+        getCurrentSessionInfo: getCurrentSessionInfo,
+        increaseSessionNumber: increaseSessionNumber
     };
     
     

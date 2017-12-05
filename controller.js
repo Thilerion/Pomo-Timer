@@ -43,6 +43,15 @@ var controller = (function() {
         updateTimeView();
     }
     
+    function finishedSession() {
+        timer.pause();
+        data.increaseSessionNumber();
+        data.resetTimeLeft();
+        data.setNotStarted();
+        updateTimeView();
+        updateCurrentSessionView();
+    }
+    
     function changeResumePauseButton() {
         let props = data.getSessionPlayingProperties();
         let action;
@@ -89,10 +98,6 @@ var controller = (function() {
         
     }
     
-    function sessionFinished() {
-        
-    }
-    
     function timerTick() {
         //maybe remove this in favor of a request from data.js to update the view, and then controller collects data and checks what needs to be updated and what is still the same
         updateTimeView();
@@ -102,6 +107,12 @@ var controller = (function() {
         let tms = data.getTimeLeft();
         let t = data.convertToMinSec(tms);
         view.updateTime(t);
+    }
+    
+    function updateCurrentSessionView() {
+        let curSes = data.getCurrentSessionInfo();
+        console.log(curSes);
+        view.updateCurrentSession(curSes);
     }
         
     return {
@@ -118,7 +129,7 @@ var controller = (function() {
         resetTimer: resetTimer,
         increaseSpeed: increaseSpeed,
         skipSession: skipSession,
-        sessionFinished: sessionFinished,
+        finishedSession: finishedSession,
         timerTick: timerTick
     };
 })();

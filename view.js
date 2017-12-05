@@ -46,12 +46,18 @@ var view = (function () {
     function updateTime(obj) {
         documentElements.time.innerHTML = ("0" + obj.min).slice(-2) + ":" + ("0" + obj.sec).slice(-2);
     }
+    
+    function updateCurrentSession(obj) {
+        let s = obj.fullName;
+        documentElements.currentSession.innerHTML = s;
+    }
 
     return {
         setStartTimerButton: setStartTimerButton,
         setPauseTimerButton: setPauseTimerButton,
         setResumeTimerButton: setResumeTimerButton,
-        updateTime: updateTime
+        updateTime: updateTime,
+        updateCurrentSession: updateCurrentSession
     };
 
 })();
