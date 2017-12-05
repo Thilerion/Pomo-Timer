@@ -1,5 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-/* globals data */
+/* globals data, controller */
 //controls the timer, and sends relevant information to the controller
 
 /*
@@ -36,12 +36,7 @@ var timer = (function() {
         _tickDelta = _currentTick - _previousTick;
         data.decreaseTimeLeft(_tickDelta);
         _previousTick = _currentTick;
-        getTimeLeft();
-    }
-    
-    function getTimeLeft() {
-        let t = data.getTimeLeft();
-        console.log(data.convertToMinSec(t));
+        controller.timerTick();
     }
     
     return {

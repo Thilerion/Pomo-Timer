@@ -87,6 +87,9 @@ var controller = (function() {
     
     function timerTick() {
         //maybe remove this in favor of a request from data.js to update the view, and then controller collects data and checks what needs to be updated and what is still the same
+        let tms = data.getTimeLeft();
+        let t = data.convertToMinSec(tms);
+        view.updateTime(t);
     }
         
     return {

@@ -42,11 +42,16 @@ var view = (function () {
     function setResumeTimerButton() {
         changeResumePauseButton("resume");
     }
+    
+    function updateTime(obj) {
+        documentElements.time.innerHTML = ("0" + obj.min).slice(-2) + ":" + ("0" + obj.sec).slice(-2);
+    }
 
     return {
         setStartTimerButton: setStartTimerButton,
         setPauseTimerButton: setPauseTimerButton,
-        setResumeTimerButton: setResumeTimerButton
+        setResumeTimerButton: setResumeTimerButton,
+        updateTime: updateTime
     };
 
 })();
