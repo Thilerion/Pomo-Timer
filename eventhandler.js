@@ -53,19 +53,8 @@ var eventHandling = (function () {
         
     }
     
-    function changeTimerSpeedEvent() {
-        timer.pause();
-        let currSpeedMult = data.getSpeedMult();
-        let nMult = prompt("How much should the speed by multiplied? (min 1, max with interval 25, total max 300)", currSpeedMult);
-        if (Number.isNaN(parseInt(nMult))) {
-            alert("Invalid value, multiplier stays the same (" + currSpeedMult + ").");
-        } else if (parseInt(nMult) < 1 || parseInt(nMult) > 300) {
-            alert("Invalid value, multiplier stays the same (" + currSpeedMult + ").");
-        } else {
-            alert("Timer speed will be multiplied by " + parseInt(nMult) + ".");
-            data.setSpeedMult(parseInt(nMult));
-        }
-        timer.resume();
+    function changeTimerSpeedEvent() {        
+        controller.increaseSpeed();
     }
     
     function skipSessionEvent() {
