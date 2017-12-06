@@ -67,25 +67,13 @@ var data = (function() {
         sessions[sess].dur.current = newDuration;        
     }
     
-    function getSessionsAllDurationInfo() {
-        let w, s, l;
-        w = sessions.work.dur;
-        s = sessions.short.dur;
-        l = sessions.long.dur;
-        return {
-            work: w,
-            short: s,
-            long: l
-        };
-    }
-    
     function getSessionsCurrentDuration() {
-        let all = getSessionsAllDurationInfo();
-        return {
-            work: all.work.current,
-            short: all.short.current,
-            long: all.long.current
-        };
+        let ret = {};
+        for (const s in sessions) {
+            ret[s] = sessions[s].dur.current;
+        }
+        console.log(ret);
+        return ret;
     }
     
     function convertToMS(min) {
