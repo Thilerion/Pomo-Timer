@@ -185,4 +185,4 @@ var controller = (function () {
     };
 })();
 
-controller.init(7000);
+controller.init();

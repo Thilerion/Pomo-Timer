@@ -57,7 +57,7 @@ var data = (function() {
             let sess = currentSession.type;
             return sessions[sess].dur.current;
         },
-        "timeLeft": 10000, //starting time in ms, maybe change on init...
+        "timeLeft": null, //starting time in ms, maybe change on init...
         "speedMult": 1
     };
     
@@ -86,7 +86,13 @@ var data = (function() {
     }
     
     function getTimeLeft() {
-        return currentSession.timeLeft;
+        if (currentSession.timeLeft) {
+            return currentSession.timeLeft;
+        } else {
+            currentSession.timeLeft = currentSession.dur();
+            console.log("No session duration initialized! Defaulting to current session init duration.");
+            return currentSession.timeLeft;
+        }
     }
     
     function resetTimeLeft() {
