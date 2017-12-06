@@ -195,9 +195,9 @@ var controller = (function () {
         view.updateCurrentSession(curSesInfo);
     }
     
-    function durationLimitReached(session, sign) {
-        console.log("Apparently, " + session + " has reached maximum/minimum (" + sign + ").");
-        view.disableDurationButton(session, sign);
+    function checkDurationDisabled(session, disable, sign) {
+        console.log("Apparently, " + session + " has reached " + sign + ".");
+        view.disableDurationButton(session, disable, sign);
     }
 
     return {
@@ -216,7 +216,7 @@ var controller = (function () {
         skipSession: skipSession,
         finishedSession: finishedSession,
         timerTick: timerTick,
-        durationLimitReached: durationLimitReached
+        checkDurationDisabled: checkDurationDisabled
     };
 })();
 

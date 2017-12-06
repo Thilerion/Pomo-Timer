@@ -22,12 +22,34 @@ var data = (function() {
         this.dur = {};
         this.dur.current = this.dur.initial = convertToMS(initialDur);
         this.dur.max = convertToMS(maxDur);
+        this.dur.maxLimitReached = false;
         this.dur.min = convertToMS(minDur);
+        this.dur.minLimitReached = false;
     }
+    
+    Session.prototype.maxReached = function(yesOrNo) {
+        if (yesOrNo === this.dur.maxLimitReached) {
+            return;
+        } else {
+            this.dur.maxLimitReached = yesOrNo;
+            controller.checkDurationDisabled(this.name, this.dur.maxLimitReached, "max");
+        }
+    };
+    
+    Session.prototype.minReached = function(yesOrNo) {
+        if (yesOrNo === this.dur.minLimitReached) {
+            return;
+        } else {
+            this.dur.minLimitReached = yesOrNo;
+            controller.checkDurationDisabled(this.name, this.dur.minLimitReached, "min");
+        }
+    };
     
     //adds method to prototype to reset duration to initial duration
     Session.prototype.resetDur = function() {
         this.dur.current = this.dur.initial;
+        this.dur.maxReached(false);
+        this.dur.minReached(false);
         console.log("Duration of " + this.fullName + " has been reset to " + this.dur.current);
     };
     
@@ -41,14 +63,6 @@ var data = (function() {
         } else {
             this.dur.current += amount;
             console.log("Duration of " + this.fullName + " has been increased by one minute to " + this.dur.current + " ms");
-            if (this.dur.current === this.dur.max) {
-                console.log("Max reached!");
-                controller.durationLimitReached(this.name, "increase");
-                return false; //false as in, can't increase more than this
-            } else {
-                console.log("Duration is not yet at maximum.");
-                return true;
-            }
         }
     };
     
@@ -64,14 +78,6 @@ var data = (function() {
         } else {
             this.dur.current -= amount;
             console.log("Duration of " + this.fullName + " has been decreased by one minute to " + this.dur.current + " ms");
-            if (this.dur.current === this.dur.min) {
-                console.log("Min reached!");
-                controller.durationLimitReached(this.name, "decrease");
-                return false; //false as in, can't decrease more than this
-            } else {
-                console.log("Duration is not yet at minimum.");
-                return true;
-            }
         }
     };
     
@@ -102,10 +108,28 @@ var data = (function() {
             sessions[sess].decreaseDur(amountMS);
         } else {
             console.log("Error! Amount to change duration by was 0???");
-        }        
-        //let currentDuration = sessions[sess].dur.current;
-        //let newDuration = (currentDuration + amount);
-        //sessions[sess].dur.current = newDuration;        
+        }
+        
+        isDurationLimitReached(sess);
+    }
+    
+    function isDurationLimitReached(sess) {
+        let d = sessions[sess].dur;
+        
+        if (d.current === d.max && d.maxLimitReached === false) {
+            console.log("Max reached!");
+            sessions[sess].maxReached(true);
+        } else if (d.current < d.max && d.maxLimitReached === true){
+            console.log("Duration is no longer at maximum.");
+            sessions[sess].maxReached(false);
+        }
+        if (d.current === d.min && d.minLimitReached === false) {
+            console.log("Min reached!");
+            sessions[sess].minReached(true);
+        } else if (d.current > d.min && d.minLimitReached === true) {
+            console.log("Duration is no longer at minimum.");
+            sessions[sess].minReached(false);
+        }
     }
     
     function getSessionsCurrentDuration() {

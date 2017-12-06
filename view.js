@@ -57,17 +57,23 @@ var view = (function () {
         documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;        
     }
     
-    function disableDurationButton(session, sign) {
+    function disableDurationButton(session, disable, sign) {        
         if (session == "short") {
             session = "sBreak";
         } else if (session == "long") {
             session = "lBreak";
         }
         
+        if (sign == "min") {
+            sign = "decrease";
+        } else if (sign == "max") {
+            sign = "increase";
+        }
+        
         let query = "." + sign + "." + session;
         
         let toDisable = document.querySelector(query);
-        toDisable.disabled = true;
+        toDisable.disabled = disable;
     }
 
     return {
