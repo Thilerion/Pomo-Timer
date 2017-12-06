@@ -62,8 +62,8 @@ var data = (function() {
     };
     
     function changeDuration(sess, amount) {
-        let newDuration = (sessions[sess].dur.current + amount);
-        console.log(sess + " was changed by " + amount + " from " + sessions[sess].dur.current + " to " + newDuration + ".");
+        let currentDuration = sessions[sess].dur.current;
+        let newDuration = (currentDuration + amount);
         sessions[sess].dur.current = newDuration;        
     }
     
