@@ -12,7 +12,6 @@ but also long-term information:
 */
 
 var data = (function() {
-    //module keeps track of information
     //the session variable contains all information about the different session types
     var sessions = {};
     
@@ -61,35 +60,6 @@ var data = (function() {
         "timeLeft": 10000, //starting time in ms, maybe change on init...
         "speedMult": 1
     };
-    
-    /*var cycleData = {
-        //Placeholder: return next session type
-        "sessionNumber": 1,
-        "nextSession": function() {
-            let next;
-            if (currentSession.type === "work" && this.sessionNumber > 5) {
-                next = "long";
-                this.sessionNumber = 1;
-            } else if (currentSession.type === "work") {
-                next = "short";
-            } else if (currentSession.type === "short") {
-                next = "work";
-            }
-            currentSession.type = 
-        }
-        
-         THIS IS ALL FOR THE FUTURE, NOW FOCUS ON JUST LETTING THE TIMER RUN!!
-        //data for the cycle, with standard cycle being 3x work and short break, then long break
-        "amount": 3,
-        //needs to be updated at the end of every session
-        "sessionNumber": 1,
-        "nextSessionType": function() {
-            let n = cycleData.sessionNumber;
-            let max = cycleData.amount * 2;
-            //NOT FINISHED, depends on who requests this method to be run
-            //important to keep in mind if sessionNumber is increased first, or if nextSessionType is requested first
-        } 
-    };*/
     
     function convertToMS(min) {
         return min * 60000;
@@ -268,16 +238,9 @@ var data = (function() {
         skipSession: skipSession,
         getCycleLength: getCycleLength,
         setCycleLength: setCycleLength
-    };
-    
-    
-    
-    
+    };    
     
 })();
-
-
-
 
 
 var stats = (function() {
@@ -289,25 +252,9 @@ var stats = (function() {
 })();
 
 
-
 /* OLD CODE
 
 var pomodoro = (function () {
-    var cycle = ["work", "sBreak", "work", "sBreak", "work", "lBreak"];
-
-    var currentSession = {
-        session: 0,
-        name: "work",
-        longName: "Work",
-        length: 25,
-        cycle: 0
-    };
-
-    var hasStarted = false;
-
-    function getCurrentSessionInfo() {
-        return currentSession;
-    }
 
     function getSessionLengths() {
         let arr = [];
@@ -337,29 +284,6 @@ var pomodoro = (function () {
         }
     }
 
-    function finishedTimer() {
-        nextTimer();
-        timer.init(currentSession.length);
-    }
-
-    function nextTimer() {
-        var end = (currentSession.session + 1 >= cycle.length) ? true : false;
-
-        if (end) {
-            currentSession.session = 0;
-            currentSession.cycle++;
-        } else {
-            currentSession.session++;
-        }
-
-        buildCurrentSessionData();
-    }
-
-    function buildCurrentSessionData() {
-        currentSession.name = cycle[currentSession.session];
-        currentSession.longName = sessions[currentSession.name].long;
-        currentSession.length = sessions[currentSession.name].duration.current;
-    }
 
     function resetTimer() {
         currentSession.session = 0;
@@ -372,21 +296,6 @@ var pomodoro = (function () {
         for (var sess in sessions) {
             sessions[sess].duration.current = sessions[sess].duration.initial;
         }
-    }
-
-    function changeCycle(repeats) {
-        //min 2, max 10
-        console.log(cycle);
-        if (repeats > 1 && repeats < 11) {
-            cycle = [];
-            for (var i = 0; i < repeats; i++) {
-                cycle.push("work", "sBreak");
-            }
-            cycle[cycle.length - 1] = "lBreak";
-        } else {
-            cycle = ["work", "sBreak", "work", "sBreak", "work", "lBreak"];
-        }
-        console.log(cycle);
     }
     
 */

@@ -1,14 +1,8 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-// changes the display whenever the controller sends a command
 
 /*
 things to change in display:
-    *timer
-    *resumePauseButton icon
     disable resetsession button
-    *currentSession
-    *sessionDurations
-    *disable duration change buttons when limit is reached
 */
 
 var view = (function () {
@@ -72,8 +66,6 @@ var view = (function () {
 /* OLD CODE
 
 var view = (function () {
-  var timeP = document.getElementById("time");
-  
   var sbDur = document.getElementById("sBreakDuration");
   var lbDur = document.getElementById("lBreakDuration");
   var wDur = document.getElementById("workDuration");
@@ -82,26 +74,6 @@ var view = (function () {
   var resumePauseBtnBg = document.querySelector(".playButton-play");
   
   let resetBtn = document.getElementById("resetSession");
-  
-  var timeSectionDiv = document.querySelector(".timeSection");
-  
-  function displayTime() {
-    var time = timer.getTime();
-    timeP.innerHTML = ("0" + time[0]).slice(-2) + ":" + ("0" + time[1]).slice(-2);
-    updateProgressBar();
-  }
-  
-
-  function displaySession() {
-    var session = pomodoro.getCurrent().name;
-    if (session === "work") {
-      session = 0;
-    } else if (session === "sBreak") {
-      session = 1;
-    } else if (session === "lBreak") {
-      session = 2;
-    }
-  }
 
   function displaySessionLengths() {
     var lengths = pomodoro.getSessionLengths();
@@ -117,19 +89,6 @@ var view = (function () {
     wDur.innerHTML = newWDur;
     sbDur.innerHTML = newSbDur;
     lbDur.innerHTML = newLbDur;
-  }
-
-  function pauseResumeButton(started, running) {
-    if (started === false) {
-      //text = Start Session
-      changePauseResumeButton(false);
-    } else if (started === true && running === false) {
-      //text = Resume Session
-      changePauseResumeButton(false);
-    } else if (started === true && running === true) {
-      //text = Pause Session
-      changePauseResumeButton(true);
-    }
   }
   
   function changePauseResumeButton(showPause) {
@@ -150,13 +109,9 @@ var view = (function () {
     resetBtn.disabled = disable;
   }
 
-
-  
-  
   var audio = new Audio("alarm.mp3");
   function nextTimerSound() {
     audio.play();
   }
-
 
 */

@@ -1,10 +1,6 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 /* globals timer, data, view*/
 
-//interface between every other module
-//no module can exchange information without it going through this module
-//this means that every action and reaction possible (from the user in eventhandler, from the timer in timer.js, changing the display in view.js, changing and requesting data from data.js) goes through this module
-
 var controller = (function () {
 
     function init(startingTime) {

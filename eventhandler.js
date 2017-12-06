@@ -1,18 +1,6 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 /* globals controller */
 
-/*
-events to handle:
-    resetSession
-    resetTimer
-    resumePauseTimer
-    changeSessionTime
-    resetDurations
-    changeCycle
-    changeSessionDurations
-*/
-
-//module for everything that handles events
 var eventHandling = (function () {
 
     function resetSessionEvent() {
@@ -84,29 +72,11 @@ var eventHandling = (function () {
 /* OLD CODE
 
 var eventHandling = (function() {
-  function resetSession() {
-    timer.reset();
-  }
   
   function resetTimer() {
     pomodoro.hasStarted = false;
     timer.reset();
     pomodoro.resetTimer();
-  }
-  
-  function resumePauseTimer() {
-    let mode = timer.getMode();
-    
-    if (started === false) {
-      //start Timer
-      timer.start();
-    } else if (started === true && running === false) {
-      //resume Timer
-      timer.start();
-    } else if (started === true && running === true) {
-      //pause Timer
-      timer.pause();
-    }
   }
 
   function changeSessionTime(el) {
@@ -137,27 +107,5 @@ var eventHandling = (function() {
       btns[i].disabled = false;
     }
   }
-
-  
-  function changeCycle() {
-    var amount = prompt("Choose how often the work-break should be repeated before a long break.", 3);
-		amount = parseInt(amount); 
-    
-    if (amount < 2) {
-      amount = 2;
-      alert("Too low, minimum is 2. Amount of cycles is now 2.");
-    } else if (amount > 10) {
-      amount = 10;
-      alert("Too high, maximum is 10. Amount of cycles is now 10.");
-    } else if (Number.isInteger(amount) === false) {
-      amount = 3;
-      alert("Invalid number, number of cycles defaults to 3.");
-    } else {
-      amount = Number.parseInt(amount);
-      alert("The cycle will be repeated " + amount + " times.");
-    }    
-    pomodoro.changeCycle(amount);    
-  }
-
 
 */
