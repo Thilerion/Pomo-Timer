@@ -82,7 +82,7 @@ var data = (function() {
     };
     
     //creates the three session types and assigns them to the above "sessions" variable
-    sessions.work = new Session("work", "Work", 25, 60, 25);
+    sessions.work = new Session("work", "Work", 25, 60, 15);
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
     
