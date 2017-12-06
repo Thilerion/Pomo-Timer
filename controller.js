@@ -99,7 +99,12 @@ var controller = (function () {
     function resetSession() {
         timer.pause();
         data.resetTimeLeft();
-        data.setNotStarted();
+        if (data.getSessionPlayingProperties().hasStarted === true) {
+            data.setPaused();
+        } else {
+            data.setNotStarted();
+        }
+        //data.setNotStarted();
         updateTimeView();
     }
 
