@@ -67,6 +67,27 @@ var data = (function() {
         sessions[sess].dur.current = newDuration;        
     }
     
+    function getSessionsAllDurationInfo() {
+        let w, s, l;
+        w = sessions.work.dur;
+        s = sessions.short.dur;
+        l = sessions.long.dur;
+        return {
+            work: w,
+            short: s,
+            long: l
+        };
+    }
+    
+    function getSessionsCurrentDuration() {
+        let all = getSessionsAllDurationInfo();
+        return {
+            work: all.work.current,
+            short: all.short.current,
+            long: all.long.current
+        };
+    }
+    
     function convertToMS(min) {
         return min * 60000;
     }
@@ -256,7 +277,8 @@ var data = (function() {
         getCycleLength: getCycleLength,
         setCycleLength: setCycleLength,
         resetAll: resetAll,
-        changeDuration: changeDuration
+        changeDuration: changeDuration,
+        getSessionsCurrentDuration: getSessionsCurrentDuration
     };    
     
 })();

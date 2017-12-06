@@ -10,9 +10,10 @@ var view = (function () {
     //first declares variables for each element in the document that can be changed
     let documentElements = {};
     documentElements.time = document.getElementById("time");
-    documentElements.workDurationTime = document.getElementById("workDuration");
-    documentElements.sBreakDurationTime = document.getElementById("sBreakDuration");
-    documentElements.lBreakDurationTime = document.getElementById("lBreakDuration");
+    documentElements.duration = {};
+    documentElements.duration.work = document.getElementById("workDuration");
+    documentElements.duration.short = document.getElementById("sBreakDuration");
+    documentElements.duration.long = document.getElementById("lBreakDuration");
     documentElements.durationChangeButtonList = document.querySelectorAll(".durBtn");
     documentElements.currentSession = document.getElementById("currentSession");
     documentElements.currentSessionNumber = document.getElementById("currentSessionNumber");
@@ -26,6 +27,11 @@ var view = (function () {
         
         documentElements.resumePauseButton.name = newButtonName;
         documentElements.resumePauseButton.innerHTML = action;
+    }
+    
+    function updateSingleDurationTime(sess, dur) {
+        console.log("Changing view of " + sess + " to " + dur);
+        documentElements.duration[sess].innerHTML = dur;
     }
     
     function setStartTimerButton() {
@@ -56,7 +62,8 @@ var view = (function () {
         setPauseTimerButton: setPauseTimerButton,
         setResumeTimerButton: setResumeTimerButton,
         updateTime: updateTime,
-        updateCurrentSession: updateCurrentSession
+        updateCurrentSession: updateCurrentSession,
+        updateSingleDurationTime: updateSingleDurationTime
     };
 
 })();

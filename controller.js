@@ -69,6 +69,13 @@ var controller = (function () {
         //amount: -1, 1 (or 0 if error)
         let amountMS = data.convertToMS(amount);
         data.changeDuration(sess, amountMS);
+        updateSingleSessionDuration(sess);        
+    }
+    
+    function updateSingleSessionDuration(sess) {
+        let durationsInfo = data.getSessionsCurrentDuration();
+        let sessDurMinutes = data.convertToMinSec(durationsInfo[sess]).min;
+        view.updateSingleDurationTime(sess, sessDurMinutes);
     }
 
     function resetDurations() {
