@@ -29,7 +29,30 @@ var eventHandling = (function () {
         //registers the classes of "this", the button pressed
         let sessionToChange = [el.classList[1]];
         let signOfChange = [el.classList[0]];
-        console.log("Event: " + signOfChange + " duration of " + sessionToChange);
+        
+        //function uses loose equality as classList returns an array with only 1 value
+        if (sessionToChange == "sBreak") {
+            sessionToChange = "short";
+        } else if (sessionToChange == "lBreak") {
+            sessionToChange = "long";
+        } else if (sessionToChange == "work") {
+            sessionToChange = "work";
+        } else {
+            console.log("Error! Don't understand which session to change.");
+            return; 
+        }
+        
+        let amount = 0;
+        
+        if (signOfChange == "increase") {
+            amount = 1;
+        } else if (signOfChange == "decrease") {
+            amount = -1;
+        } else {
+            console.log("Error! No amount detected.");
+        }
+        
+        controller.changeDuration(sessionToChange, amount);
     }
 
     function resetDurationsEvent() {

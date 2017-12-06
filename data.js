@@ -61,6 +61,12 @@ var data = (function() {
         "speedMult": 1
     };
     
+    function changeDuration(sess, amount) {
+        let newDuration = (sessions[sess].dur.current + amount);
+        console.log(sess + " was changed by " + amount + " from " + sessions[sess].dur.current + " to " + newDuration + ".");
+        sessions[sess].dur.current = newDuration;        
+    }
+    
     function convertToMS(min) {
         return min * 60000;
     }
@@ -249,7 +255,8 @@ var data = (function() {
         skipSession: skipSession,
         getCycleLength: getCycleLength,
         setCycleLength: setCycleLength,
-        resetAll: resetAll
+        resetAll: resetAll,
+        changeDuration: changeDuration
     };    
     
 })();

@@ -64,8 +64,11 @@ var controller = (function () {
         }
     }
 
-    function changeDuration(session, sign) {
-
+    function changeDuration(sess, amount) {
+        //sess: short, long, work
+        //amount: -1, 1 (or 0 if error)
+        let amountMS = data.convertToMS(amount);
+        data.changeDuration(sess, amountMS);
     }
 
     function resetDurations() {
