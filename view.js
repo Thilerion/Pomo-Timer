@@ -94,11 +94,3 @@ var view = (function () {
     };
 
 })();
-
-
-
-/* OLD CODE
-  var audio = new Audio("alarm.mp3");
-  function nextTimerSound() {
-    audio.play();
-*/

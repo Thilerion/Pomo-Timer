@@ -4,17 +4,14 @@
 var eventHandling = (function () {
 
     function resetSessionEvent() {
-        //resets current timer, with timer set to initial time of current session, enabling the play/resume button
         controller.resetSession();
     }
 
     function resetTimerEvent() {
-        //completely resets timers, returning to initial session
         controller.resetTimer();
     }
 
     function resumePauseTimerEvent(el) {
-        //checks whether timer has started or is running
         let buttonName = el.name;
         controller.determineResumePauseButton(buttonName);
         
@@ -22,10 +19,7 @@ var eventHandling = (function () {
         console.log("It is now configured for: " + buttonName);
     }
 
-    function changeSessionTimeEvent(el) {
-        //first checks to see which of the duration buttons is clicked
-        //then sends this information to another module
-        
+    function changeSessionTimeEvent(el) {        
         //registers the classes of "this", the button pressed
         let sessionToChange = [el.classList[1]];
         let signOfChange = [el.classList[0]];
@@ -56,12 +50,10 @@ var eventHandling = (function () {
     }
 
     function resetDurationsEvent() {
-        //resets all session durations to their initial length
         controller.resetDurations();
     }
 
     function changeCycleEvent() {
-        //lets user adjust how many cycles before a long break
         controller.changeCycle();
     }
     
@@ -70,7 +62,6 @@ var eventHandling = (function () {
     }
     
     function skipSessionEvent() {
-        //skips current session to the end
         controller.skipSession();
     }
 
@@ -85,14 +76,3 @@ var eventHandling = (function () {
         skipSessionEvent: skipSessionEvent
     };
 })();
-
-
-/* OLD CODE
-    function enableDurationButtons() {
-        var btns = document.querySelectorAll(".durBtn");
-        console.log(btns);
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].disabled = false;
-        }
-    }
-*/
