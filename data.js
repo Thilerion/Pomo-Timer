@@ -195,6 +195,11 @@ var data = (function() {
         currentSession.type = "work";
     }
     
+    function resetAll() {
+        restartCycle();
+        resetTimeLeft();
+    }
+    
     function increaseSessionNumber() {
         let currS = currentSession.sessionNumber;
         let nextS = (currS + 1);
@@ -243,7 +248,8 @@ var data = (function() {
         getIntervalTime: getIntervalTime,
         skipSession: skipSession,
         getCycleLength: getCycleLength,
-        setCycleLength: setCycleLength
+        setCycleLength: setCycleLength,
+        resetAll: resetAll
     };    
     
 })();

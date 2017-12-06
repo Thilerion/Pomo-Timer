@@ -9,7 +9,8 @@ var eventHandling = (function () {
     }
 
     function resetTimerEvent() {
-        //completely resets timers, returning to initial session        
+        //completely resets timers, returning to initial session
+        controller.resetTimer();
     }
 
     function resumePauseTimerEvent(el) {

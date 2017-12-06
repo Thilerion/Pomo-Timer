@@ -104,12 +104,15 @@ var controller = (function () {
         } else {
             data.setNotStarted();
         }
-        //data.setNotStarted();
         updateTimeView();
     }
 
     function resetTimer() {
-
+        timer.pause();
+        data.resetAll();        
+        data.setNotStarted();
+        updateTimeView();
+        updateCurrentSessionView();
     }
     
     function checkIfShouldPause() {
