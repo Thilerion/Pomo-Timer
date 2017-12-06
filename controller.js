@@ -81,12 +81,11 @@ var controller = (function () {
     
     function updateEverySessionDuration() {
         let durationsInfo = data.getSessionsCurrentDuration();
-        let w = data.convertToMinSec(durationsInfo.work).min;
-        let s = data.convertToMinSec(durationsInfo.short).min;
-        let l = data.convertToMinSec(durationsInfo.long).min;
-        view.updateSingleDurationTime("work", w);
-        view.updateSingleDurationTime("short", s);
-        view.updateSingleDurationTime("long", l);
+        for (const prop in durationsInfo) {
+            let amount = durationsInfo[prop];
+            amount = data.convertToMinSec(amount).min;
+            view.updateSingleDurationTime(prop, amount);
+        }
     }
 
     function resetDurations() {
