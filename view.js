@@ -22,6 +22,8 @@ var view = (function () {
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
     documentElements.resetSessionButton = document.getElementById("resetSession");
     
+    let alarmSound = new Audio("alarm.mp3");
+    
     function changeResumePauseButton(action) {
         let newButtonName = action + "Timer";
         
@@ -75,6 +77,10 @@ var view = (function () {
         let toDisable = document.querySelector(query);
         toDisable.disabled = disable;
     }
+    
+    function playFinishedSessionSound() {
+        alarmSound.play();
+    }
 
     return {
         setStartTimerButton: setStartTimerButton,
@@ -83,7 +89,8 @@ var view = (function () {
         updateTime: updateTime,
         updateCurrentSession: updateCurrentSession,
         updateSingleDurationTime: updateSingleDurationTime,
-        disableDurationButton: disableDurationButton
+        disableDurationButton: disableDurationButton,
+        playFinishedSessionSound: playFinishedSessionSound
     };
 
 })();
@@ -91,13 +98,7 @@ var view = (function () {
 
 
 /* OLD CODE
-  function resetSessionButton(disable) {
-    resetBtn.disabled = disable;
-  }
-
   var audio = new Audio("alarm.mp3");
   function nextTimerSound() {
     audio.play();
-  }
-
 */

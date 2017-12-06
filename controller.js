@@ -48,6 +48,7 @@ var controller = (function () {
         data.resetTimeLeft();        
         updateTimeView();
         updateCurrentSessionView();
+        view.playFinishedSessionSound();
     }
 
     function changeResumePauseButton() {
