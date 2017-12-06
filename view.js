@@ -56,6 +56,19 @@ var view = (function () {
         documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
         documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;        
     }
+    
+    function disableDurationButton(session, sign) {
+        if (session == "short") {
+            session = "sBreak";
+        } else if (session == "long") {
+            session = "lBreak";
+        }
+        
+        let query = "." + sign + "." + session;
+        
+        let toDisable = document.querySelector(query);
+        toDisable.disabled = true;
+    }
 
     return {
         setStartTimerButton: setStartTimerButton,
@@ -63,7 +76,8 @@ var view = (function () {
         setResumeTimerButton: setResumeTimerButton,
         updateTime: updateTime,
         updateCurrentSession: updateCurrentSession,
-        updateSingleDurationTime: updateSingleDurationTime
+        updateSingleDurationTime: updateSingleDurationTime,
+        disableDurationButton: disableDurationButton
     };
 
 })();

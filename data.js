@@ -31,14 +31,48 @@ var data = (function() {
         console.log("Duration of " + this.fullName + " has been reset to " + this.dur.current);
     };
     
-    Session.prototype.increaseDur = function() {
-        this.dur.current += 60000;
-        console.log("Duration of " + this.long + " has been increased by one minute to " + this.dur.current + " ms");
+    Session.prototype.increaseDur = function(amount) {
+        if (amount < 60000) {
+            amount = 60000;
+        }
+        
+        if (this.dur.current + amount > this.dur.max) {
+            console.log("Error! Duration of " + this.fullName + " could not increase beyond maximum.");
+        } else {
+            this.dur.current += amount;
+            console.log("Duration of " + this.fullName + " has been increased by one minute to " + this.dur.current + " ms");
+            if (this.dur.current === this.dur.max) {
+                console.log("Max reached!");
+                controller.durationLimitReached(this.name, "increase");
+                return false; //false as in, can't increase more than this
+            } else {
+                console.log("Duration is not yet at maximum.");
+                return true;
+            }
+        }
     };
     
-    Session.prototype.decreaseDur = function() {
-        this.dur.current -= 60000;
-        console.log("Duration of " + this.long + " has been decreased by one minute to " + this.dur.current + " ms");
+    Session.prototype.decreaseDur = function(amount) {
+        if (amount > -60000) {
+            amount = -60000;
+        }
+        
+        amount = amount * -1;
+        
+        if (this.dur.current - amount < this.dur.min) {
+            console.log("Error! Duration of " + this.fullName + " could not decrease beyond minimum.");
+        } else {
+            this.dur.current -= amount;
+            console.log("Duration of " + this.fullName + " has been decreased by one minute to " + this.dur.current + " ms");
+            if (this.dur.current === this.dur.min) {
+                console.log("Min reached!");
+                controller.durationLimitReached(this.name, "decrease");
+                return false; //false as in, can't decrease more than this
+            } else {
+                console.log("Duration is not yet at minimum.");
+                return true;
+            }
+        }
     };
     
     //creates the three session types and assigns them to the above "sessions" variable
@@ -61,10 +95,17 @@ var data = (function() {
         "speedMult": 1
     };
     
-    function changeDuration(sess, amount) {
-        let currentDuration = sessions[sess].dur.current;
-        let newDuration = (currentDuration + amount);
-        sessions[sess].dur.current = newDuration;        
+    function changeDuration(sess, amountMS) {
+        if (amountMS > 0) {
+            sessions[sess].increaseDur(amountMS);
+        } else if (amountMS < 0) {
+            sessions[sess].decreaseDur(amountMS);
+        } else {
+            console.log("Error! Amount to change duration by was 0???");
+        }        
+        //let currentDuration = sessions[sess].dur.current;
+        //let newDuration = (currentDuration + amount);
+        //sessions[sess].dur.current = newDuration;        
     }
     
     function getSessionsCurrentDuration() {
