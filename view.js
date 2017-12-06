@@ -71,47 +71,6 @@ var view = (function () {
 
 
 /* OLD CODE
-
-var view = (function () {
-  var sbDur = document.getElementById("sBreakDuration");
-  var lbDur = document.getElementById("lBreakDuration");
-  var wDur = document.getElementById("workDuration");
-
-  var resumePauseBtnIcon = document.getElementById("resumePauseTimerIcon");
-  var resumePauseBtnBg = document.querySelector(".playButton-play");
-  
-  let resetBtn = document.getElementById("resetSession");
-
-  function displaySessionLengths() {
-    var lengths = pomodoro.getSessionLengths();
-    
-    var oldWDur = wDur.innerHTML;
-    var oldSbDur = sbDur.innerHTML;
-    var oldLbDur = lbDur.innerHTML;
-    
-    var newWDur = lengths[0][1];
-    var newSbDur = lengths[1][1];
-    var newLbDur = lengths[2][1];
-    
-    wDur.innerHTML = newWDur;
-    sbDur.innerHTML = newSbDur;
-    lbDur.innerHTML = newLbDur;
-  }
-  
-  function changePauseResumeButton(showPause) {
-    if (showPause) {
-      resumePauseBtnIcon.classList.remove("fa-play");
-      resumePauseBtnIcon.classList.add("fa-pause");
-      resumePauseBtnBg.classList.remove("playButton-play");
-      resumePauseBtnBg.classList.add("playButton-pause");
-    } else {
-      resumePauseBtnIcon.classList.remove("fa-pause");
-      resumePauseBtnIcon.classList.add("fa-play");
-      resumePauseBtnBg.classList.remove("playButton-pause");
-      resumePauseBtnBg.classList.add("playButton-play");
-    }
-  }
-
   function resetSessionButton(disable) {
     resetBtn.disabled = disable;
   }

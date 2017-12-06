@@ -87,49 +87,12 @@ var eventHandling = (function () {
 })();
 
 
-
-
-
-
-
-
 /* OLD CODE
-
-var eventHandling = (function() {
-  
-  function resetTimer() {
-    pomodoro.hasStarted = false;
-    timer.reset();
-    pomodoro.resetTimer();
-  }
-
-  function changeSessionTime(el) {
-    var classes = [el.classList[0], el.classList[1]];
-    console.log(classes);
-    var amount = (classes[0] === "increase") ? 1 : -1;
-    console.log(amount);
-    var session = classes[1];
-    console.log(session);
-    
-    var disable = pomodoro.changeLength(session, amount);
-    
-    if (disable === true) {
-      el.disabled = true;
-    } else if (disable === false) {
-      var select = "." + session;
-      var sessionBtns = document.querySelectorAll(select);
-      for (var i = 0; i < 2; i++) {
-        sessionBtns[i].disabled = false;
-      }
+    function enableDurationButtons() {
+        var btns = document.querySelectorAll(".durBtn");
+        console.log(btns);
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].disabled = false;
+        }
     }
-  }
-  
-  function enableDurationButtons() {
-    var btns = document.querySelectorAll(".durBtn");
-    console.log(btns);
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].disabled = false;
-    }
-  }
-
 */
