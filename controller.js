@@ -8,6 +8,7 @@ var controller = (function () {
         data.init(startingTime);
         updateTimeView();
         updateCurrentSessionView();
+        updateEverySessionDuration();
     }
 
     function determineResumePauseButton(buttonName) {
@@ -76,6 +77,16 @@ var controller = (function () {
         let durationsInfo = data.getSessionsCurrentDuration();
         let sessDurMinutes = data.convertToMinSec(durationsInfo[sess]).min;
         view.updateSingleDurationTime(sess, sessDurMinutes);
+    }
+    
+    function updateEverySessionDuration() {
+        let durationsInfo = data.getSessionsCurrentDuration();
+        let w = data.convertToMinSec(durationsInfo.work).min;
+        let s = data.convertToMinSec(durationsInfo.short).min;
+        let l = data.convertToMinSec(durationsInfo.long).min;
+        view.updateSingleDurationTime("work", w);
+        view.updateSingleDurationTime("short", s);
+        view.updateSingleDurationTime("long", l);
     }
 
     function resetDurations() {
