@@ -57,7 +57,7 @@ var eventHandling = (function () {
 
     function resetDurationsEvent() {
         //resets all session durations to their initial length
-        
+        controller.resetDurations();
     }
 
     function changeCycleEvent() {

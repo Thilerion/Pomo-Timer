@@ -89,7 +89,8 @@ var controller = (function () {
     }
 
     function resetDurations() {
-
+        data.resetAllDurations();
+        updateEverySessionDuration();
     }
 
     function changeCycle() {

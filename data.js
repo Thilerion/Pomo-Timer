@@ -28,7 +28,7 @@ var data = (function() {
     //adds method to prototype to reset duration to initial duration
     Session.prototype.resetDur = function() {
         this.dur.current = this.dur.initial;
-        console.log("Duration of " + this.long + " has been reset to " + this.dur.current);
+        console.log("Duration of " + this.fullName + " has been reset to " + this.dur.current);
     };
     
     Session.prototype.increaseDur = function() {
@@ -74,6 +74,12 @@ var data = (function() {
         }
         console.log(ret);
         return ret;
+    }
+    
+    function resetAllDurations() {
+        for (const s in sessions) {
+            sessions[s].resetDur();
+        }
     }
     
     function convertToMS(min) {
@@ -266,7 +272,8 @@ var data = (function() {
         setCycleLength: setCycleLength,
         resetAll: resetAll,
         changeDuration: changeDuration,
-        getSessionsCurrentDuration: getSessionsCurrentDuration
+        getSessionsCurrentDuration: getSessionsCurrentDuration,
+        resetAllDurations: resetAllDurations
     };    
     
 })();
