@@ -48,8 +48,8 @@ var data = (function() {
     //adds method to prototype to reset duration to initial duration
     Session.prototype.resetDur = function() {
         this.dur.current = this.dur.initial;
-        this.dur.maxReached(false);
-        this.dur.minReached(false);
+        this.maxReached(false);
+        this.minReached(false);
         console.log("Duration of " + this.fullName + " has been reset to " + this.dur.current);
     };
     
