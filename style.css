@@ -396,6 +396,49 @@ footer > p {
 	}
 }
 
+@media screen and (max-height: 300px) {
+    body {
+        font-size: 60%;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .header {
+        padding: 1px;
+    }
+    
+    .timeSection {
+        height: 100px;
+    }
+    
+    .tester-button {
+        top: 40px;
+    }
+    
+    .underSection-buttonContainer {
+        padding: 1px 1px;
+    }
+
+.underSection-buttonContainer > button {
+     padding: 6px 2px;
+     margin: 5px 5px;
+    }
+    
+    .rectButton {
+         font-size: 1.1em;
+        }
+
+        #resumePauseTimer {
+         color: white;
+         height: 60px;
+         width: 60px;
+         border-radius: 50%;
+         font-size: 3.5em;
+}
+}
+
 /*
   .sessionCards {
     margin: auto;
