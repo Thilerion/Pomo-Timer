@@ -1,23 +1,54 @@
 <!DOCTYPE html>
-<html lang="nl">
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Pomodoro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="shortcut icon" sizes="512x512" href="icon/web_hi_res_512.png">
     <link rel="shortcut icon" sizes="96x96" href="icon/pomo-timer-96.png">
     <link rel="manifest" href="manifest.json">
-
-    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://use.fontawesome.com/593ce00b08.js"></script>
-
     <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+<body class="body-flex">
+
+    <header class="header-flex-inner">
+        <h1>Pomodoro</h1>
+    </header>
+    <main class="main-flex-inner main-flex-outer">
+        <div class="main-time-box">
+            <p id="time">25:00</p>
+        </div>
+        <div class="main-sessions-box">
+            <p>Work 25 - Short 5 - Long 20</p>
+        </div>
+        <div class="main-timeline-box">
+            <p>Timeline here: --------0--0---------0--0-----------X</p>
+        </div>
+        <div class="main-buttons-box">
+            <button>Hoi</button>
+            <button>Hier komen</button>
+            <button>Alle knoppen</button>
+        </div>
+    </main>
+    <footer class="footer-flex-inner">
+        
+    </footer>
+
+    <script src="eventhandler.js"></script>
+    <script src="data.js"></script>
+    <script src="statistics.js"></script>
+    <script src="view.js"></script>
+    <script src="timer.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>
+
+<!--
 <body>
 
     <header>
@@ -69,7 +100,7 @@
         <p>Pomodoro Timer by Michael van Meerwijk</p>
     </footer>
 
-    <!-- <script src="progress.js"></script> -->
+    <<script src="progress.js"></script>>
     <script src="eventhandler.js"></script>    
     <script src="data.js"></script>
     <script src="statistics.js"></script>
@@ -80,3 +111,4 @@
 </body>
 
 </html>
+-->
