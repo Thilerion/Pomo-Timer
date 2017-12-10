@@ -33,3 +33,109 @@ h3 {
     font-size: 1.375rem;
     line-height: 1.625rem;
 }
+
+/* --------- MAIN REGIONS -------- */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #bfd7ff;
+}
+
+header, main, footer {
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #d6ffbf;
+    height: 12vh;
+    padding: 10px 20px;
+}
+
+main {
+    background-color: #bfffeb;
+    height: 80vh;
+}
+
+footer {
+    background-color: #ffbfcf;
+    height: 8vh;
+}
+
+/* ------------------*/
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#time {
+    text-align: center;
+    font-family: "Droid Sans Mono", monospace;
+    font-size: 6.5rem;
+    line-height: 7rem;
+    padding: 130px 0;
+}
+
+.settingButtonsDiv {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.settingButtonsDiv > button {
+    height: 30px;
+    width: 130px;
+}
+
+#resumePauseTimer {
+    height: 50px;
+    width: 50px;
+}
+
+.statsDiv > h2 {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.statsDiv {
+    width: 30%;
+    margin: auto;
+    padding-top: 40px;
+}
+
+.statsDiv > p {
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+.sessionsDiv {
+    display: flex;
+    width: 70%;
+    margin: auto;
+    padding: 70px 0 35px;
+}
+
+.sessionDiv {
+    width: 30%;
+    text-align: center;
+}
+
+.sessionDiv > h2 {
+    font-size: 1.3em;
+    line-height: 1.6em;
+}
+
+.sessionDiv > p {
+    display: inline-block;
+    margin: 0 10px;
+}
