@@ -7,8 +7,6 @@ html, body, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, code, img, em, o
 html, body {
     height: 100%;
     width: 100%;
-    font-size: 100%;
-    font-family: "Open Sans", sans-serif;
 }
 
 /* --- testing box colors --- */
@@ -37,6 +35,14 @@ footer {
 
 body {
     background-color: #fbfbfb;
+    font-size: 100%;
+    font-family: "Open Sans", sans-serif;
+    color: #222;
+}
+
+.heading-logo {
+    text-transform: lowercase;
+    color: #555;
 }
 
 /* --- main blocks --- */
@@ -67,6 +73,12 @@ body {
 }
 
 /* --- sub blocks --- */
+
+.header-flex-outer {
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .main-flex-outer {
     display: flex;
