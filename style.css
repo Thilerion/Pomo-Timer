@@ -1,4 +1,4 @@
-html, body, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, code, img, em, ol, ul, li, dl, dt, dd, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, main, nav, section, div {
+html, body, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, code, img, em, ol, ul, li, dl, dt, dd, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, main, nav, section, div, button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,7 +9,7 @@ html, body {
     width: 100%;
 }
 
-/* --- testing box colors --- */
+/* --- testing box colors --- 
 
 header {
     border: 3px solid black;
@@ -45,6 +45,12 @@ body {
     color: #555;
 }
 
+.time-text {
+    font-size: 6rem;
+    font-family: "Droid Sans Mono", monospace;
+    color: #fbfbfb;
+}
+
 /* --- main blocks --- */
 
 .body-flex {
@@ -62,7 +68,7 @@ body {
 
 .main-flex-inner {
     height: calc(100% - 200px);
-    width: 80%;
+    width: 70%;
     flex: 1 0 auto;
 }
 
@@ -89,11 +95,13 @@ body {
 .main-time-box {
     height: 550px;
     flex: 0 0 auto;
+    background-color: #18486d;
+    position: relative;
 }
 
 .main-sessions-box {
-    flex: 1 0 auto;
-    margin: auto;
+    height: 40px;
+    flex: 0 0 auto;
 }
 
 .main-timeline-box {
@@ -103,5 +111,87 @@ body {
 
 .main-buttons-box {
     flex: 1 0 auto;
+    width: 900px;
     margin: auto;
+}
+
+/* --- inner items --- */
+.main-time-box-flex {
+    display: flex;
+}
+
+.time-text {
+    margin: auto;
+}
+
+.main-time-box-playbutton {
+    position: absolute;
+    bottom: 0;
+    right: calc(50% - 40px);
+    height: 80px;
+    width: 80px;
+    background: white;
+    border: none;
+    background: rgba(256,256,256,0.4);
+    color: #fbfbfb;
+    font-size: 2.6em;
+}
+
+.main-sessions-box-flex {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.main-sessions-box-child {
+    flex: 1 1 auto;
+    text-align: center;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 33.3%;
+}
+
+.main-sessions-box-work {
+    
+}
+
+.main-sessions-box-short {
+
+}
+
+.main-sessions-box-long {
+    
+}
+
+.session-button {
+    height: 40px;
+    width: 80px;
+    background-color: #eee;
+    border: 2px solid #e3e3e3;
+}
+
+.session-text {
+    margin: auto;
+}
+
+.main-timeline-box {
+    font-size: 11px;
+    padding: 40px 0;
+}
+
+.main-timeline-box > p {
+    display: inline;
+    margin: 0 20px;
+}
+
+.main-buttons-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-buttons {
+    height: 50px;
+    width: 130px;
 }

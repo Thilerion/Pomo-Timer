@@ -20,19 +20,39 @@
         <h1 class="heading-logo">Pomodoro</h1>
     </header>
     <main class="main-flex-inner main-flex-outer">
-        <div class="main-time-box">
-            <p id="time">25:00</p>
+        <div class="main-time-box main-time-box-flex">
+            <p class="time-text" id="time">25:00</p>
+            <button class="main-time-box-playbutton" type="button" id="resumePauseTimer" name="startTimer" onclick="eventHandling.resumePauseTimerEvent(this)"><i class="fa fa-play"></i></button>
         </div>
-        <div class="main-sessions-box">
-            <p>Work 25 - Short 5 - Long 20</p>
+        <div class="main-sessions-box main-sessions-box-flex">
+            <div class="main-sessions-box-child main-sessions-box-work">
+                <button type="button" class="decrease work durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
+                <p class="session-text">Work session: <span id="workDuration"></span></p>
+                <button type="button" class="increase work durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
+            </div>
+            <div class="main-sessions-box-child main-sessions-box-short">
+                <button type="button" class="decrease sBreak durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
+                <p class="session-text">Short break session: <span id="sBreakDuration"></span></p>
+                <button type="button" class="increase sBreak durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
+            </div>
+            <div class="main-sessions-box-child main-sessions-box-long">
+                <button type="button" class="decrease lBreak durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-minus"></i></button>
+                <p class="session-text">Long break session: <span id="lBreakDuration"></span></p>
+                <button type="button" class="increase lBreak durBtn session-button" onclick="eventHandling.changeSessionTimeEvent(this)"><i class="fa fa-plus"></i></button>
+            </div>
         </div>
         <div class="main-timeline-box">
             <p>Timeline here: --------0--0---------0--0-----------X</p>
+            <p>Current session: <span id="currentSession">Work</span></p>
+            <p>Current session number: <span id="currentSessionNumber"></span></p>
+            <p>Current cycle length: <span id="currentCycleLength"></span></p>
+            <p>Amount of work sessions until long break: <span id="workUntilLong"></span></p>
         </div>
         <div class="main-buttons-box">
-            <button>Hoi</button>
-            <button>Hier komen</button>
-            <button>Alle knoppen</button>
+            <button class="main-buttons" type="button" id="resetSession" onclick="eventHandling.resetSessionEvent()"><i class="fa fa-step-backward"></i> Reset Session</button>
+            <button class="main-buttons" type="button" id="resetTimer" onclick="eventHandling.resetTimerEvent()"><i class="fa fa-fast-backward"></i> Reset Timer</button>
+            <button class="main-buttons" type="button" id="resetDurations" onclick="eventHandling.resetDurationsEvent()">Reset all durations</button>
+            <button class="main-buttons" type="button" id="changeCycle" onclick="eventHandling.changeCycleEvent()">Change Cycle</button>
         </div>
     </main>
     <footer class="footer-flex-inner">
