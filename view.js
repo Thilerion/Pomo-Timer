@@ -25,10 +25,13 @@ var view = (function () {
     let alarmSound = new Audio("alarm.mp3");
     
     function changeResumePauseButton(action) {
-        let newButtonName = action + "Timer";
+        if (action === "start" || action === "resume") {
+            documentElements.resumePauseButton.innerHTML = '<i class="fa fa-play"></i>';
+        } else if (action === "pause") {
+            documentElements.resumePauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+        }
         
-        documentElements.resumePauseButton.name = newButtonName;
-        documentElements.resumePauseButton.innerHTML = action;
+        documentElements.resumePauseButton.name = action + "Timer";
     }
     
     function updateSingleDurationTime(sess, dur) {
