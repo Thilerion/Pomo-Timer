@@ -114,7 +114,7 @@ body {
 
 .main-buttons-box {
     flex: 1 0 auto;
-    width: 900px;
+    width: 80%;
     margin: auto;
 }
 
@@ -188,15 +188,26 @@ body {
     margin: 0 10px;
 }
 
-.main-buttons-box {
+.main-buttons-flex-outer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 
 .main-buttons {
-    height: 50px;
-    width: 130px;
+    height: 60px;
+    min-width: 140px;
+    width: 160px;
+    margin: 0 1rem;
+    background-color: inherit;
+    border: 1px solid #18486d;
+    color: #18486d;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    outline: none;
 }
 
 .footer-text {
