@@ -207,6 +207,12 @@ button {
     font-size: 18px;
 }
 
+@keyframes fadeInOut {
+    20% {
+        background-color: rgba(0,0,0,0.05);
+    }
+}
+
 .session-button:disabled .material-icons {
     color: black;
     opacity: 0.3;
@@ -218,14 +224,14 @@ button {
 }
 
 .session-button:disabled:hover, .session-button:disabled:active {
-    background-color: rgba(0,0,0,0.1);
+    animation: fadeInOut 1s ease-in-out;
 }
 
-.session-button:hover {
+.session-button:enabled:hover {
     background-color: #2674af;
 }
 
-.session-button:active {
+.session-button:enabled:active {
     background-color: #2688af;
 }
 
