@@ -111,6 +111,8 @@ button {
     flex: 0 0 auto;
     z-index: 1;
     background-color: #fbfbfb;
+    border: 1px solid #18486d;
+    border-top: 1px solid #fbfbfb;
 }
 
 .main-timeline-box {
@@ -148,36 +150,43 @@ button {
 
 .main-sessions-box-flex {
     display: flex;
-    align-items: stretch;
-    justify-content: space-between;
 }
 
 .main-sessions-box-child {
-    flex: 1 1 auto;
+    flex: 1 1 33.333%;
     text-align: center;
     display: flex;
-    align-items: stretch;
-    justify-content: center;
-    width: 33.3%;
 }
 
 .main-sessions-box-work {
-    
+    margin-right: 3px;
 }
 
 .main-sessions-box-short {
-
+    margin-right: 3px;
+    position:relative;
 }
 
 .main-sessions-box-long {
-    
+    position: relative;
+}
+
+.main-sessions-box-long:before, .main-sessions-box-short:before {
+    content: "";
+    background-color: #18486d;
+    position: absolute;
+    width: 1px;
+    bottom: 10%;
+    left: -2px;
+    height: 80%;
 }
 
 .session-button {
-    height: 40px;
-    width: 80px;
-    background-color: #eee;
-    border: 2px solid #e3e3e3;
+    background-color: inherit;
+    background-color: #18486d;
+    color: #fbfbfb;
+    border: none;
+    width: 40px;
 }
 
 .session-text {
