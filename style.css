@@ -195,10 +195,25 @@ button {
     background-color: inherit;
     color: #18486d;
     border: 1px solid #18486d;
-    width: 40px;
+    width: 35px;
     margin: 3px;
     border-radius: 10px;
     transition: background-color 0.2s ease;
+    padding: 0;
+    text-align: center;
+}
+
+.material-dur-size {
+    font-size: 18px;
+}
+
+.session-button:disabled .material-icons {
+    color: black;
+    opacity: 0.3;
+}
+
+.session-button:disabled {
+    border-color: rgba(0,0,0,0.3);
 }
 
 .session-button:hover {
