@@ -235,22 +235,6 @@ button {
     margin: auto;
 }
 
-.main-timeline-box {
-    font-size: 11px;
-    padding: 40px 0;
-}
-
-.main-timeline-box > p {
-    display: inline;
-    margin: 0 10px;
-}
-
-.timeline-container {
-    border: 1px solid lightgray;
-    text-align: center;
-    height: 60px;
-}
-
 .main-buttons-flex-outer {
     display: flex;
     justify-content: center;
@@ -317,4 +301,89 @@ button {
 
 .diagonal-close-effect:active::before {
     background-color: #2674af;
+}
+
+/* --- timeline --- */
+
+.main-timeline-box {
+    font-size: 11px;
+    padding: 40px 0;
+}
+
+.main-timeline-box > p {
+    display: inline;
+    margin: 0 10px;
+}
+
+.timeline-container {
+    border: 1px solid lightgray;
+    text-align: center;
+    height: 60px;
+    width: 100%;
+}
+
+.timeline-line {
+    height: 6px;
+    width: 70%;
+    background: black;
+    margin: auto;
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+.timeline-line-filling {
+    height: 6px;
+    width: 66.7%;
+    background: green;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background: #fdfdfd;
+    border-radius: 50%;
+    border: 3px solid black;
+    position: absolute;
+    top: -7px;
+}
+
+.circle1 {
+    left: 33.3%;
+}
+
+.circle2 {
+    right: 33.3%;
+}
+
+.circle-end {
+    right: 0;
+}
+
+.circle-large {
+    width: 30px;
+    height: 30px;
+    top: -12px;
+}
+
+.circle-large:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: black;
+    position:absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+}
+
+.circle-small:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: black;
+    position:absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
 }
