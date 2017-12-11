@@ -334,7 +334,8 @@ button {
 
 .timeline-inner-circles-container {
     width: calc(100% - 20px);
-    margin: auto;
+    position: absolute;
+    top: 0;
 }
 
 .timeline-line-filling {
