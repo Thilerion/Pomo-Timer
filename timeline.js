@@ -8,8 +8,7 @@ var timeline = (function () {
     
     let htmlCircleTemplate = ['<div class="circle circle-small circle','" style="left: ','%"></div>'];
     
-    let lastCircle = document.querySelector(".circle-end");
-    let parentDiv = document.querySelector(".timeline-line");    
+    let parentDiv = document.querySelector(".timeline-inner-circles-container");    
     
     function createHtmlCircle(n, percent) {
         let circle = htmlCircleTemplate[0] + n + htmlCircleTemplate[1] + percent + htmlCircleTemplate[2];
@@ -19,7 +18,7 @@ var timeline = (function () {
     function placeCircle(c) {
         let div = document.createElement("div");
         div.innerHTML = c;
-        parentDiv.insertBefore(div, lastCircle);
+        parentDiv.appendChild(div);
     }
     
     function resetTimeline() {

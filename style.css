@@ -332,6 +332,11 @@ button {
     transform: translateY(-50%);
 }
 
+.timeline-inner-circles-container {
+    width: calc(100% - 20px);
+    margin: auto;
+}
+
 .timeline-line-filling {
     height: 6px;
     width: 66.7%;
