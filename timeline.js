@@ -4,6 +4,7 @@ var timeline = (function () {
     //check how many work sessions (nWork)
     //place first circle after 100/nWork
     //place every next circle after (n * (100/nWork))
+    let nWork = null;
     
     let htmlCircleTemplate = ['<div class="circle circle-small circle','" style="left: ','%"></div>'];
     
@@ -21,8 +22,24 @@ var timeline = (function () {
         parentDiv.insertBefore(div, lastCircle);
     }
     
+    function resetTimeline() {
+        let smallCircles = document.querySelectorAll(".circle-small");
+                
+        smallCircles.forEach(function(el) {
+            console.log(el);
+            el.remove();
+        });
+    }
+    
     function createCircles(amount) {
-        let nWork = amount;
+        if (nWork === null) {
+            nWork = amount;
+        } else if (nWork === amount) {
+            return;
+        } else {
+            resetTimeline();
+            nWork = amount;
+        }
             
         for (let i=1;i<nWork;i++) {
             let percentage = i*(100/nWork);
@@ -32,6 +49,7 @@ var timeline = (function () {
     }    
     
     return {
-        createCircles: createCircles
+        createCircles: createCircles,
+        resetTimeline: resetTimeline
     };
 })();
