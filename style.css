@@ -189,6 +189,18 @@ button {
     transition: background-color 0.2s ease;
 }
 
+/* --- new session button test --- */
+
+.session-button {
+    background-color: inherit;
+    color: #18486d;
+    border: 1px solid #18486d;
+    width: 40px;
+    margin: 3px;
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+}
+
 .session-button:hover {
     background-color: #2674af;
 }
