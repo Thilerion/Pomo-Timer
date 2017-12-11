@@ -111,8 +111,6 @@ button {
     flex: 0 0 auto;
     z-index: 1;
     background-color: #fbfbfb;
-    border: 1px solid #18486d;
-    border-top: 1px solid #fbfbfb;
 }
 
 .main-timeline-box {
@@ -159,17 +157,17 @@ button {
 }
 
 .main-sessions-box-child {
-    flex: 1 1 33.333%;
     text-align: center;
     display: flex;
+    width: 33.4%;
 }
 
 .main-sessions-box-work {
-    margin-right: 3px;
+    margin-right: 9px;
 }
 
 .main-sessions-box-short {
-    margin-right: 3px;
+    margin-right: 9px;
     position:relative;
 }
 
@@ -182,20 +180,10 @@ button {
     background-color: #18486d;
     position: absolute;
     width: 1px;
-    bottom: 10%;
-    left: -2px;
-    height: 80%;
+    bottom: 20%;
+    left: -5px;
+    height: 60%;
 }
-
-.session-button {
-    background-color: #18486d;
-    color: #fbfbfb;
-    border: none;
-    width: 40px;
-    transition: background-color 0.2s ease;
-}
-
-/* --- new session button test --- */
 
 .session-button {
     background-color: inherit;
@@ -203,8 +191,8 @@ button {
     border: 1px solid #18486d;
     width: 35px;
     margin: 3px;
-    border-radius: 10px;
-    transition: background-color 0.2s ease;
+    border-radius: 3px;
+    transition: background-color 0.2s ease, color 0.2s ease;
     padding: 0;
     text-align: center;
 }
@@ -235,6 +223,7 @@ button {
 
 .session-button:enabled:hover {
     background-color: #2674af;
+    color: #fbfbfb;
 }
 
 .session-button:enabled:active {
