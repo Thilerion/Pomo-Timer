@@ -116,6 +116,7 @@ button {
 .main-timeline-box {
     flex: 1 0 auto;
     margin: auto;
+    width: 100%;
 }
 
 .main-buttons-box {
@@ -242,6 +243,12 @@ button {
 .main-timeline-box > p {
     display: inline;
     margin: 0 10px;
+}
+
+.timeline-container {
+    border: 1px solid lightgray;
+    text-align: center;
+    height: 60px;
 }
 
 .main-buttons-flex-outer {
