@@ -182,11 +182,19 @@ button {
 }
 
 .session-button {
-    background-color: inherit;
     background-color: #18486d;
     color: #fbfbfb;
     border: none;
     width: 40px;
+    transition: background-color 0.2s ease;
+}
+
+.session-button:hover {
+    background-color: #2674af;
+}
+
+.session-button:active {
+    background-color: #2688af;
 }
 
 .session-text {
