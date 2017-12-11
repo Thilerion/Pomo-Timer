@@ -342,6 +342,7 @@ button {
     height: 6px;
     width: 66.7%;
     background: green;
+    display: none;
 }
 
 .circle {
