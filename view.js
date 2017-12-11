@@ -59,7 +59,12 @@ var view = (function () {
         documentElements.currentSession.innerHTML = currSessName.type.fullName;
         documentElements.currentSessionNumber.innerHTML = currSessName.number;
         documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
-        documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;        
+        documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;
+        updateTimelineSessions(currSessName.workSessionsLeft);
+    }
+    
+    function updateTimelineSessions(amount) {
+        timeline.createCircles(amount);
     }
     
     function disableDurationButton(session, disable, sign) {        
