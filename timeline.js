@@ -14,7 +14,7 @@ var timeline = (function () {
     
     function createHtmlCircle(n, percent) {
         let circle = htmlCircleTemplate[0] + n + htmlCircleTemplate[1] + percent + htmlCircleTemplate[2];
-        return circle;
+        placeCircle(circle);
     }
     
     function placeCircle(c) {
