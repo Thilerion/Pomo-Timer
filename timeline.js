@@ -5,8 +5,6 @@ var timeline = (function () {
     //place first circle after 100/nWork
     //place every next circle after (n * (100/nWork))
     
-    let nWork = 3;
-    let nSmallCircles = nWork - 1;
     let htmlCircleTemplate = ['<div class="circle circle-small circle','" style="left: ','%"></div>'];
     
     let lastCircle = document.querySelector(".circle-end");
@@ -23,9 +21,17 @@ var timeline = (function () {
         parentDiv.insertBefore(div, lastCircle);
     }
     
+    function createCircles(amount) {
+        let nWork = amount;
+            
+        for (let i=1;i<nWork;i++) {
+            let percentage = i*(100/nWork);
+            console.log("Circle " + i + " with percentage " + percentage);
+            createHtmlCircle(i, percentage);
+        }
+    }    
     
     return {
-        createHtmlCircle: createHtmlCircle,
-        placeCircle: placeCircle
+        createCircles: createCircles
     };
 })();
