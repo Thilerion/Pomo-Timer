@@ -51,6 +51,12 @@ body {
     color: #fbfbfb;
 }
 
+button {
+    cursor: pointer;
+    outline: none;
+    padding: 5px 10px;
+}
+
 /* --- main blocks --- */
 
 .body-flex {
@@ -196,7 +202,7 @@ body {
 
 .main-buttons {
     height: 60px;
-    min-width: 140px;
+    min-width: 160px;
     width: 160px;
     margin: 0 1rem;
     background-color: inherit;
@@ -205,9 +211,6 @@ body {
     text-transform: uppercase;
     border-radius: 5px;
     font-size: 0.78rem;
-    padding: 5px 10px;
-    cursor: pointer;
-    outline: none;
 }
 
 .footer-text {
@@ -217,4 +220,44 @@ body {
     padding: 10px;
     font-size: 0.6em;
     color: #ccc;
+}
+
+/* --- source of button effect: https://tympanus.net/Development/ButtonStylesInspiration/ --- */
+
+.diagonal-close-effect {
+    transition: border-color 0.3s, color 0.3s;
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    position: relative;
+    z-index: 1;
+    overflow:  hidden;
+}
+
+.diagonal-close-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 100%;
+    background: #18486d;
+    z-index: -1;
+    transform: rotate3d(0,0,1,-45deg) translate3d(0, -3em, 0);
+    transform-origin: 0 110%;
+    transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+.diagonal-close-effect:hover {
+    color: #fff;
+    border-color: #10324c;
+}
+
+.diagonal-close-effect:hover::before {
+    opacity: 1;
+    background-color: #18486d;
+    transform: rotate3d(0,0,1,0deg);
+    transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+}
+
+.diagonal-close-effect:active::before {
+    background-color: #2674af;
 }
