@@ -68,7 +68,7 @@ body {
 
 .main-flex-inner {
     height: calc(100% - 200px);
-    width: 70%;
+    width: 80%;
     flex: 1 0 auto;
 }
 
