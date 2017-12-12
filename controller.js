@@ -53,7 +53,7 @@ var controller = (function () {
     }
 
     function changeResumePauseButton() {
-        let props = data.getSessionPlayingProperties();
+        let props = data.getSessionPlayingProperties().hasStarted;
         let action;
 
         if (props.hasStarted === false) {

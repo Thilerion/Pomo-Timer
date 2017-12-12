@@ -12,21 +12,57 @@ but also long-term information:
 */
 
 var data = (function() {
-    //the session variable contains all information about the different session types
-    var sessions = {};
+    //session variable contains all information about the session types
+    var sessionTypes = {};
     
-    //creates a prototype from which sessions are made
+    //creates a prototype from which session types are made
     function Session(name, fullName, initialDur, maxDur, minDur) {
         this.name = name;
         this.fullName = fullName;
         this.dur = {};
-        this.dur.current = this.dur.initial = convertToMS(initialDur);
+        this.dur.current = convertToMS(initialDur);
+        this.dur.initial = this.dur.current;
         this.dur.max = convertToMS(maxDur);
-        this.dur.maxLimitReached = false;
         this.dur.min = convertToMS(minDur);
-        this.dur.minLimitReached = false;
     }
     
+    //timerData variable holds all the other data needed, such as cycleArray, current session number, and time left
+    var timerData = {
+        timeLeft: null,
+        current: 0,
+        speedMult: 1,
+        started: false,
+        playing: false,
+        cycle: {
+            length: 3,
+            sessions: []
+        }        
+    };
+    
+    //prototype from which the cycle>session array is made
+    function CycleItem(type) {
+        this.name = type;
+        this.hasStarted = false;
+        this.hasFinished = false;
+    }
+    
+    //time conversion functions
+    function convertToMS(minutes) {
+        return minutes * 60000;
+    }
+    
+    function convertToMinSec(ms) {
+        return {
+            min: Math.floor(Math.round(ms / 1000) / 60 % 60),
+            sec: Math.floor(Math.round(ms / 1000) % 60)
+        };
+    }   
+    
+    
+})();
+
+/*
+var dataLegacy = (function() {
     Session.prototype.maxReached = function(yesOrNo) {
         if (yesOrNo === this.dur.maxLimitReached) {
             return;
@@ -152,19 +188,19 @@ var data = (function() {
     
     CycleSession.prototype.fullName = function() {
         return sessions[this.type].fullName;
-    }
+    };
     
     CycleSession.prototype.currentDur = function() {
         return sessions[this.type].dur.current;
-    }
+    };
     
     CycleSession.prototype.setStarted = function(bool) {
         this.started = bool;
-    }
+    };
     
     CycleSession.prototype.setFinished = function(bool) {
         this.finished = bool;
-    }
+    };
     
     function generateCurrentCycleInfo(cycleLength) {
         let c = [];
@@ -376,6 +412,8 @@ var data = (function() {
     };    
     
 })();
+
+*/
 
 
 var stats = (function() {
