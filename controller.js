@@ -25,7 +25,7 @@ var controller = (function () {
 
     function start() {
         timer.start();
-        data.setStartedPlaying();
+        data.startCurrentSession();
         updateTimeView();
         updateTimeLineCircles();
     }

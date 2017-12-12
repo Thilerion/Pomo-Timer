@@ -87,12 +87,8 @@ var data = (function() {
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
     
     var currentCycle = {
-        "currentSession": "work",
-        "currentSessionExpanded": function() {
-            return sessions[currentCycle.currentSession];
-        },
         "currentSessionTotalDur": function() {
-            return sessions[currentCycle.currentSession].dur.current;
+            return currentCycle.currentCycleInfo[currentCycle.sessionNumber].currentDur();
         },
         "timeLeft": null, //starting time in ms, maybe change on init...
         "resetTimeLeft": function() {
@@ -104,6 +100,7 @@ var data = (function() {
         "decreaseTimeLeft": function(n) {
             currentCycle.timeLeft -= n;
         },
+        "sessionNumber": 0,
         "speedMult": 1,
         "hasStarted": false,
         "isPlaying": false,
@@ -114,48 +111,87 @@ var data = (function() {
             };
         },
         "cycleLength": 3,
-        "totalSessions": function() {
-            return currentCycle.cycleLength * 2;
+        "currentCycleInfo": [],
+        "goToNextSession": function() {
+            let s = currentCycle.sessionNumber;
+            currentCycle.currentCycleInfo[s].setFinished(true);
+            if (currentCycle.currentCycleInfo.length == s) {
+                generateCurrentCycleInfo();
+                currentCycle.sessionNumber = 0;
+            } else {
+                currentCycle.sessionNumber++;
+            }
         },
-        "sessionsStarted": 0,
-        "sessionsFinished": 0,
-        "getCurrentSessionNumber": function() {
-            return (currentCycle.totalSessions() - currentCycle.sessionsFinished);
+        "setCurrentStarted": function() {
+            let s = currentCycle.sessionNumber;
+            currentCycle.currentCycleInfo[s].setStarted(true);
         },
-        "resetCycle": function() {
-            currentCycle.sessionsFinished = 0;
-            currentCycle.sessionsStarted = 0;
+        "setCurrentFinished": function() {
+            let s = currentCycle.sessionNumber;
+            currentCycle.currentCycleInfo[s].setStarted(true);
         },
-        "increaseStartedSessions": function() {
-            currentCycle.sessionsStarted++;
+        "setCurrentNotStarted": function() {
+            let s = currentCycle.sessionNumber;
+            currentCycle.currentCycleInfo[s].setStarted(false);
         },
-        "increaseFinishedSessions": function() {
-            currentCycle.sessionsFinished++;
+        "getInfoTest": function() {
+            return currentCycle.currentCycleInfo;
+        },
+        "startCurrentSession": function() {
+            currentCycle.hasStarted = true;
+            currentCycle.isPlaying = true;
+            currentCycle.setCurrentStarted();
         }
     };
+    
+    function CycleSession(type) {
+        this.type = type;
+        this.started = false;
+        this.finished = false;
+    }
+    
+    CycleSession.prototype.fullName = function() {
+        return sessions[this.type].fullName;
+    }
+    
+    CycleSession.prototype.currentDur = function() {
+        return sessions[this.type].dur.current;
+    }
+    
+    CycleSession.prototype.setStarted = function(bool) {
+        this.started = bool;
+    }
+    
+    CycleSession.prototype.setFinished = function(bool) {
+        this.finished = bool;
+    }
+    
+    function generateCurrentCycleInfo(cycleLength) {
+        let c = [];
+        if (cycleLength == undefined) {
+            cycleLength = currentCycle.cycleLength;
+        }
+        for (let i = 0; i < cycleLength; i++) {
+            c.push(new CycleSession("work"));
+            c.push(new CycleSession("short"));
+        }
+        c.pop();
+        c.push(new CycleSession("long"));
+        currentCycle.currentCycleInfo = c;
+        console.log(currentCycle.currentCycleInfo);
+    }
     
     function finishedSession() {
         setNotStarted();
         //go to next session
-        currentCycle.increaseFinishedSessions();
-        
-        let f = currentCycle.sessionsFinished;
-        let t = currentCycle.totalSessions();
-        let next;
-        
-        if (f == t) {
-            restartCycle();
-        } else if (f+1 == t) {
-            next = "long";
-        } else if (f % 2 === 0) {
-            next = "work";
-        } else if (f % 2 !== 0) {
-            next = "short";
-        }
-        
-        currentCycle.currentSession = next;
+        currentCycle.goToNextSession();
         
         currentCycle.resetTimeLeft();
+    }
+    
+    function startedSession() {
+        currentCycle.startCurrentSession();
+        controller.changeResumePauseButton();
     }
     
     function changeDuration(sess, amountMS) {
@@ -275,12 +311,6 @@ var data = (function() {
         return i;
     }
     
-    function setStartedPlaying() {
-        currentCycle.hasStarted = true;
-        currentCycle.isPlaying = true;
-        controller.changeResumePauseButton();
-    }
-    
     function setPaused() {
         currentCycle.hasStarted = true;
         currentCycle.isPlaying = false;
@@ -295,6 +325,7 @@ var data = (function() {
     
     function init(startingTime) {
         //for testing purposes, allows changing initial time on window load (controller)
+        generateCurrentCycleInfo();
         currentCycle.timeLeft = startingTime;
     }
     
@@ -308,8 +339,8 @@ var data = (function() {
     
     function restartCycle() {
         //set sessNumber to 1, set sessType to work
-        currentCycle.resetCycle();
-        currentCycle.currentSession = "work";
+        generateCurrentCycleInfo();
+        currentCycle.sessionNumber = 0;
     }
     
     function resetAll() {
@@ -324,7 +355,7 @@ var data = (function() {
         convertToMS: convertToMS,
         getSessionsCurrentDuration: getSessionsCurrentDuration,
         getIntervalTime: getIntervalTime,
-        setStartedPlaying: setStartedPlaying,
+        startCurrentSession: currentCycle.startCurrentSession,
         setPaused: setPaused,
         setNotStarted: setNotStarted,
         getSpeedMult: getSpeedMult,
@@ -339,7 +370,9 @@ var data = (function() {
         finishedSession: finishedSession,
         resetTimeLeft: resetTimeLeft,
         resetAll: resetAll,
-        totalSessions: currentCycle.totalSessions
+        totalSessions: currentCycle.totalSessions,
+        generateCurrentCycleInfo: generateCurrentCycleInfo,
+        c: currentCycle.getInfoTest
     };    
     
 })();
