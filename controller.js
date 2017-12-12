@@ -1,5 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
-/* globals timer, data, view*/
+/* globals timer, data, view, timeline*/
 
 var controller = (function () {
 

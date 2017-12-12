@@ -3,7 +3,13 @@
 
 var data = (function() {
     //session variable contains all information about the session types
-    var sessionTypes = {};
+    var sessionTypes = {
+        resetAllDurations() {
+            this.work.resetDur();
+            this.long.resetDur();
+            this.short.resetDur();
+        }
+    };
     
     //creates a prototype from which session types are made
     function Session(name, fullName, initialDur, maxDur, minDur) {
@@ -81,6 +87,7 @@ var data = (function() {
         timeLeft: null,
         current: 0,
         speedMult: 1,
+        intervalTime: 1000,
         started: false,
         playing: false,
         cycle: {
@@ -94,7 +101,97 @@ var data = (function() {
                     return undefined;
                 }                
             }
-        }        
+        },
+        getTimeLeft() {
+            return this.timeLeft;
+        },
+        setTimeLeft(ms) {
+            this.timeLeft = ms;
+            return this.timeLeft;
+        },
+        resetTimeLeft() {
+            let curDur = this.getCurrentSessionDur().current;
+            let curDurMS = convertToMS(curDur);
+            this.setTimeLeft(curDurMS);
+        },
+        decreaseTimeLeft(ms) {
+            if (this.timeLeft - ms < 200) {
+                this.timeLeft = 0;
+                //TODO: timer finished
+            } else {
+                this.timeLeft -= ms;
+            }
+        },
+        getSpeedMult() {
+            return this.speedMult;
+        },
+        setSpeedMult(mult) {
+            this.speedMult = parseInt(Math.floor(mult));
+            this.setIntervalTime();
+            return this.speedMult;
+        },
+        getIntervalTime() {
+            return this.intervalTime;
+        },
+        setIntervalTime() {
+            let s = this.getSpeedMult();
+            let interval = Math.floor(1000 / s);
+            //checking for min 40 or max 1000
+            if (interval < 40) {
+                interval = 40;
+            } else if (interval > 1000) {
+                interval = 1000;
+            }
+            this.intervalTime = interval;
+            return this.intervalTime;
+        },
+        getPlayingProps() {
+            return {
+                started: this.started,
+                playing: this.playing
+            };
+        },
+        setPlayingProps(s,p) {
+            if (s !== null) {
+                this.started = s;
+            }
+            if (p !== null) {
+                this.playing = p;
+            }
+        },
+        getCycleLength() {
+            return this.cycle.length;
+        },
+        setCycleLength(n) {
+            this.cycle.length = n;
+            this.generateCycleFromLength();
+            return this.cycle.length;
+        },
+        generateCycleFromLength() {
+            let s = ["work", "short", "long"];
+            let l = this.getCycleLength();
+            let long = l - 1;
+            let arr = [];
+            
+            //for amount of cycles, add work and break (short, or last being long)
+            for (let i = 0; i < l; i++) {
+                arr.push(new CycleItem(s[0]));
+                if (i === long) {
+                    arr.push(new CycleItem(s[2]));
+                } else {
+                    arr.push(new CycleItem(s[1]));
+                }
+            }
+            this.cycle.sessions = arr;
+        },
+        getCurrentSessionName() {
+            let c = this.current;
+            return this.cycle.sessions[c].name;
+        },
+        getCurrentSessionDur() {
+            let n = this.getCurrentSessionName();
+            return sessionTypes[n].dur;
+        }
     };
     
     //prototype from which the cycle>session array is made
@@ -110,8 +207,9 @@ var data = (function() {
         sessionTypes.short = new Session("short", "Short Break", 5, 15, 2);
         sessionTypes.long = new Session("long", "Long Break", 20, 60, 5);
         
-        //TODO: set timeLeft variable
-        //TODO: generate cycle
+        timerData.setCycleLength(3);
+        
+        timerData.resetTimeLeft();
     }
     
     //time conversion functions
