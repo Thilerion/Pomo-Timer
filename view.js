@@ -58,7 +58,6 @@ var view = (function () {
         documentElements.currentSession.innerHTML = currSessName.type.fullName;
         documentElements.currentSessionNumber.innerHTML = currSessName.number;
         documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
-        updateTimelineSessions(currSessName.cycleLength);
     }
     
     function updateTimelineSessions(amount) {

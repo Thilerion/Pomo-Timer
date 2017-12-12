@@ -45,10 +45,26 @@ var timeline = (function () {
             console.log("Circle " + i + " with percentage " + percentage);
             createHtmlCircle(i, percentage);
         }
-    }    
+    }
+
+    function updateActiveCircles(sesInf) {
+        let nActive = 0;
+        if (sesInf.started === true) {
+            nActive++;
+        }
+        if (sesInf.type.name == "short") {
+            let nShort = (sesInf.number / 2);
+            nActive += nShort;
+        }
+        if (sesInf.type.name == "long") {
+            nActive++;
+        }
+        console.log(nActive);
+    }
     
     return {
         createCircles: createCircles,
-        resetTimeline: resetTimeline
+        resetTimeline: resetTimeline,
+        updateActiveCircles: updateActiveCircles
     };
 })();

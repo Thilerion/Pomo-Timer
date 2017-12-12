@@ -193,6 +193,8 @@ var controller = (function () {
         let curSesInfo = data.getCurrentSessionInfo();
         console.log(curSesInfo);
         view.updateCurrentSession(curSesInfo);
+        timeline.createCircles(curSesInfo.cycleLength);
+        timeline.updateActiveCircles(curSesInfo);
     }
     
     function checkDurationDisabled(session, disable, sign) {
