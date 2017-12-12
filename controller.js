@@ -3,9 +3,9 @@
 
 var controller = (function () {
 
-    function init(startingTime) {
-        //when page is loaded, call for a non-started timer to be created, with session work (and initial duration), and display this on the screen
-        data.init(startingTime);
+    function init() {
+        //only run once, when all modules are loaded
+        data.init();
         updateTimeView();
         updateTimeLineCircles();
         updateEverySessionDuration();
@@ -25,42 +25,42 @@ var controller = (function () {
 
     function start() {
         timer.start();
-        data.startCurrentSession();
+        data.start();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function resume() {
         timer.resume();
-        data.setStartedPlaying();
+        data.resume();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function pause() {
         timer.pause();
-        data.setPaused();
+        data.pause();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function finishedSession() {
         timer.pause();
-        data.finishedSession();        
+        data.finish();        
         updateTimeView();
         updateTimeLineCircles();
         view.playFinishedSessionSound();
     }
 
     function changeResumePauseButton() {
-        let props = data.getSessionPlayingProperties().hasStarted;
+        let props = data.getPlayingProps();
         let action;
 
-        if (props.hasStarted === false) {
+        if (props.started === false) {
             view.setStartTimerButton();
-        } else if (props.hasStarted === true && props.isPlaying === false) {
+        } else if (props.started === true && props.playing === false) {
             view.setResumeTimerButton();
-        } else if (props.hasStarted === true && props.hasStarted === true) {
+        } else if (props.started === true && props.playing === true) {
             view.setPauseTimerButton();
         } else {
             console.log("Error in controller: props gives wrong session playing information");

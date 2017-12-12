@@ -94,7 +94,7 @@ var data = (function() {
             length: 3,
             sessions: [],
             get totalSessions() {
-                if (this.length*2 === this.sessions.length) {
+                if (timerData.cycle.length*2 === timerData.cycle.sessions.length) {
                     return length * 2;
                 } else {
                     console.log("Error! Length of cycle, and the amount of sessions in the sessions array do not match up!");
@@ -103,38 +103,36 @@ var data = (function() {
             }
         },
         getTimeLeft() {
-            return this.timeLeft;
+            return timerData.timeLeft;
         },
         setTimeLeft(ms) {
-            this.timeLeft = ms;
-            return this.timeLeft;
+            timerData.timeLeft = ms;
         },
         resetTimeLeft() {
-            let curDur = this.getCurrentSessionDur().current;
+            let curDur = timerData.getCurrentSessionDur().current;
             let curDurMS = convertToMS(curDur);
-            this.setTimeLeft(curDurMS);
+            timerData.setTimeLeft(curDurMS);
         },
         decreaseTimeLeft(ms) {
-            if (this.timeLeft - ms < 200) {
-                this.timeLeft = 0;
+            if (timerData.timeLeft - ms < 200) {
+                timerData.timeLeft = 0;
                 //TODO: timer finished
             } else {
-                this.timeLeft -= ms;
+                timerData.timeLeft -= ms;
             }
         },
         getSpeedMult() {
-            return this.speedMult;
+            return timerData.speedMult;
         },
         setSpeedMult(mult) {
-            this.speedMult = parseInt(Math.floor(mult));
-            this.setIntervalTime();
-            return this.speedMult;
+            timerData.speedMult = parseInt(Math.floor(mult));
+            timerData.setIntervalTime();
         },
         getIntervalTime() {
-            return this.intervalTime;
+            return timerData.intervalTime;
         },
         setIntervalTime() {
-            let s = this.getSpeedMult();
+            let s = timerData.getSpeedMult();
             let interval = Math.floor(1000 / s);
             //checking for min 40 or max 1000
             if (interval < 40) {
@@ -142,34 +140,32 @@ var data = (function() {
             } else if (interval > 1000) {
                 interval = 1000;
             }
-            this.intervalTime = interval;
-            return this.intervalTime;
+            timerData.intervalTime = interval;
         },
         getPlayingProps() {
             return {
-                started: this.started,
-                playing: this.playing
+                started: timerData.started,
+                playing: timerData.playing
             };
         },
         setPlayingProps(s,p) {
             if (s !== null) {
-                this.started = s;
+                timerData.started = s;
             }
             if (p !== null) {
-                this.playing = p;
+                timerData.playing = p;
             }
         },
         getCycleLength() {
-            return this.cycle.length;
+            return timerData.cycle.length;
         },
         setCycleLength(n) {
-            this.cycle.length = n;
-            this.generateCycleFromLength();
-            return this.cycle.length;
+            timerData.cycle.length = n;
+            timerData.generateCycleFromLength();
         },
         generateCycleFromLength() {
             let s = ["work", "short", "long"];
-            let l = this.getCycleLength();
+            let l = timerData.getCycleLength();
             let long = l - 1;
             let arr = [];
             
@@ -182,15 +178,23 @@ var data = (function() {
                     arr.push(new CycleItem(s[1]));
                 }
             }
-            this.cycle.sessions = arr;
+            timerData.cycle.sessions = arr;
         },
         getCurrentSessionName() {
-            let c = this.current;
-            return this.cycle.sessions[c].name;
+            let c = timerData.current;
+            return timerData.cycle.sessions[c].name;
         },
         getCurrentSessionDur() {
-            let n = this.getCurrentSessionName();
+            let n = timerData.getCurrentSessionName();
             return sessionTypes[n].dur;
+        },
+        setCurrentSessionFinished(bool) {
+            let c = timerData.current;
+            timerData.cycle.sessions[c].hasFinished = bool;
+        },
+        setCurrentSessionStarted(bool) {
+            let c = timerData.current;
+            timerData.cycle.sessions[c].hasStarted = bool;
         }
     };
     
@@ -224,7 +228,28 @@ var data = (function() {
         };
     }   
     
-    
+    return {
+        //controller
+        init: init,
+        start: function() {
+            timerData.setPlayingProps(true, true);
+            timerData.setCurrentSessionStarted(true);
+        },
+        pause: function() {
+            timerData.setPlayingProps(null, false);
+        },
+        finish: function() {
+            timerData.setPlayingProps(false, false);
+            timerData.setCurrentSessionFinished(true);
+            //TODO: go to next session
+            timerData.resetTimeLeft();
+        },
+        getPlayingProps: timerData.getPlayingProps,
+        getTimeLeft: timerData.getTimeLeft,
+        convertToMS: convertToMS,
+        convertToMinSec: convertToMinSec,
+        getCycleLength: timerData.getCycleLength
+    };
 })();
 
 /*
