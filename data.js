@@ -86,20 +86,77 @@ var data = (function() {
     sessions.short = new Session("short", "Short Break", 5, 15, 2);
     sessions.long = new Session("long", "Long Break", 20, 60, 5);
     
-    var currentSession = {
-        "type": "work",
-        "sessionNumber": 1,
-        "cyclesBeforeLong": 3,
-        "hasStarted": false,
-        "isPlaying": false,
-        //checks to see what the initial duration is
-        "dur": function() {
-            let sess = currentSession.type;
-            return sessions[sess].dur.current;
+    var currentCycle = {
+        "currentSession": "work",
+        "currentSessionExpanded": function() {
+            return sessions[currentCycle.currentSession];
+        },
+        "currentSessionTotalDur": function() {
+            return sessions[currentCycle.currentSession].dur.current;
         },
         "timeLeft": null, //starting time in ms, maybe change on init...
-        "speedMult": 1
+        "resetTimeLeft": function() {
+            currentCycle.timeLeft = currentCycle.currentSessionTotalDur();    
+        },
+        "increaseTimeLeft": function(n) {
+            currentCycle.timeLeft += n;
+        },
+        "decreaseTimeLeft": function(n) {
+            currentCycle.timeLeft -= n;
+        },
+        "speedMult": 1,
+        "hasStarted": false,
+        "isPlaying": false,
+        "getSessionPlayingProps": function() {
+            return {
+                hasStarted: currentCycle.hasStarted,
+                isPlaying: currentCycle.isPlaying
+            };
+        },
+        "cycleLength": 3,
+        "totalSessions": function() {
+            return currentCycle.cycleLength * 2;
+        },
+        "sessionsStarted": 0,
+        "sessionsFinished": 0,
+        "getCurrentSessionNumber": function() {
+            return (currentCycle.totalSessions() - currentCycle.sessionsFinished);
+        },
+        "resetCycle": function() {
+            currentCycle.sessionsFinished = 0;
+            currentCycle.sessionsStarted = 0;
+        },
+        "increaseStartedSessions": function() {
+            currentCycle.sessionsStarted++;
+        },
+        "increaseFinishedSessions": function() {
+            currentCycle.sessionsFinished++;
+        }
     };
+    
+    function finishedSession() {
+        setNotStarted();
+        //go to next session
+        currentCycle.increaseFinishedSessions();
+        
+        let f = currentCycle.sessionsFinished;
+        let t = currentCycle.totalSessions();
+        let next;
+        
+        if (f == t) {
+            restartCycle();
+        } else if (f+1 == t) {
+            next = "long";
+        } else if (f % 2 === 0) {
+            next = "work";
+        } else if (f % 2 !== 0) {
+            next = "short";
+        }
+        
+        currentCycle.currentSession = next;
+        
+        currentCycle.resetTimeLeft();
+    }
     
     function changeDuration(sess, amountMS) {
         if (amountMS > 0) {
@@ -159,50 +216,51 @@ var data = (function() {
     }
     
     function decreaseTimeLeft(n) {
-        if (currentSession.timeLeft - n < 100) {
-            currentSession.timeLeft = 100;
+        if (currentCycle.timeLeft - n < 100) {
+            currentCycle.timeLeft = 100;
             controller.finishedSession();
         } else {
-            currentSession.timeLeft -= n;
+            currentCycle.decreaseTimeLeft(n);
         }        
     }
     
     function increaseTimeLeft(n) {
-        currentSession.timeLeft += n;
+        currentCycle.timeLeft += n;
     }
     
     function getTimeLeft() {
-        if (currentSession.timeLeft) {
-            return currentSession.timeLeft;
+        if (currentCycle.timeLeft) {
+            return currentCycle.timeLeft;
         } else {
-            currentSession.timeLeft = currentSession.dur();
+            currentCycle.resetTimeLeft();
             console.log("No session duration initialized! Defaulting to current session init duration.");
-            return currentSession.timeLeft;
+            return currentCycle.timeLeft;
         }
     }
     
     function resetTimeLeft() {
         //resets timeLeft according to the duration of the current session
-        currentSession.timeLeft = currentSession.dur();
+        currentCycle.timeLeft = currentCycle.currentSessionTotalDur();
     }
     
     function skipSession() {
-        currentSession.timeLeft = 3000;
+        currentCycle.timeLeft = 3000;
     }
     
     function getSpeedMult() {
-        return currentSession.speedMult;
+        return currentCycle.speedMult;
     }
     
     function setSpeedMult(mult) {
         let updSpeedMult = parseInt(mult);
-        currentSession.speedMult = parseInt(Math.floor(updSpeedMult));
-        console.log("New speed multiplier is: " + currentSession.speedMult);
+        currentCycle.speedMult = parseInt(Math.floor(updSpeedMult));
+        console.log("New speed multiplier is: " + currentCycle.speedMult);
     }
     
+    //divides 1000ms with speedmult to get how long the interval time should be to get accurate numbers in the view
     function getIntervalTime() {
-        let s = currentSession.speedMult;
-        let i = 1000 / currentSession.speedMult;
+        let s = currentCycle.speedMult;
+        let i = 1000 / currentCycle.speedMult;
         console.log("Current speed mult is: " + s + ", so interval time should be: " + i);
         if (i < 40) {
             console.log("Defaulting to a minimum interval time of 40 ms.");
@@ -218,65 +276,40 @@ var data = (function() {
     }
     
     function setStartedPlaying() {
-        currentSession.hasStarted = true;
-        currentSession.isPlaying = true;
+        currentCycle.hasStarted = true;
+        currentCycle.isPlaying = true;
         controller.changeResumePauseButton();
     }
     
     function setPaused() {
-        currentSession.hasStarted = true;
-        currentSession.isPlaying = false;
+        currentCycle.hasStarted = true;
+        currentCycle.isPlaying = false;
         controller.changeResumePauseButton();
     }
     
     function setNotStarted() {
-        currentSession.hasStarted = false;
-        currentSession.isPlaying = false;
+        currentCycle.hasStarted = false;
+        currentCycle.isPlaying = false;
         controller.changeResumePauseButton();
-    }
-    
-    function getSessionPlayingProperties() {
-        return {
-            hasStarted: currentSession.hasStarted,
-            isPlaying: currentSession.isPlaying
-        };
     }
     
     function init(startingTime) {
         //for testing purposes, allows changing initial time on window load (controller)
-        currentSession.timeLeft = startingTime;
-    }
-    
-    function getCurrentSessionInfo() {
-        let t = sessions[currentSession.type];
-        let n = currentSession.sessionNumber;
-        let prop = getSessionPlayingProperties();
-        return {
-            type: t,
-            number: n,
-            cycleLength: getCycleLength(),
-            started: prop.hasStarted,
-            playing: prop.isPlaying
-        };
-    }
-    
-    function getNumberOfSessionsBeforeLong() {
-        //minus one because the long break takes the place of the last short break
-        return parseInt((currentSession.cyclesBeforeLong * 2)-1);
+        currentCycle.timeLeft = startingTime;
     }
     
     function getCycleLength() {
-        return currentSession.cyclesBeforeLong;
+        return currentCycle.cycleLength;
     }
     
     function setCycleLength(n) {
-        currentSession.cyclesBeforeLong = n;
+        currentCycle.cycleLength = n;
     } 
     
     function restartCycle() {
         //set sessNumber to 1, set sessType to work
-        currentSession.sessionNumber = 1;
-        currentSession.type = "work";
+        currentCycle.resetCycle();
+        currentCycle.currentSession = "work";
     }
     
     function resetAll() {
@@ -284,59 +317,29 @@ var data = (function() {
         resetTimeLeft();
     }
     
-    function increaseSessionNumber() {
-        let currS = currentSession.sessionNumber;
-        let nextS = (currS + 1);
-        let nextSName;
-        let sBeforeLong = getNumberOfSessionsBeforeLong();
-        
-        //if the last session equals the amount of sessions before a long break, initiate long break
-        if (currS === sBeforeLong && currentSession.type === "work") { 
-            nextSName = "long";
-        } else if (currS === (sBeforeLong+1) && currentSession.type === "long") {
-            restartCycle();
-            return;
-        } else if (currS < sBeforeLong && currentSession.type === "work") {
-            nextSName = "short";
-        } else if (currS < sBeforeLong && currentSession.type === "short") {
-            nextSName = "work";
-        } else if (currS > sBeforeLong) {
-            console.log("Something happened with changing the cycle, while being ahead of the cycle. Or something. So next thing session is a long break, with the current session number reverting back.");
-            nextSName = "long";
-            nextS = sBeforeLong;
-        } else {
-            console.log("ERROR: increase session number doesn't know which session is next!");
-        }
-        
-        currentSession.type = nextSName;
-        currentSession.sessionNumber = nextS;
-    }
-    
     return {
-        decreaseTimeLeft: decreaseTimeLeft,
-        increaseTimeLeft: increaseTimeLeft,
+        init: init,
         getTimeLeft: getTimeLeft,
-        resetTimeLeft: resetTimeLeft,
-        initialDur: currentSession.dur,
-        getSpeedMult: getSpeedMult,
-        setSpeedMult: setSpeedMult,
+        convertToMinSec: convertToMinSec,
+        convertToMS: convertToMS,
+        getSessionsCurrentDuration: getSessionsCurrentDuration,
+        getIntervalTime: getIntervalTime,
         setStartedPlaying: setStartedPlaying,
         setPaused: setPaused,
         setNotStarted: setNotStarted,
-        getSessionPlayingProperties: getSessionPlayingProperties,
-        convertToMS: convertToMS,
-        convertToMinSec: convertToMinSec,
-        init: init,
-        getCurrentSessionInfo: getCurrentSessionInfo,
-        increaseSessionNumber: increaseSessionNumber,
-        getIntervalTime: getIntervalTime,
-        skipSession: skipSession,
+        getSpeedMult: getSpeedMult,
+        setSpeedMult: setSpeedMult,
+        decreaseTimeLeft: decreaseTimeLeft,
+        getSessionPlayingProperties: currentCycle.getSessionPlayingProps,
+        changeDuration: changeDuration,
+        resetAllDurations: resetAllDurations,
         getCycleLength: getCycleLength,
         setCycleLength: setCycleLength,
+        skipSession: skipSession,
+        finishedSession: finishedSession,
+        resetTimeLeft: resetTimeLeft,
         resetAll: resetAll,
-        changeDuration: changeDuration,
-        getSessionsCurrentDuration: getSessionsCurrentDuration,
-        resetAllDurations: resetAllDurations
+        totalSessions: currentCycle.totalSessions
     };    
     
 })();

@@ -54,16 +54,6 @@ var view = (function () {
         documentElements.time.innerHTML = ("0" + obj.min).slice(-2) + ":" + ("0" + obj.sec).slice(-2);
     }
     
-    function updateCurrentSession(currSessName) {
-        documentElements.currentSession.innerHTML = currSessName.type.fullName;
-        documentElements.currentSessionNumber.innerHTML = currSessName.number;
-        documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
-    }
-    
-    function updateTimelineSessions(amount) {
-        timeline.createCircles(amount);
-    }
-    
     function disableDurationButton(session, disable, sign) {        
         if (session == "short") {
             session = "sBreak";
@@ -92,7 +82,6 @@ var view = (function () {
         setPauseTimerButton: setPauseTimerButton,
         setResumeTimerButton: setResumeTimerButton,
         updateTime: updateTime,
-        updateCurrentSession: updateCurrentSession,
         updateSingleDurationTime: updateSingleDurationTime,
         disableDurationButton: disableDurationButton,
         playFinishedSessionSound: playFinishedSessionSound

@@ -7,7 +7,7 @@ var controller = (function () {
         //when page is loaded, call for a non-started timer to be created, with session work (and initial duration), and display this on the screen
         data.init(startingTime);
         updateTimeView();
-        updateCurrentSessionView();
+        updateTimeLineCircles();
         updateEverySessionDuration();
     }
 
@@ -27,27 +27,28 @@ var controller = (function () {
         timer.start();
         data.setStartedPlaying();
         updateTimeView();
+        updateTimeLineCircles();
     }
 
     function resume() {
         timer.resume();
         data.setStartedPlaying();
         updateTimeView();
+        updateTimeLineCircles();
     }
 
     function pause() {
         timer.pause();
         data.setPaused();
         updateTimeView();
+        updateTimeLineCircles();
     }
 
     function finishedSession() {
         timer.pause();
-        data.setNotStarted();
-        data.increaseSessionNumber();
-        data.resetTimeLeft();        
+        data.finishedSession();        
         updateTimeView();
-        updateCurrentSessionView();
+        updateTimeLineCircles();
         view.playFinishedSessionSound();
     }
 
@@ -95,7 +96,7 @@ var controller = (function () {
     }
 
     function changeCycle() {
-        //REMINDER TO SELF: what to do when the cycle is changed, which means the user is ahead of the cycle?
+        resetTimer();
         let shouldPause = checkIfShouldPause();
         if (shouldPause === true) {
             pause();
@@ -115,7 +116,7 @@ var controller = (function () {
         if (shouldPause === true) {
             resume();
         }
-        updateCurrentSessionView();
+        updateTimeLineCircles();
     }
 
     function resetSession() {
@@ -127,6 +128,7 @@ var controller = (function () {
             data.setNotStarted();
         }
         updateTimeView();
+        updateTimeLineCircles();
     }
 
     function resetTimer() {
@@ -134,7 +136,7 @@ var controller = (function () {
         data.resetAll();        
         data.setNotStarted();
         updateTimeView();
-        updateCurrentSessionView();
+        updateTimeLineCircles();
     }
     
     function checkIfShouldPause() {
@@ -189,12 +191,9 @@ var controller = (function () {
         view.updateTime(t);
     }
 
-    function updateCurrentSessionView() {
-        let curSesInfo = data.getCurrentSessionInfo();
-        console.log(curSesInfo);
-        view.updateCurrentSession(curSesInfo);
-        timeline.createCircles(curSesInfo.cycleLength);
-        timeline.updateActiveCircles(curSesInfo);
+    function updateTimeLineCircles() {
+        let cycleLength = data.getCycleLength();
+        timeline.createCircles(cycleLength);
     }
     
     function checkDurationDisabled(session, disable, sign) {
@@ -218,7 +217,7 @@ var controller = (function () {
         skipSession: skipSession,
         finishedSession: finishedSession,
         timerTick: timerTick,
-        checkDurationDisabled: checkDurationDisabled
+        checkDurationDisabled: checkDurationDisabled,
     };
 })();
 
