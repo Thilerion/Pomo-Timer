@@ -250,16 +250,14 @@ var data = (function() {
     function getCurrentSessionInfo() {
         let t = sessions[currentSession.type];
         let n = currentSession.sessionNumber;
+        let prop = getSessionPlayingProperties();
         return {
             type: t,
             number: n,
             cycleLength: getCycleLength(),
-            workSessionsLeft: calcWorkSessionsLeft(n, getCycleLength())
+            started: prop.hasStarted,
+            playing: prop.isPlaying
         };
-    }
-    
-    function calcWorkSessionsLeft(curSesN, cycleLength) {
-        return (cycleLength - Math.floor(curSesN/2));
     }
     
     function getNumberOfSessionsBeforeLong() {

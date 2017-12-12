@@ -17,8 +17,7 @@ var view = (function () {
     documentElements.durationChangeButtonList = document.querySelectorAll(".durBtn");
     documentElements.currentSession = document.getElementById("currentSession");
     documentElements.currentSessionNumber = document.getElementById("currentSessionNumber");
-    documentElements.currentCycleLength = document.getElementById("currentCycleLength");
-    documentElements.workUntilLong = document.getElementById("workUntilLong");    
+    documentElements.currentCycleLength = document.getElementById("currentCycleLength"); 
     documentElements.resumePauseButton = document.getElementById("resumePauseTimer");
     documentElements.resetSessionButton = document.getElementById("resetSession");
     
@@ -59,8 +58,7 @@ var view = (function () {
         documentElements.currentSession.innerHTML = currSessName.type.fullName;
         documentElements.currentSessionNumber.innerHTML = currSessName.number;
         documentElements.currentCycleLength.innerHTML = currSessName.cycleLength;
-        documentElements.workUntilLong.innerHTML = currSessName.workSessionsLeft;
-        updateTimelineSessions(currSessName.workSessionsLeft);
+        updateTimelineSessions(currSessName.cycleLength);
     }
     
     function updateTimelineSessions(amount) {
