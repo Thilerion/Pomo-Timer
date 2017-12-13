@@ -26,10 +26,15 @@ var timeline = (function () {
     
     function resetTimeline() {
         let smallCircles = document.querySelectorAll(".circle-small");
-                
+        let lastCircle = document.querySelector(".circle-end");
+        
         smallCircles.forEach(function(el) {
             el.remove();
         });
+        
+        lastCircle.classList.remove("started-circle");
+        lastCircle.classList.remove("active-circle");
+        
     }
     
     function createCircles(amount) {
@@ -52,17 +57,42 @@ var timeline = (function () {
         console.log(circles);
     }
 
-    function updateActiveCircles(props, sessions) {
+    function updateActiveCircles(props) {
         //first small running if s=2 f=1
         //first small complete if s=2 f=2
         //second small running if s=4 f=3
         //second small complete if s=4 f=4
         //last circle running if s=6 f=5
         //last circle complete if s=0 f=0 && previous bullets colored
+        if (props.s.name === "short") {
+            let circleN = Math.floor(props.n / 2) + 1;
+            let el = document.querySelector(".circle" + circleN);
+            console.log(el);
+            if (props.s.hasStarted === true) {
+                el.classList.add("started-circle");
+            }
+            if (props.s.hasFinished === true) {
+                el.classList.add("active-circle");
+            }
+        }
+        if (props.s.name === "long") {
+            let el = document.querySelector(".circle-end");
+            if (props.s.hasStarted === true) {
+                el.classList.add("started-circle");
+            }
+            if (props.s.hasFinished === true) {
+                el.classList.add("active-circle");
+            }
+        }
     }
+    
+    //TODO RESET CIRCLES AT END
+    //TODO NUMBER OF ELEMENT TO CHANGE
+    //TODO RIGHT PLACE TO ADD FINISHED CIRCLE CLASS
     
     return {
         createCircles: createCircles,
         resetTimeline: resetTimeline,
+        updateActiveCircles: updateActiveCircles
     };
 })();

@@ -51,12 +51,12 @@ var controller = (function () {
     }
 
     function finishedSession() {
+        updateActivatedCircles();
         timer.pause();
         data.finish();  
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
-        updateActivatedCircles();
         view.playFinishedSessionSound();
     }
 
@@ -203,6 +203,7 @@ var controller = (function () {
     function updateActivatedCircles() {
         let sessionInfo = data.getCurrentSessionInfo();
         console.log(sessionInfo);
+        timeline.updateActiveCircles(sessionInfo);
     }
     
     function checkDurationDisabled(session, disable, sign) {
@@ -227,6 +228,7 @@ var controller = (function () {
         finishedSession: finishedSession,
         timerTick: timerTick,
         checkDurationDisabled: checkDurationDisabled,
+        updateActivatedCircles: updateActivatedCircles
     };
 })();
 

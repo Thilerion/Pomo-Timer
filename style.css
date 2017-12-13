@@ -395,6 +395,6 @@ button {
     border-radius: 50%;
 }
 
-.running-circle {
+.started-circle {
     background: red;
 }

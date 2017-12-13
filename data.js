@@ -105,7 +105,7 @@ var data = (function() {
             sessions: [],
             get totalSessions() {
                 if (timerData.cycle.length*2 === timerData.cycle.sessions.length) {
-                    return length * 2;
+                    return timerData.cycle.length * 2;
                 } else {
                     console.log("Error! Length of cycle, and the amount of sessions in the sessions array do not match up!");
                     return undefined;
@@ -126,7 +126,7 @@ var data = (function() {
         decreaseTimeLeft(ms) {
             if (timerData.timeLeft - ms < 200) {
                 timerData.timeLeft = 0;
-                //TODO: timer finished
+                controller.finishedSession();
             } else {
                 timerData.timeLeft -= ms;
             }
@@ -196,11 +196,11 @@ var data = (function() {
         goToNextSession() {
             let total = timerData.cycle.totalSessions - 1;
             let current = timerData.current;
+            console.log(total, current);
             if (current < total) {
                 timerData.current++;
             } else if (current >= total) {
-                timerData.current = 0;
-                //TODO: reset timer
+                timerData.restartCycle();
             }
         },
         restartCycle() {
