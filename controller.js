@@ -26,13 +26,15 @@ var controller = (function () {
     function start() {
         timer.start();
         data.start();
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function resume() {
         timer.resume();
-        data.resume();
+        data.start();
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
     }
@@ -40,13 +42,15 @@ var controller = (function () {
     function pause() {
         timer.pause();
         data.pause();
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function finishedSession() {
         timer.pause();
-        data.finish();        
+        data.finish();  
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
         view.playFinishedSessionSound();
@@ -70,22 +74,20 @@ var controller = (function () {
     function changeDuration(sess, amount) {
         //sess: short, long, work
         //amount: -1, 1 (or 0 if error)
-        let amountMS = data.convertToMS(amount);
-        data.changeDuration(sess, amountMS);
+        data.changeDuration(sess, amount);
         updateSingleSessionDuration(sess);        
     }
     
     function updateSingleSessionDuration(sess) {
-        let durationsInfo = data.getSessionsCurrentDuration();
-        let sessDurMinutes = data.convertToMinSec(durationsInfo[sess]).min;
-        view.updateSingleDurationTime(sess, sessDurMinutes);
+        let durationsInfo = data.getAllCurrentDurations();
+        let sessDur = durationsInfo[sess];
+        view.updateSingleDurationTime(sess, sessDur);
     }
     
     function updateEverySessionDuration() {
-        let durationsInfo = data.getSessionsCurrentDuration();
+        let durationsInfo = data.getAllCurrentDurations();
         for (const prop in durationsInfo) {
             let amount = durationsInfo[prop];
-            amount = data.convertToMinSec(amount).min;
             view.updateSingleDurationTime(prop, amount);
         }
     }
@@ -121,20 +123,16 @@ var controller = (function () {
 
     function resetSession() {
         timer.pause();
-        data.resetTimeLeft();
-        if (data.getSessionPlayingProperties().hasStarted === true) {
-            data.setPaused();
-        } else {
-            data.setNotStarted();
-        }
+        data.resetSession();
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
     }
 
     function resetTimer() {
         timer.pause();
-        data.resetAll();        
-        data.setNotStarted();
+        data.resetAll();
+        changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
     }

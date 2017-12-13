@@ -5,9 +5,16 @@ var data = (function() {
     //session variable contains all information about the session types
     var sessionTypes = {
         resetAllDurations() {
-            this.work.resetDur();
-            this.long.resetDur();
-            this.short.resetDur();
+            sessionTypes.work.resetDur();
+            sessionTypes.long.resetDur();
+            sessionTypes.short.resetDur();
+        },
+        getAllCurrentDurations() {
+            return {
+                work: sessionTypes.work.dur.current,
+                short: sessionTypes.short.dur.current,
+                long: sessionTypes.long.dur.current
+            };
         }
     };
     
@@ -143,6 +150,7 @@ var data = (function() {
             timerData.intervalTime = interval;
         },
         getPlayingProps() {
+            console.log("Started: " + timerData.started, "Playing: " + timerData.playing);
             return {
                 started: timerData.started,
                 playing: timerData.playing
@@ -179,6 +187,22 @@ var data = (function() {
                 }
             }
             timerData.cycle.sessions = arr;
+            console.log("The cycle now looks like:");
+            console.log(timerData.cycle.sessions);
+        },
+        goToNextSession() {
+            let total = timerData.cycle.totalSessions - 1;
+            let current = timerData.current;
+            if (current < total) {
+                timerData.current++;
+            } else if (current >= total) {
+                timerData.current = 0;
+                //TODO: reset timer
+            }
+        },
+        restartCycle() {
+            timerData.current = 0;
+            timerData.generateCycleFromLength();
         },
         getCurrentSessionName() {
             let c = timerData.current;
@@ -191,10 +215,14 @@ var data = (function() {
         setCurrentSessionFinished(bool) {
             let c = timerData.current;
             timerData.cycle.sessions[c].hasFinished = bool;
+            console.log("The cycle now looks like:");
+            console.log(timerData.cycle.sessions);
         },
         setCurrentSessionStarted(bool) {
             let c = timerData.current;
             timerData.cycle.sessions[c].hasStarted = bool;
+            console.log("The cycle now looks like:");
+            console.log(timerData.cycle.sessions);
         }
     };
     
@@ -241,50 +269,45 @@ var data = (function() {
         finish: function() {
             timerData.setPlayingProps(false, false);
             timerData.setCurrentSessionFinished(true);
-            //TODO: go to next session
+            timerData.goToNextSession();
             timerData.resetTimeLeft();
         },
         getPlayingProps: timerData.getPlayingProps,
         getTimeLeft: timerData.getTimeLeft,
         convertToMS: convertToMS,
         convertToMinSec: convertToMinSec,
-        getCycleLength: timerData.getCycleLength
+        getCycleLength: timerData.getCycleLength,
+        getAllCurrentDurations: sessionTypes.getAllCurrentDurations,
+        changeDuration: function(sess, amount) {
+            if (amount > 0) {
+                sessionTypes[sess].increaseDur(amount);
+            } else if (amount < 0) {
+                sessionTypes[sess].decreaseDur(amount*-1);
+            }
+        },
+        resetAllDurations: sessionTypes.resetAllDurations,
+        getIntervalTime: timerData.getIntervalTime,
+        getSpeedMult: timerData.getSpeedMult,
+        decreaseTimeLeft: timerData.decreaseTimeLeft,
+        resetAll: function() {
+            timerData.restartCycle();
+            timerData.resetTimeLeft();
+            timerData.setPlayingProps(false, false);
+        },
+        resetSession: function() {
+            timerData.resetTimeLeft();
+            timerData.setCurrentSessionStarted(false);
+            timerData.setPlayingProps(false, false);
+        }
     };
 })();
 
 /*
 var dataLegacy = (function() {
-    //creates the three session types and assigns them to the above "sessions" variable
-    sessions.work = new Session("work", "Work", 25, 60, 15);
-    sessions.short = new Session("short", "Short Break", 5, 15, 2);
-    sessions.long = new Session("long", "Long Break", 20, 60, 5);
+    
     
     var currentCycle = {
-        "currentSessionTotalDur": function() {
-            return currentCycle.currentCycleInfo[currentCycle.sessionNumber].currentDur();
-        },
-        "timeLeft": null, //starting time in ms, maybe change on init...
-        "resetTimeLeft": function() {
-            currentCycle.timeLeft = currentCycle.currentSessionTotalDur();    
-        },
-        "increaseTimeLeft": function(n) {
-            currentCycle.timeLeft += n;
-        },
-        "decreaseTimeLeft": function(n) {
-            currentCycle.timeLeft -= n;
-        },
-        "sessionNumber": 0,
-        "speedMult": 1,
-        "hasStarted": false,
-        "isPlaying": false,
-        "getSessionPlayingProps": function() {
-            return {
-                hasStarted: currentCycle.hasStarted,
-                isPlaying: currentCycle.isPlaying
-            };
-        },
-        "cycleLength": 3,
-        "currentCycleInfo": [],
+        
         "goToNextSession": function() {
             let s = currentCycle.sessionNumber;
             currentCycle.currentCycleInfo[s].setFinished(true);
@@ -295,18 +318,7 @@ var dataLegacy = (function() {
                 currentCycle.sessionNumber++;
             }
         },
-        "setCurrentStarted": function() {
-            let s = currentCycle.sessionNumber;
-            currentCycle.currentCycleInfo[s].setStarted(true);
-        },
-        "setCurrentFinished": function() {
-            let s = currentCycle.sessionNumber;
-            currentCycle.currentCycleInfo[s].setStarted(true);
-        },
-        "setCurrentNotStarted": function() {
-            let s = currentCycle.sessionNumber;
-            currentCycle.currentCycleInfo[s].setStarted(false);
-        },
+        
         "getInfoTest": function() {
             return currentCycle.currentCycleInfo;
         },
@@ -379,24 +391,7 @@ var dataLegacy = (function() {
         isDurationLimitReached(sess);
     }
     
-    function isDurationLimitReached(sess) {
-        let d = sessions[sess].dur;
-        
-        if (d.current === d.max && d.maxLimitReached === false) {
-            console.log("Max reached!");
-            sessions[sess].maxReached(true);
-        } else if (d.current < d.max && d.maxLimitReached === true){
-            console.log("Duration is no longer at maximum.");
-            sessions[sess].maxReached(false);
-        }
-        if (d.current === d.min && d.minLimitReached === false) {
-            console.log("Min reached!");
-            sessions[sess].minReached(true);
-        } else if (d.current > d.min && d.minLimitReached === true) {
-            console.log("Duration is no longer at minimum.");
-            sessions[sess].minReached(false);
-        }
-    }
+
     
     function getSessionsCurrentDuration() {
         let ret = {};
@@ -407,45 +402,8 @@ var dataLegacy = (function() {
         return ret;
     }
     
-    function resetAllDurations() {
-        for (const s in sessions) {
-            sessions[s].resetDur();
-        }
-    }
-    
-    function convertToMS(min) {
-        return min * 60000;
-    }
-    
-    function convertToMinSec(ms) {
-        return {
-            min: Math.floor(Math.round(ms / 1000) / 60 % 60),
-            sec: Math.floor(Math.round(ms / 1000) % 60)
-        };
-    }
-    
-    function decreaseTimeLeft(n) {
-        if (currentCycle.timeLeft - n < 100) {
-            currentCycle.timeLeft = 100;
-            controller.finishedSession();
-        } else {
-            currentCycle.decreaseTimeLeft(n);
-        }        
-    }
-    
-    function increaseTimeLeft(n) {
-        currentCycle.timeLeft += n;
-    }
-    
-    function getTimeLeft() {
-        if (currentCycle.timeLeft) {
-            return currentCycle.timeLeft;
-        } else {
-            currentCycle.resetTimeLeft();
-            console.log("No session duration initialized! Defaulting to current session init duration.");
-            return currentCycle.timeLeft;
-        }
-    }
+
+
     
     function resetTimeLeft() {
         //resets timeLeft according to the duration of the current session
@@ -455,53 +413,7 @@ var dataLegacy = (function() {
     function skipSession() {
         currentCycle.timeLeft = 3000;
     }
-    
-    function getSpeedMult() {
-        return currentCycle.speedMult;
-    }
-    
-    function setSpeedMult(mult) {
-        let updSpeedMult = parseInt(mult);
-        currentCycle.speedMult = parseInt(Math.floor(updSpeedMult));
-        console.log("New speed multiplier is: " + currentCycle.speedMult);
-    }
-    
-    //divides 1000ms with speedmult to get how long the interval time should be to get accurate numbers in the view
-    function getIntervalTime() {
-        let s = currentCycle.speedMult;
-        let i = 1000 / currentCycle.speedMult;
-        console.log("Current speed mult is: " + s + ", so interval time should be: " + i);
-        if (i < 40) {
-            console.log("Defaulting to a minimum interval time of 40 ms.");
-            i = 40;
-        } else if (i > 1000) {
-            console.log("Defaulting to a maximum interval time of 1000 ms.");
-            i = 1000;
-        } else {
-            i = Math.floor(i);
-            console.log("Interval time is rounded to " + i);
-        }
-        return i;
-    }
-    
-    function setPaused() {
-        currentCycle.hasStarted = true;
-        currentCycle.isPlaying = false;
-        controller.changeResumePauseButton();
-    }
-    
-    function setNotStarted() {
-        currentCycle.hasStarted = false;
-        currentCycle.isPlaying = false;
-        controller.changeResumePauseButton();
-    }
-    
-    function init(startingTime) {
-        //for testing purposes, allows changing initial time on window load (controller)
-        generateCurrentCycleInfo();
-        currentCycle.timeLeft = startingTime;
-    }
-    
+
     function getCycleLength() {
         return currentCycle.cycleLength;
     }
@@ -520,33 +432,6 @@ var dataLegacy = (function() {
         restartCycle();
         resetTimeLeft();
     }
-    
-    return {
-        init: init,
-        getTimeLeft: getTimeLeft,
-        convertToMinSec: convertToMinSec,
-        convertToMS: convertToMS,
-        getSessionsCurrentDuration: getSessionsCurrentDuration,
-        getIntervalTime: getIntervalTime,
-        startCurrentSession: currentCycle.startCurrentSession,
-        setPaused: setPaused,
-        setNotStarted: setNotStarted,
-        getSpeedMult: getSpeedMult,
-        setSpeedMult: setSpeedMult,
-        decreaseTimeLeft: decreaseTimeLeft,
-        getSessionPlayingProperties: currentCycle.getSessionPlayingProps,
-        changeDuration: changeDuration,
-        resetAllDurations: resetAllDurations,
-        getCycleLength: getCycleLength,
-        setCycleLength: setCycleLength,
-        skipSession: skipSession,
-        finishedSession: finishedSession,
-        resetTimeLeft: resetTimeLeft,
-        resetAll: resetAll,
-        totalSessions: currentCycle.totalSessions,
-        generateCurrentCycleInfo: generateCurrentCycleInfo,
-        c: currentCycle.getInfoTest
-    };    
     
 })();
 

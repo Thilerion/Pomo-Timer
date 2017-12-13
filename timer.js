@@ -22,7 +22,7 @@ var timer = (function() {
     function resume() {
         data.decreaseTimeLeft(1000);
         //now for some debugging: decreaseTimeLeft pauses the timer if decreasing it means the timer is finished. In that case, this function should not start the timer again
-        let timerHasFinished = !data.getSessionPlayingProperties().hasStarted;
+        let timerHasFinished = !data.getPlayingProps().started;
         if (timerHasFinished === false) {
             start();
         }
