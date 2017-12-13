@@ -176,8 +176,8 @@ var controller = (function () {
     }
 
     function skipSession() {
-        let props = data.getSessionPlayingProperties();
-        if (props.isPlaying === true) {
+        let props = data.getPlayingProps();
+        if (props.playing === true) {
             pause();
         }
         data.skipSession();

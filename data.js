@@ -307,6 +307,9 @@ var data = (function() {
                 n: timerData.current,
                 s: timerData.cycle.sessions[timerData.current]
             };
+        },
+        skipSession: function() {
+            timerData.timeLeft = 3000;
         }
     };
 })();

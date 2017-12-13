@@ -57,6 +57,14 @@ button {
     padding: 5px 10px;
 }
 
+.debug-btn {
+    background: none;
+    border: 1px solid rgba(0,0,0,0.2);
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
 /* --- main blocks --- */
 
 .body-flex {
