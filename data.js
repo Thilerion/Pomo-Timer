@@ -49,17 +49,20 @@ var data = (function() {
         let maxReached = this.dur.current >= this.dur.max ? true : false;
         let minReached = this.dur.current <= this.dur.min ? true : false;
         
+        console.log(maxReached, minReached);
+        console.log(iBut, dBut);
+        
         //TODO: send signal to controller/view
         if (maxReached === true && iBut === false) {
-            //controller must disable button
+            controller.checkDurationDisabled(this.name, true, "max");
         } else if (maxReached === false && iBut === true) {
-            //controller must enable button
+            controller.checkDurationDisabled(this.name, false, "max");
         }
         
         if (minReached === true && dBut === false) {
-            //controller must disable button
-        } else if (minReached === false && iBut === true) {
-            //controller must enable button
+            controller.checkDurationDisabled(this.name, true, "min");
+        } else if (minReached === false && dBut === true) {
+            controller.checkDurationDisabled(this.name, false, "min");
         }
         
         this.dur.buttonsDisabled.increase = maxReached;
