@@ -29,6 +29,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
     }
 
     function resume() {
@@ -37,6 +38,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
     }
 
     function pause() {
@@ -45,6 +47,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
     }
 
     function finishedSession() {
@@ -53,6 +56,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
         view.playFinishedSessionSound();
     }
 
@@ -127,6 +131,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
     }
 
     function resetTimer() {
@@ -135,6 +140,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeLineCircles();
+        updateActivatedCircles();
     }
     
     function checkIfShouldPause() {
@@ -192,6 +198,11 @@ var controller = (function () {
     function updateTimeLineCircles() {
         let cycleLength = data.getCycleLength();
         timeline.createCircles(cycleLength);
+    }
+    
+    function updateActivatedCircles() {
+        let sessionInfo = data.getCurrentSessionInfo();
+        console.log(sessionInfo);
     }
     
     function checkDurationDisabled(session, disable, sign) {

@@ -301,6 +301,12 @@ var data = (function() {
             timerData.resetTimeLeft();
             timerData.setCurrentSessionStarted(false);
             timerData.setPlayingProps(false, false);
+        },
+        getCurrentSessionInfo: function() {
+            return {
+                n: timerData.current,
+                s: timerData.cycle.sessions[timerData.current]
+            };
         }
     };
 })();
