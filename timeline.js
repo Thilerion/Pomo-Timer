@@ -46,11 +46,13 @@ var timeline = (function () {
         
         sesAr.forEach(function(item) {
             if (item.name === "short") {
-                elements.push(createSmallCircle(item.typeNumber, (item.typeNumber*percentage) ,false, false));
+                elements.push(createSmallCircle(item.typeNumber, (item.typeNumber*percentage) , item.timeline.circleFinished, item.timeline.circleRunning));
             }
         });
         
-        elements.push(createLargeCircle(1, false, false));
+        let elLong = sesAr[(sesAr.length - 1)];
+        
+        elements.push(createLargeCircle(1, elLong.timeline.circleFinished, elLong.timeline.circleRunning));
         
         console.log(elements);
         
@@ -114,9 +116,6 @@ var timeline = (function () {
     //TODO RIGHT PLACE TO ADD FINISHED CIRCLE CLASS
     
     return {
-        //createCircles: createCircles,
-        //resetTimeline: resetTimeline,
-        //updateActiveCircles: updateActiveCircles,
         initTimeline: initTimeline
     };
 })();

@@ -7,7 +7,7 @@ var controller = (function () {
         //only run once, when all modules are loaded
         data.init();
         updateTimeView();
-        updateTimeLineCircles();
+        createNewTimeline();
         updateEverySessionDuration();
     }
 
@@ -28,8 +28,7 @@ var controller = (function () {
         data.start();
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
-        updateActivatedCircles();
+        createNewTimeline();
     }
 
     function resume() {
@@ -37,8 +36,7 @@ var controller = (function () {
         data.start();
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
-        updateActivatedCircles();
+        createNewTimeline();
     }
 
     function pause() {
@@ -46,17 +44,15 @@ var controller = (function () {
         data.pause();
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
-        updateActivatedCircles();
+        createNewTimeline();
     }
 
     function finishedSession() {
-        updateActivatedCircles();
         timer.pause();
         data.finish();  
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
+        createNewTimeline();
         view.playFinishedSessionSound();
     }
 
@@ -122,7 +118,7 @@ var controller = (function () {
         if (shouldPause === true) {
             resume();
         }
-        updateTimeLineCircles();
+        createNewTimeline();
     }
 
     function resetSession() {
@@ -130,8 +126,7 @@ var controller = (function () {
         data.resetSession();
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
-        updateActivatedCircles();
+        createNewTimeline();
     }
 
     function resetTimer() {
@@ -139,8 +134,7 @@ var controller = (function () {
         data.resetAll();
         changeResumePauseButton();
         updateTimeView();
-        updateTimeLineCircles();
-        updateActivatedCircles();
+        createNewTimeline();
     }
     
     function checkIfShouldPause() {
@@ -195,17 +189,9 @@ var controller = (function () {
         view.updateTime(t);
     }
 
-    function updateTimeLineCircles() {
-        //let cycleLength = data.getCycleLength();
-        //timeline.createCircles(cycleLength);
+    function createNewTimeline() {
         let sesAr = data.getCycleInfo();
         timeline.initTimeline(sesAr[0], sesAr[1]);
-    }
-    
-    function updateActivatedCircles() {
-        let sessionInfo = data.getCurrentSessionInfo();
-        console.log(sessionInfo);
-        //timeline.updateActiveCircles(sessionInfo);
     }
     
     function checkDurationDisabled(session, disable, sign) {
@@ -230,7 +216,6 @@ var controller = (function () {
         finishedSession: finishedSession,
         timerTick: timerTick,
         checkDurationDisabled: checkDurationDisabled,
-        updateActivatedCircles: updateActivatedCircles
     };
 })();
 
