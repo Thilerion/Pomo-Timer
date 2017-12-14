@@ -180,15 +180,25 @@ var data = (function() {
             let long = l - 1;
             let arr = [];
             
+            let nWork = 1;
+            let nShort = 1;
+            let nLong = 1;
+            
             //for amount of cycles, add work and break (short, or last being long)
             for (let i = 0; i < l; i++) {
-                arr.push(new CycleItem(s[0]));
+                arr.push(new CycleItem(s[0], nWork));
+                nWork++;
                 if (i === long) {
-                    arr.push(new CycleItem(s[2]));
+                    arr.push(new CycleItem(s[2], nLong));
+                    nLong++;
                 } else {
-                    arr.push(new CycleItem(s[1]));
+                    arr.push(new CycleItem(s[1], nShort));
+                    nShort++;
                 }
             }
+            nWork = 1;
+            nShort = 1;
+            nLong = 1;
             timerData.cycle.sessions = arr;
             console.log("The cycle now looks like:");
             console.log(timerData.cycle.sessions);
@@ -217,23 +227,35 @@ var data = (function() {
         },
         setCurrentSessionFinished(bool) {
             let c = timerData.current;
-            timerData.cycle.sessions[c].hasFinished = bool;
+            timerData.cycle.sessions[c].timeline.circleFinished = bool;
             console.log("The cycle now looks like:");
             console.log(timerData.cycle.sessions);
         },
         setCurrentSessionStarted(bool) {
             let c = timerData.current;
-            timerData.cycle.sessions[c].hasStarted = bool;
+            timerData.cycle.sessions[c].timeline.circleRunning = bool;
             console.log("The cycle now looks like:");
             console.log(timerData.cycle.sessions);
         }
     };
     
     //prototype from which the cycle>session array is made
-    function CycleItem(type) {
+    function CycleItem(type, typeNumber) {
         this.name = type;
-        this.hasStarted = false;
-        this.hasFinished = false;
+        this.typeNumber = typeNumber;
+        this.timeline = {
+            circleType: "",
+            circleRunning: false,
+            circleFinished: false
+        };
+        
+        if (type === "work") {
+            this.timeline.circleType = null;
+        } else if (type === "short") {
+            this.timeline.circleType = "small";
+        } else if (type === "long") {
+            this.timeline.circleType = "end";
+        }
     }
     
     //init function, only to be used when all modules are loaded
