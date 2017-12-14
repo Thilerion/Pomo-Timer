@@ -175,7 +175,7 @@ var data = (function() {
             timerData.generateCycleFromLength();
         },
         getCycleInfo() {
-            return timerData.cycle.sessions;  
+            return [timerData.cycle.sessions, timerData.cycle.length];  
         },
         generateCycleFromLength() {
             let s = ["work", "short", "long"];

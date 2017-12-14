@@ -1,62 +1,5 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 var timeline = (function () {
-    //get list of sessions
-    //check how many work sessions (nWork)
-    //place first circle after 100/nWork
-    //place every next circle after (n * (100/nWork))
-    let nWork = null;
-    
-    let htmlCircleTemplate = ['<div class="circle circle-small circle','" style="left: ','%"></div>'];
-    
-    let parentDiv = document.querySelector(".timeline-inner-circles-container");
-    
-    let circles = [];
-    
-    function createHtmlCircle(n, percent) {
-        let circle = htmlCircleTemplate[0] + n + htmlCircleTemplate[1] + percent + htmlCircleTemplate[2];
-        placeCircle(circle);
-    }
-    
-    function placeCircle(c) {
-        let div = document.createElement("div");
-        div.innerHTML = c;
-        parentDiv.appendChild(div);
-        circles.push(div.firstChild);
-    }
-    
-    function resetTimeline() {
-        let smallCircles = document.querySelectorAll(".circle-small");
-        let lastCircle = document.querySelector(".circle-end");
-        
-        smallCircles.forEach(function(el) {
-            el.remove();
-        });
-        
-        lastCircle.classList.remove("started-circle");
-        lastCircle.classList.remove("active-circle");
-        
-    }
-    
-    function createCirclesLegacy(amount) {
-        if (nWork === null) {
-            nWork = amount;
-        } else if (nWork === amount) {
-            return;
-        } else {
-            resetTimeline();
-            nWork = amount;
-        }
-            
-        circles = [];
-        for (let i=1;i<nWork;i++) {
-            let percentage = i*(100/nWork);
-            console.log("Circle " + i + " with percentage " + percentage);
-            createHtmlCircle(i, percentage);
-        }
-        circles.push(document.querySelector(".circle-end"));
-        console.log(circles);
-    }
-
     function updateActiveCircles(props) {
         //first small running if s=2 f=1
         //first small complete if s=2 f=2
@@ -88,11 +31,14 @@ var timeline = (function () {
     
     let mainTimelineDiv = document.querySelector(".timeline-line");
     
-    function initTimeline(sesAr) {
+    function initTimeline(sesAr, length) {
         //first remove all elements in the mainTimelineDiv
         while (mainTimelineDiv.hasChildNodes()) {
             mainTimelineDiv.removeChild(mainTimelineDiv.firstChild);
         }
+        
+        //calculate percentage
+        let percentage = 100/length;
         
         let elements = [];
         elements.push(createTimelineLineFilling());
@@ -100,7 +46,7 @@ var timeline = (function () {
         
         sesAr.forEach(function(item) {
             if (item.name === "short") {
-                elements.push(createSmallCircle(item.typeNumber, false, false));
+                elements.push(createSmallCircle(item.typeNumber, (item.typeNumber*percentage) ,false, false));
             }
         });
         
@@ -141,7 +87,7 @@ var timeline = (function () {
         return el;
     }
     
-    function createSmallCircle(n, finished, running) {
+    function createSmallCircle(n, percentage, finished, running) {
         let el = document.createElement("div");
         
         let classes = ["circle", "circle-small"];
@@ -157,6 +103,9 @@ var timeline = (function () {
         }
         
         el.classList.add(...classes);
+        
+        el.style.left = percentage + "%";
+        
         return el;
     }
     

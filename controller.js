@@ -199,7 +199,7 @@ var controller = (function () {
         //let cycleLength = data.getCycleLength();
         //timeline.createCircles(cycleLength);
         let sesAr = data.getCycleInfo();
-        timeline.initTimeline(sesAr);
+        timeline.initTimeline(sesAr[0], sesAr[1]);
     }
     
     function updateActivatedCircles() {

@@ -373,7 +373,7 @@ button {
     top: -12px;
 }
 
-.circle-large.active-circle:before {
+.circle-large.circle-finished:before {
     content: "";
     width: 18px;
     height: 18px;
@@ -384,7 +384,7 @@ button {
     border-radius: 50%;
 }
 
-.circle-small.active-circle:before {
+.circle-small.circle-finished:before {
     content: "";
     width: 10px;
     height: 10px;
@@ -395,6 +395,6 @@ button {
     border-radius: 50%;
 }
 
-.started-circle {
+.circle-running {
     background: red;
 }
