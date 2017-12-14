@@ -138,7 +138,7 @@ var controller = (function () {
     }
     
     function checkIfShouldPause() {
-        let props = data.getSessionPlayingProperties();
+        let props = data.getPlayingProps();
         if (props.isPlaying === true) {
             return true;
         } else if (props.isPlaying === false) {

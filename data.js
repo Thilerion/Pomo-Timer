@@ -305,6 +305,7 @@ var data = (function() {
         convertToMS: convertToMS,
         convertToMinSec: convertToMinSec,
         getCycleLength: timerData.getCycleLength,
+        setCycleLength: timerData.setCycleLength,
         getAllCurrentDurations: sessionTypes.getAllCurrentDurations,
         changeDuration: function(sess, amount) {
             if (amount > 0) {
