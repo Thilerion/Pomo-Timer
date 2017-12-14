@@ -37,7 +37,7 @@ var timeline = (function () {
         
     }
     
-    function createCircles(amount) {
+    function createCirclesLegacy(amount) {
         if (nWork === null) {
             nWork = amount;
         } else if (nWork === amount) {
@@ -86,13 +86,88 @@ var timeline = (function () {
         }
     }
     
+    let mainTimelineDiv = document.querySelector(".timeline-line");
+    
+    function initTimeline(sesAr) {
+        //first remove all elements in the mainTimelineDiv
+        while (mainTimelineDiv.hasChildNodes()) {
+            mainTimelineDiv.removeChild(mainTimelineDiv.firstChild);
+        }
+        
+        let elements = [];
+        elements.push(createTimelineLineFilling());
+        elements.push(createLargeCircle(0, true, true));
+        
+        sesAr.forEach(function(item) {
+            if (item.name === "short") {
+                elements.push(createSmallCircle(item.typeNumber, false, false));
+            }
+        });
+        
+        elements.push(createLargeCircle(1, false, false));
+        
+        console.log(elements);
+        
+        elements.forEach(function(el) {
+            mainTimelineDiv.appendChild(el);
+        });
+    }
+    
+    function createTimelineLineFilling() {
+        let el = document.createElement("div");
+        el.classList.add("timeline-line-filling");
+        return el;
+    }
+    
+    function createLargeCircle(pos, finished, running) {
+        let el = document.createElement("div");
+        
+        let classes = ["circle", "circle-large"];
+        if (pos === 0) {
+            classes.push("circle-start");
+        } else if (pos === 1) {
+            classes.push("circle-end");
+        }
+        
+        if (finished === true) {
+            classes.push("circle-finished");
+        }
+        
+        if (running === true) {
+            classes.push("circle-running");
+        }
+        
+        el.classList.add(...classes);
+        return el;
+    }
+    
+    function createSmallCircle(n, finished, running) {
+        let el = document.createElement("div");
+        
+        let classes = ["circle", "circle-small"];
+        let circleN = "circle" + n + "";
+        classes.push(circleN);
+        
+        if (finished === true) {
+            classes.push("circle-finished");
+        }
+        
+        if (running === true) {
+            classes.push("circle-running");
+        }
+        
+        el.classList.add(...classes);
+        return el;
+    }
+    
     //TODO RESET CIRCLES AT END
     //TODO NUMBER OF ELEMENT TO CHANGE
     //TODO RIGHT PLACE TO ADD FINISHED CIRCLE CLASS
     
     return {
-        createCircles: createCircles,
-        resetTimeline: resetTimeline,
-        updateActiveCircles: updateActiveCircles
+        //createCircles: createCircles,
+        //resetTimeline: resetTimeline,
+        //updateActiveCircles: updateActiveCircles,
+        initTimeline: initTimeline
     };
 })();

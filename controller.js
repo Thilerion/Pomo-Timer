@@ -196,14 +196,16 @@ var controller = (function () {
     }
 
     function updateTimeLineCircles() {
-        let cycleLength = data.getCycleLength();
-        timeline.createCircles(cycleLength);
+        //let cycleLength = data.getCycleLength();
+        //timeline.createCircles(cycleLength);
+        let sesAr = data.getCycleInfo();
+        timeline.initTimeline(sesAr);
     }
     
     function updateActivatedCircles() {
         let sessionInfo = data.getCurrentSessionInfo();
         console.log(sessionInfo);
-        timeline.updateActiveCircles(sessionInfo);
+        //timeline.updateActiveCircles(sessionInfo);
     }
     
     function checkDurationDisabled(session, disable, sign) {

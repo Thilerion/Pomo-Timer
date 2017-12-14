@@ -174,6 +174,9 @@ var data = (function() {
             timerData.cycle.length = n;
             timerData.generateCycleFromLength();
         },
+        getCycleInfo() {
+            return timerData.cycle.sessions;  
+        },
         generateCycleFromLength() {
             let s = ["work", "short", "long"];
             let l = timerData.getCycleLength();
@@ -332,7 +335,8 @@ var data = (function() {
         },
         skipSession: function() {
             timerData.timeLeft = 3000;
-        }
+        },
+        getCycleInfo: timerData.getCycleInfo
     };
 })();
 
