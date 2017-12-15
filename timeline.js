@@ -22,7 +22,21 @@ var timeline = (function () {
     function initTimeline(length) {
         let nSmallCircles = length - 1;
         
-    
+        returnToBaseline();
+        
+        for (let i = 0; i < nSmallCircles; i++) {
+            let line = document.createElement("div");
+            let circle = document.createElement("div");
+            line.classList.add("flex-line");
+            circle.classList.add("flex-circle", "flex-small-circle");
+            
+            flexDiv.insertBefore(line, circleEnd);
+            flexDiv.insertBefore(circle, circleEnd);
+        }
+        
+        let lastLine = document.createElement("div");
+        lastLine.classList.add("flex-line");
+        flexDiv.insertBefore(lastLine, circleEnd);
     }
     
     /*function updateActiveCircles(props) {
@@ -136,6 +150,7 @@ var timeline = (function () {
     
     return {
         //initTimeline: initTimeline
-        returnToBaseline: returnToBaseline
+        returnToBaseline: returnToBaseline,
+        initTimeline2: initTimeline
     };
 })();
