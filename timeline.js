@@ -63,7 +63,7 @@ var timeline = (function () {
     
     function createTimelineLineFilling() {
         let el = document.createElement("div");
-        el.classList.add("timeline-line-filling");
+        el.classList.add("timeline-line-filling-container");
         return el;
     }
     
