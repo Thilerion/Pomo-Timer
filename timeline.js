@@ -1,12 +1,31 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 var timeline = (function () {
-    function updateActiveCircles(props) {
-        //first small running if s=2 f=1
-        //first small complete if s=2 f=2
-        //second small running if s=4 f=3
-        //second small complete if s=4 f=4
-        //last circle running if s=6 f=5
-        //last circle complete if s=0 f=0 && previous bullets colored
+    
+    let flexDiv = document.querySelector(".timeline-flex-container");
+    let circleStart = document.querySelector(".flex-circle-start");
+    let circleEnd = document.querySelector(".flex-circle-end");
+    
+    function returnToBaseline() {
+        let generatedChildren = flexDiv.querySelectorAll("div.flex-small-circle, div.flex-line");
+        console.log(generatedChildren);
+        
+        //remove all small-circle and line children
+        generatedChildren.forEach(function(e) {
+                e.parentNode.removeChild(e);
+        });
+        
+        //remove running and finished
+        circleStart.classList.remove("circle-running");
+        circleEnd.classList.remove("circle-running", "circle-finished");
+    }
+    
+    function initTimeline(length) {
+        let nSmallCircles = length - 1;
+        
+    
+    }
+    
+    /*function updateActiveCircles(props) {
         if (props.s.name === "short") {
             let circleN = Math.floor(props.n / 2) + 1;
             let el = document.querySelector(".circle" + circleN);
@@ -108,14 +127,15 @@ var timeline = (function () {
         
         el.style.left = percentage + "%";
         
-        return el;
-    }
+        return el; 
+    }*/
     
     //TODO RESET CIRCLES AT END
     //TODO NUMBER OF ELEMENT TO CHANGE
     //TODO RIGHT PLACE TO ADD FINISHED CIRCLE CLASS
     
     return {
-        initTimeline: initTimeline
+        //initTimeline: initTimeline
+        returnToBaseline: returnToBaseline
     };
 })();
