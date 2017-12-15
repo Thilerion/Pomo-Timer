@@ -132,6 +132,9 @@ var data = (function() {
                 timerData.timeLeft -= ms;
             }
         },
+        decreaseTimeLeftCurSes(ms) {
+            
+        },
         getSpeedMult() {
             return timerData.speedMult;
         },
@@ -250,7 +253,8 @@ var data = (function() {
         this.timeline = {
             circleType: "",
             circleRunning: false,
-            circleFinished: false
+            circleFinished: false,
+            lineTotalTime: 0
         };
         
         if (type === "work") {
@@ -259,6 +263,10 @@ var data = (function() {
             this.timeline.circleType = "small";
         } else if (type === "long") {
             this.timeline.circleType = "end";
+        }
+        
+        if (type === "work") {
+            this.timeline.lineTotalTime = sessionTypes.getAllCurrentDurations().work;
         }
     }
     
@@ -344,7 +352,8 @@ var data = (function() {
         },
         getSoundStatus: function() {
             return timerData.sound;
-        }
+        },
+        getCurrentDur: timerData.getCurrentSessionDur
     };
 })();
 

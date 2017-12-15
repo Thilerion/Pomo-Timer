@@ -183,12 +183,34 @@ var controller = (function () {
     function timerTick() {
         //maybe remove this in favor of a request from data.js to update the view, and then controller collects data and checks what needs to be updated and what is still the same
         updateTimeView();
+        updateLineWidth();
     }
 
     function updateTimeView() {
         let tms = data.getTimeLeft();
         let t = data.convertToMinSec(tms);
         view.updateTime(t);
+    }
+    
+    function updateLineWidth() {
+        let curSes = data.getCurrentSessionInfo();
+        let name = curSes.s.name;
+        
+        if (name !== "work") {
+            return;
+        }
+        
+        console.log(curSes);
+        let n = curSes.n;
+        console.log(n);
+        let percentage = data.getCurrentSessionInfo().s.timeline.linePercentage;
+        
+        if (percentage > 99.5 && percentage < 99.8) {
+            percentage = 99.5;
+        }
+        
+        console.log(percentage);                                   
+        timeline.updateLine(n, percentage);    
     }
 
     function createNewTimeline() {

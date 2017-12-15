@@ -26,15 +26,21 @@ var timeline = (function () {
 
         for (let i = 0; i < nSmallCircles; i++) {            
             let line = document.createElement("div");
+            let lineRunning = document.createElement("div");
             let circle = document.createElement("div");
             line.classList.add("flex-line");
+            lineRunning.classList.add("flex-line-running");
+            line.appendChild(lineRunning);
             circle.classList.add("flex-circle", "flex-small-circle");
             flexDiv.insertBefore(line, circleEnd);
             flexDiv.insertBefore(circle, circleEnd);
         }
 
         let lastLine = document.createElement("div");
+        let lastLineRunning = document.createElement("div");
         lastLine.classList.add("flex-line");
+        lastLineRunning.classList.add("flex-line-running");
+        lastLine.appendChild(lastLineRunning);
         
         flexDiv.insertBefore(lastLine, circleEnd);
     }
@@ -73,6 +79,15 @@ var timeline = (function () {
                 }
             }
         });
+    }
+    
+    function updateLine(workN, percentage) {
+        let lineN = workN - 1;
+        let line = document.querySelectorAll(".flex-line-running")[lineN];
+        
+        console.log(line);
+        
+        line.style.width = percentage + "%";
     }
 
     /*function updateActiveCircles(props) {
@@ -186,6 +201,7 @@ var timeline = (function () {
 
     return {
         initTimeline: initTimeline,
-        updateCircleStates: updateCircleStates
+        updateCircleStates: updateCircleStates,
+        updateLine: updateLine
     };
 })();

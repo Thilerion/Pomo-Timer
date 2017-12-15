@@ -360,6 +360,18 @@ button {
     background: black;
     min-width: 10px;    
     flex: 1 1 auto;
+    position: relative;
+}
+
+.flex-line-running {
+    content: "";
+    height: 8px;
+    max-width: 100%;
+    width: 5%;
+    background: #00796B;
+    position: absolute;
+    left: 0;
+    top: -1px;
 }
 
 .circle-finished:before {
