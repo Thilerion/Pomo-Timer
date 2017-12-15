@@ -1,44 +1,80 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 var timeline = (function () {
-    
+
     let flexDiv = document.querySelector(".timeline-flex-container");
     let circleStart = document.querySelector(".flex-circle-start");
     let circleEnd = document.querySelector(".flex-circle-end");
-    
+
     function returnToBaseline() {
         let generatedChildren = flexDiv.querySelectorAll("div.flex-small-circle, div.flex-line");
         console.log(generatedChildren);
-        
+
         //remove all small-circle and line children
-        generatedChildren.forEach(function(e) {
-                e.parentNode.removeChild(e);
+        generatedChildren.forEach(function (e) {
+            e.parentNode.removeChild(e);
         });
-        
+
         //remove running and finished
         circleStart.classList.remove("circle-running");
         circleEnd.classList.remove("circle-running", "circle-finished");
     }
-    
+
     function initTimeline(length) {
         let nSmallCircles = length - 1;
-        
+
         returnToBaseline();
-        
-        for (let i = 0; i < nSmallCircles; i++) {
+
+        for (let i = 0; i < nSmallCircles; i++) {            
             let line = document.createElement("div");
             let circle = document.createElement("div");
             line.classList.add("flex-line");
             circle.classList.add("flex-circle", "flex-small-circle");
-            
             flexDiv.insertBefore(line, circleEnd);
             flexDiv.insertBefore(circle, circleEnd);
         }
-        
+
         let lastLine = document.createElement("div");
         lastLine.classList.add("flex-line");
+        
         flexDiv.insertBefore(lastLine, circleEnd);
     }
     
+    function updateCircleStates(props) {
+        let smallCircles = document.querySelectorAll(".flex-small-circle");
+        
+        props[0].forEach(function(e, ind) {
+            if (e.name === "short") {
+                let n = e.typeNumber - 1;
+                console.log(flexDiv);
+                console.log(smallCircles[n]);
+                if (e.timeline.circleFinished === true) {
+                    smallCircles[n].classList.add("circle-finished");
+                } else {
+                    smallCircles[n].classList.remove("circle-finished");
+                }
+                
+                if (e.timeline.circleRunning === true) {
+                    smallCircles[n].classList.add("circle-running");
+                } else {
+                    smallCircles[n].classList.remove("circle-running");
+                }                
+            } else if (e.name === "long") {
+                let longInd = ind;
+                if (e.timeline.circleFinished === true) {
+                    circleEnd.classList.add("circle-finished");
+                } else {
+                    circleEnd.classList.remove("circle-finished");
+                }
+                
+                if (e.timeline.circleRunning === true) {
+                    circleEnd.classList.add("circle-running");
+                } else {
+                    circleEnd.classList.remove("circle-running");
+                }
+            }
+        });
+    }
+
     /*function updateActiveCircles(props) {
         if (props.s.name === "short") {
             let circleN = Math.floor(props.n / 2) + 1;
@@ -143,14 +179,13 @@ var timeline = (function () {
         
         return el; 
     }*/
-    
+
     //TODO RESET CIRCLES AT END
     //TODO NUMBER OF ELEMENT TO CHANGE
     //TODO RIGHT PLACE TO ADD FINISHED CIRCLE CLASS
-    
+
     return {
-        //initTimeline: initTimeline
-        returnToBaseline: returnToBaseline,
-        initTimeline2: initTimeline
+        initTimeline: initTimeline,
+        updateCircleStates: updateCircleStates
     };
 })();

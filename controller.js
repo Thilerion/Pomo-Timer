@@ -28,7 +28,7 @@ var controller = (function () {
         data.start();
         changeResumePauseButton();
         updateTimeView();
-        createNewTimeline();
+        updateTimeline();
     }
 
     function resume() {
@@ -36,7 +36,7 @@ var controller = (function () {
         data.start();
         changeResumePauseButton();
         updateTimeView();
-        createNewTimeline();
+        updateTimeline();
     }
 
     function pause() {
@@ -44,7 +44,7 @@ var controller = (function () {
         data.pause();
         changeResumePauseButton();
         updateTimeView();
-        createNewTimeline();
+        updateTimeline();
     }
 
     function finishedSession() {
@@ -52,7 +52,7 @@ var controller = (function () {
         data.finish();  
         changeResumePauseButton();
         updateTimeView();
-        createNewTimeline();
+        updateTimeline();
         view.playFinishedSessionSound();
     }
 
@@ -126,7 +126,7 @@ var controller = (function () {
         data.resetSession();
         changeResumePauseButton();
         updateTimeView();
-        createNewTimeline();
+        updateTimeline();
     }
 
     function resetTimer() {
@@ -190,8 +190,14 @@ var controller = (function () {
     }
 
     function createNewTimeline() {
+        let l = data.getCycleInfo()[1];
+        timeline.initTimeline(l);
+    }
+    
+    function updateTimeline() {
         let sesAr = data.getCycleInfo();
-        timeline.initTimeline(sesAr[0], sesAr[1]);
+        console.log(sesAr);
+        timeline.updateCircleStates(sesAr);
     }
     
     function checkDurationDisabled(session, disable, sign) {
@@ -216,6 +222,7 @@ var controller = (function () {
         finishedSession: finishedSession,
         timerTick: timerTick,
         checkDurationDisabled: checkDurationDisabled,
+        updateTimeline: updateTimeline
     };
 })();
 
