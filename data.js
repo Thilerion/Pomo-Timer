@@ -97,6 +97,7 @@ var data = (function() {
         timeLeft: null,
         current: 0,
         speedMult: 1,
+        sound: false,
         intervalTime: 1000,
         started: false,
         playing: false,
@@ -337,7 +338,13 @@ var data = (function() {
         skipSession: function() {
             timerData.timeLeft = 3000;
         },
-        getCycleInfo: timerData.getCycleInfo
+        getCycleInfo: timerData.getCycleInfo,
+        toggleSound: function(soundOn) {
+            timerData.sound = soundOn;
+        },
+        getSoundStatus: function() {
+            return timerData.sound;
+        }
     };
 })();
 

@@ -64,6 +64,23 @@ var eventHandling = (function () {
     function skipSessionEvent() {
         controller.skipSession();
     }
+    
+    function toggleSound(el) {
+        console.log(el.firstElementChild.classList);
+        el.firstElementChild.classList.toggle("fa-volume-off");
+        el.firstElementChild.classList.toggle("fa-volume-up");
+        console.log(el.firstElementChild.classList);
+        
+        let soundOn;
+        
+        if (el.firstElementChild.classList.contains("fa-volume-up")) {
+            soundOn = true;
+        } else {
+            soundOn = false;
+        }
+        
+        controller.toggleSound(soundOn);
+    }
 
     return {
         resetSessionEvent: resetSessionEvent,
@@ -73,6 +90,7 @@ var eventHandling = (function () {
         resetDurationsEvent: resetDurationsEvent,
         changeCycleEvent: changeCycleEvent,
         changeTimerSpeedEvent: changeTimerSpeedEvent,
-        skipSessionEvent: skipSessionEvent
+        skipSessionEvent: skipSessionEvent,
+        toggleSound: toggleSound
     };
 })();

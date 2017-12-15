@@ -53,7 +53,9 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeline();
-        view.playFinishedSessionSound();
+        if (data.getSoundStatus() === true) {
+            view.playFinishedSessionSound();
+        }       
     }
 
     function changeResumePauseButton() {
@@ -204,6 +206,10 @@ var controller = (function () {
         console.log("Apparently, " + session + " has reached " + sign + ".");
         view.disableDurationButton(session, disable, sign);
     }
+    
+    function toggleSound(soundOn) {
+        data.toggleSound(soundOn);
+    }
 
     return {
         init: init,
@@ -222,7 +228,11 @@ var controller = (function () {
         finishedSession: finishedSession,
         timerTick: timerTick,
         checkDurationDisabled: checkDurationDisabled,
+<<<<<<< HEAD
         updateTimeline: updateTimeline
+=======
+        toggleSound: toggleSound
+>>>>>>> dev
     };
 })();
 

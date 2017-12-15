@@ -74,7 +74,7 @@ var view = (function () {
     }
     
     function playFinishedSessionSound() {
-        alarmSound.play();
+        alarmSound.play();      
     }
 
     return {
