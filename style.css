@@ -312,8 +312,8 @@ button {
     background-color: #2674af;
 }
 
-/* --- timeline 2 --- */
-.main-timeline-box2 {
+/* --- timeline flex --- */
+.main-timeline {
     font-size: 11px;
     padding: 5px;
     margin: 5px 0;
@@ -323,25 +323,39 @@ button {
     width: 100%;
 }
 
-.timeline-line2 {
-    height: 6px;
-    background: black;
+.timeline-flex-container {
+    height: 60px;
     width: 80%;
     margin: auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    background: #ccc;
+    
+    display: flex;
+    align-items: center;
 }
 
-.circle-left {
+.flex-circle {
+    background: red;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    
+    flex: 0 0 auto;
+}
+
+.flex-circle-start, .flex-circle-end {
     height: 30px;
     width: 30px;
-    border-radius: 50%;
-    background: rgba(200,0,0,0.5);
-    position: relative;
-    left: -30px;
-    bottom: 12px;
+    background: blue;
 }
+
+.flex-line {
+    height: 6px;
+    background: black;
+    min-width: 10px;
+    
+    flex: 1 1 auto;
+}
+
 
 /* --- timeline --- */
 
