@@ -228,11 +228,8 @@ var controller = (function () {
         finishedSession: finishedSession,
         timerTick: timerTick,
         checkDurationDisabled: checkDurationDisabled,
-<<<<<<< HEAD
-        updateTimeline: updateTimeline
-=======
+        updateTimeline: updateTimeline,
         toggleSound: toggleSound
->>>>>>> dev
     };
 })();
 
