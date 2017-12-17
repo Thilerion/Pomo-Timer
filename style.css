@@ -9,27 +9,16 @@ html, body {
     width: 100%;
 }
 
-/* --- testing box colors --- 
+/* --- main colors --- */
 
-header {
-    border: 3px solid black;
-    background-color: aquamarine;
+body {
+    --box-color: #2980b9;
+    --box-button-color: #1e6b9f;
+    --work-btn-color: #2ecc71;
+    --short-btn-color: #e67e22;
+    --long-btn-color: #9b59bb;
 }
 
-main {
-    border: 3px solid green;
-    background-color: cornflowerblue;
-}
-
-footer {
-    border: 3px solid purple;
-    background-color: darkgoldenrod;
-}
-
-.main-time-box, .main-sessions-box, .main-timeline-box, .main-buttons-box {
-    border: 1px solid red;
-    background-color: lightblue;
-}
 
 /* --- general --- */
 
@@ -134,7 +123,7 @@ button {
 .main-time-box {
     height: 550px;
     flex: 0 0 auto;
-    background-color: #18486d;
+    background-color: var(--box-color);
     position: relative;
     box-shadow: 0 -1px 6px rgba(0,0,0,0.2), 0 -1px 3px rgba(0,0,0,0.3);
 }
@@ -175,7 +164,7 @@ button {
     width: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: #2674af;
+    background-color: var(--box-button-color);
     color: #fbfbfb;
     font-size: 2.6em;
     transition: background-color 400ms ease-in-out, border 400ms ease-in-out, font-size 300ms ease-in-out, color 1500ms ease-in-out;
@@ -297,8 +286,6 @@ button {
 .main-buttons > span {
     flex: 1 1 auto;
 }
-
-
 
 .footer-text {
     position: absolute;
