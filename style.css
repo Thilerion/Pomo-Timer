@@ -335,7 +335,7 @@ button {
     font-size: 11px;
     padding: 5px;
     margin: 5px 0;
-    border: 1px solid lightgray;
+    border: 1px solid transparent;
     text-align: center;
     height: 70px;
     width: 100%;
@@ -350,24 +350,21 @@ button {
 }
 
 .flex-circle {
-    background-color: var(--short-color-dark);
-    height: 20px;
-    width: 20px;
-    border-radius: 40%;    
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;    
     flex: 0 0 auto;
     border: 3px solid black;
     position: relative;
 }
 
 .flex-circle-start, .flex-circle-end {
-    height: 30px;
-    width: 30px;
-    background: lightblue;
+    height: 36px;
+    width: 36px;
 }
 
 .flex-line {
     height: 6px;
-    background: var(--work-color-darker);
     min-width: 10px;    
     flex: 1 1 auto;
     position: relative;
@@ -378,7 +375,6 @@ button {
     height: 8px;
     max-width: 100%;
     width: 0%;
-    background: var(--work-color-bright);
     position: absolute;
     left: 0;
     top: -1px;
@@ -393,32 +389,48 @@ button {
     content: "";
     width: 10px;
     height: 10px;
-    background: black;
     position: absolute;
-    border-radius: 40%;
+    border-radius: 50%;
     left: 2px;
     top: 2px;
 }
 
 .flex-circle-start.circle-finished:before, .flex-circle-end.circle-finished:before {
-    width: 18px;
-    height: 18px;
-    left: 3px;
-    top: 3px;
+    width: 12px;
+    height: 12px;
+    left: 6px;
+    top: 6px;
 }
 
-.circle-running.flex-circle-start {
-    background: var(--long-color-bright);
+.flex-circle {
+    border-width: 6px;
+    border-color: #ccc;
 }
 
-.circle-running.flex-small-circle {
+.flex-line {
+    background: #ccc;
+}
+
+.flex-line-running {
+    background: var(--work-color-dark);
+}
+
+.flex-small-circle.circle-finished {
     background: var(--short-color-bright);
 }
 
-.flex-circle-end {
-    background: var(--long-color-dark);    
+.flex-small-circle.circle-running {
+    border-color: var(--work-color-dark);
 }
 
-.circle-running.flex-circle-end {
-    background: var(--long-color-bright);
+.flex-circle-start.circle-running {
+    border-color: var(--work-color-dark);
+}
+
+.flex-circle-start.circle-finished {
+    background: var(--work-color-dark);
+}
+
+.flex-circle-end.circle-running {
+    border-color: var(--work-color-dark);
 }
