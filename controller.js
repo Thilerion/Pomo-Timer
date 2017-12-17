@@ -193,7 +193,8 @@ var controller = (function () {
     }
     
     function updateLineWidth() {
-        //TODO   
+        let pStats = data.getAllSessionPercentages();
+        timeline.updateLine(pStats);
     }
 
     function createNewTimeline() {
@@ -205,6 +206,7 @@ var controller = (function () {
         let cStats = data.getCircleStatuses();
         console.log(cStats);
         timeline.updateCircleStates(cStats);
+        updateLineWidth();
     }
     
     function checkDurationDisabled(session, disable, sign) {

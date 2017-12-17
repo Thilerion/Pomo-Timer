@@ -62,7 +62,16 @@ var timeline = (function () {
         });
     }
     
-    function updateAllLines() {
+    function updateAllLines(props) {
+        let lines = document.querySelectorAll(".flex-line-running");
+        props.forEach(function(el, i) {
+            let percentage = (el * 100).toFixed(2);
+            console.log("Percentage of line " + i + " is " + percentage);
+            if (percentage > 99.5 && percentage < 100) {
+                percentage = 99.5;
+            }
+            lines[i].style.width = percentage + "%";
+        });
         /*let lineN = workN;
         let line = document.querySelectorAll(".flex-line-running")[lineN];
         percentage *= 100;

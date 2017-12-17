@@ -292,7 +292,7 @@ var data = (function() {
             let tLeft = timerData.getTimeLeft();
             let tPast = tot - tLeft;
             
-            ret = (Math.floor((tPast / tot)*100))/100;
+            ret = (tPast / tot).toFixed(4);
         }
         
         console.log(ret);
@@ -304,11 +304,8 @@ var data = (function() {
         let arr = [];
         timerData.cycle.sessions.forEach(function(s, i) {
             if (s.name === "work") {
-                let obj = {};
-                obj.type = s.name;
-                obj.num = s.typeNumber;
-                obj.percentage = s.getSessionPercentage();
-                arr.push(obj);
+                let p = s.getSessionPercentage();
+                arr.push(p);
             }
         });
         return arr;
