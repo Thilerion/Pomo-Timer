@@ -67,6 +67,12 @@ var timeline = (function () {
         props.forEach(function(el, i) {
             let percentage = (el * 100).toFixed(2);
             console.log("Percentage of line " + i + " is " + percentage);
+            if (percentage > 0 && percentage < 100) {
+                lines[i].classList.add("flex-line-current");
+            } else {
+                lines[i].classList.remove("flex-line-current");
+            }
+            
             if (percentage > 99.5 && percentage < 100) {
                 percentage = 99.5;
             }

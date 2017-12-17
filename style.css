@@ -367,11 +367,16 @@ button {
     content: "";
     height: 8px;
     max-width: 100%;
-    width: 5%;
+    width: 0%;
     background: #00796B;
     position: absolute;
     left: 0;
     top: -1px;
+}
+
+.flex-line-current {
+    min-width: 1px;
+    max-width: calc(100% - 1px);
 }
 
 .circle-finished:before {
