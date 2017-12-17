@@ -56,6 +56,7 @@ button {
     outline: none;
     padding: 5px 10px;
     text-align: center;
+    line-height: 1.1rem;
 }
 
 .debug-btn {
@@ -284,7 +285,20 @@ button {
     text-transform: uppercase;
     border-radius: 5px;
     font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
+
+.main-buttons > i {
+    flex: 0 0 15%;
+}
+
+.main-buttons > span {
+    flex: 1 1 auto;
+}
+
+
 
 .footer-text {
     position: absolute;
