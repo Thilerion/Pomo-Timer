@@ -45,8 +45,21 @@ var timeline = (function () {
         flexDiv.insertBefore(lastLine, circleEnd);
     }
     
-    function updateCircleStates(props) {
-        let smallCircles = document.querySelectorAll(".flex-small-circle");
+    function updateAllCircleStates(props) {
+        let circleSmallArr = document.querySelectorAll(".flex-small-circle");
+        
+        circleStart.classList.toggle("circle-finished", props.start.finished);
+        circleStart.classList.add("circle-running");
+        
+        circleEnd.classList.toggle("circle-running", props.last.running);
+        circleEnd.classList.toggle("circle-finished", props.last.finished);
+        
+        props.small.forEach(function(el) {
+            let circle = circleSmallArr[el.n];
+            circle.classList.toggle("circle-running", el.running);
+            circle.classList.toggle("circle-finished", el.finished);
+        });
+        /*let smallCircles = document.querySelectorAll(".flex-small-circle");
         
         props[0].forEach(function(e, ind) {
             if (e.name === "short") {
@@ -78,7 +91,7 @@ var timeline = (function () {
                     circleEnd.classList.remove("circle-running");
                 }
             }
-        });
+        });*/
     }
     
     function updateLine(workN, percentage) {
@@ -93,7 +106,7 @@ var timeline = (function () {
 
     return {
         initTimeline: initTimeline,
-        updateCircleStates: updateCircleStates,
+        updateCircleStates: updateAllCircleStates,
         updateLine: updateLine
     };
 })();

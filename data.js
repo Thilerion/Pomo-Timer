@@ -99,8 +99,8 @@ var data = (function() {
         speedMult: 1,
         sound: false,
         intervalTime: 1000,
-        started: false,
-        playing: false,
+        timerStarted: false,
+        timerPlaying: false,
         cycle: {
             length: 3,
             sessions: [],
@@ -132,14 +132,6 @@ var data = (function() {
                 timerData.timeLeft -= ms;
             }
         },
-        getCurrentSessionInitialTimeAndTimeLeft() {
-            let cSess = timerData.current;
-            let initialDur = timerData.cycle.sessions[cSess].initialDur;
-            let initialDurMS = convertToMS(initialDur);
-            let currentLeft = timerData.getTimeLeft();
-            console.log("Initial dur: " + initialDurMS + " and current time left: " + currentLeft);
-            return [initialDurMS, currentLeft];
-        },
         getSpeedMult() {
             return timerData.speedMult;
         },
@@ -162,16 +154,16 @@ var data = (function() {
             timerData.intervalTime = interval;
         },
         getTimerStarted() {
-            return timerData.started;
+            return timerData.timerStarted;
         },
         getTimerPlaying() {
-            return timerData.playing;
+            return timerData.timerPlaying;
         },
         setTimerStarted(bool) {
-            timerData.started = bool;
+            timerData.timerStarted = bool;
         },
         setTimerPlaying(bool) {
-            timerData.playing = bool;
+            timerData.timerPlaying = bool;
         },
         getCycleLength() {
             return timerData.cycle.length;
@@ -284,29 +276,78 @@ var data = (function() {
         console.log("Session initial duration set at: " + this.initialDur);
     };
     
-    CycleItem.prototype.getPercentage = function() {
+    CycleItem.prototype.getSessionPercentage = function() {
         if (this.name !== "work") {
-            console.log("This is not a work session, so no percentage!");
             return;
-        } else if (this.timeline.sessionFinished === true) {
-            console.log("Session is finished, so percentage is 100%");
-            return 1;
-        } else if (this.timeline.sessionStarted === false) {
-            console.log("Session has not been started yet, so percentage is 0%");
-            return 0;
-        } else {
-            console.log("This is the current session, which has been started, so a percentage must be calculated");
-            let inf = timerData.getCurrentSessionInitialTimeAndTimeLeft();
-            let total = inf[0];
-            let left = inf[1];
-            console.log("Current session lasts for " + total + " ms, and " + left + "ms are left");
-            let curr = total - left;
-            console.log("This means that " + curr + " ms have passed.");
-            let p = curr / total;
-            console.log("Resulting in a percentage of " + p);
-            return p;
         }
+        
+        let ret = 0;
+        
+        if (this.timeline.sessionStarted === false) {
+            ret = 0;
+        } else if (this.timeline.sessionFinished === true) {
+            ret = 1;
+        } else {
+            let tot = convertToMS(this.initialDur);
+            let tLeft = timerData.getTimeLeft();
+            let tPast = tot - tLeft;
+            
+            ret = (Math.floor((tPast / tot)*100))/100;
+        }
+        
+        console.log(ret);
+        return ret;
     };
+    
+    //timeline functions
+    function getAllSessionPercentages() {
+        let arr = [];
+        timerData.cycle.sessions.forEach(function(s, i) {
+            if (s.name === "work") {
+                let obj = {};
+                obj.type = s.name;
+                obj.num = s.typeNumber;
+                obj.percentage = s.getSessionPercentage();
+                arr.push(obj);
+            }
+        });
+        return arr;
+    }
+    
+    function getCircleStatuses() {
+        //circle 0: always active, finished when session 0 has started
+        //circle small: active when running, finished when fnished
+        //circle last: active when running, finished when finished
+        let obj = {};
+                
+        obj.start = {};
+        obj.start.n = 0;
+        obj.start.running = true;
+        //first circle is "finished" when the timer has been started at least once
+        obj.start.finished = timerData.cycle.sessions[0].timeline.sessionStarted;
+        
+        obj.small = [];
+        
+        obj.last = {};
+        
+        timerData.cycle.sessions.forEach(function(s, i) {
+            if (s.name === "short") {
+                let shortObj = {};
+                shortObj.n = s.typeNumber - 1;
+                shortObj.running = s.timeline.sessionStarted;
+                shortObj.finished = s.timeline.sessionFinished;
+                obj.small.push(shortObj);
+            } else if (s.name === "long") {
+                obj.last.running = s.timeline.sessionStarted;
+                obj.last.finished = s.timeline.sessionFinished;
+            }
+        });
+        
+        obj.circleAmount = 2 + obj.small.length;
+        obj.last.n = obj.circleAmount - 1;
+        console.log(obj);
+        return obj;
+    }
     
     //init function, only to be used when all modules are loaded
     function init() {
@@ -336,24 +377,27 @@ var data = (function() {
         init: init,
         //when a session is started from 0 time passed, from controller
         start: function() {
-            timerData.setPlayingProps(true, true);
+            timerData.setTimerStarted(true);
+            timerData.setTimerPlaying(true);
             timerData.setCurrentSessionStarted(true);
             timerData.setCurrentSessionRunning(true);
         },
         //when a session is resumed, when some time has already passed, from controller
         resume: function() {
-            timerData.setPlayingProps(true, true);
+            timerData.setTimerStarted(true);
+            timerData.setTimerPlaying(true);
             timerData.setCurrentSessionRunning(true);
         },
         //when a session is paused, when timer has already started, from controller
         pause: function() {
-            timerData.setPlayingProps(null, false);
+            timerData.setTimerPlaying(false);
             timerData.setCurrentSessionRunning(false);
         },
         //when a session is finished, the decreaseTimeLeft function passes this to the control and the controller activates this function
         //set timer to not playing and not started, current session to finished and not running, and go to the next session
         finish: function() {
-            timerData.setPlayingProps(false, false);
+            timerData.setTimerStarted(false);
+            timerData.setTimerPlaying(false);
             timerData.setCurrentSessionFinished(true);
             timerData.setCurrentSessionRunning(false);
             timerData.goToNextSession();
@@ -363,14 +407,17 @@ var data = (function() {
         resetAll: function() {
             timerData.restartCycle();
             timerData.resetTimeLeft();
-            timerData.setPlayingProps(false, false);
+            timerData.setTimerStarted(false);
+            timerData.setTimerPlaying(false);
         },
         //when a single session is reset, the timer is not playing and not running, and the current session is not started and not running, from controller
         resetSession: function() {
             timerData.resetTimeLeft();
             timerData.setCurrentSessionStarted(false);
             timerData.setCurrentSessionRunning(false);
-            timerData.setPlayingProps(false, false);
+            timerData.setCurrentSessionFinished(false);
+            timerData.setTimerStarted(false);
+            timerData.setTimerPlaying(false);
         },
         //changes duration of a sessionType, from controller
         changeDuration: function(sess, amount) {
@@ -419,7 +466,11 @@ var data = (function() {
         //decrease time left, done by timer.js
         decreaseTimeLeft: timerData.decreaseTimeLeft,
         //////by controller, only needs length, to init a new timeline. also by controller to update circle states (needs name, finished, running)
-        getCycleInfo: timerData.getCycleInfo
+        getCycleInfo: timerData.getCycleInfo,
+        //gets all session percentages from all work sessions in the cycle
+        getAllSessionPercentages: getAllSessionPercentages,
+        //gets all circle statuses and amounts
+        getCircleStatuses: getCircleStatuses
     };
 })();
 

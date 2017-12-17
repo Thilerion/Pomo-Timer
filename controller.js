@@ -202,9 +202,9 @@ var controller = (function () {
     }
     
     function updateTimeline() {
-        let sesAr = data.getCycleInfo();
-        console.log(sesAr);
-        timeline.updateCircleStates(sesAr);
+        let cStats = data.getCircleStatuses();
+        console.log(cStats);
+        timeline.updateCircleStates(cStats);
     }
     
     function checkDurationDisabled(session, disable, sign) {
