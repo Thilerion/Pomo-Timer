@@ -388,6 +388,7 @@ var data = (function() {
         //when a session is paused, when timer has already started, from controller
         pause: function() {
             timerData.setTimerPlaying(false);
+            timerData.setTimerStarted(true);
             timerData.setCurrentSessionRunning(false);
         },
         //when a session is finished, the decreaseTimeLeft function passes this to the control and the controller activates this function
