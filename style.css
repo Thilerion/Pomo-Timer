@@ -96,7 +96,7 @@ button {
 .main-flex-inner {
     height: calc(100% - 200px);
     width: 80%;
-    max-width: 1100px;
+    max-width: 1000px;
     flex: 1 0 auto;
 }
 
@@ -180,7 +180,7 @@ button {
 .main-sessions-box-flex {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     height: 100px;
 }
 
@@ -193,6 +193,7 @@ button {
     color: white;
     padding: 5px 16px;
     border-radius: 2px;
+    margin: 0 20px;
 }
 
 .main-sessions-box-work {
