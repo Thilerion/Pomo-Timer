@@ -57,7 +57,7 @@ var eventHandling = (function () {
         controller.changeCycle();
     }
     
-    function changeTimerSpeedEvent() {        
+    function changeSpeedEvent() {        
         controller.increaseSpeed();
     }
     
@@ -89,7 +89,7 @@ var eventHandling = (function () {
         changeSessionTimeEvent: changeSessionTimeEvent,
         resetDurationsEvent: resetDurationsEvent,
         changeCycleEvent: changeCycleEvent,
-        changeTimerSpeedEvent: changeTimerSpeedEvent,
+        changeSpeedEvent: changeSpeedEvent,
         skipSessionEvent: skipSessionEvent,
         toggleSound: toggleSound
     };
