@@ -179,73 +179,63 @@ button {
 
 .main-sessions-box-flex {
     display: flex;
+    align-items: center;
     justify-content: space-around;
-    border: 1px solid #aaa;
-    height: 30px;
-    font-size: 0.9rem;
+    height: 100px;
 }
 
 .main-sessions-box-child {
-    text-align: center;
-    width: 170px;
+    height: 70px;
+    width: 230px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 3px;
+    color: white;
+    padding: 5px 16px;
+    border-radius: 2px;
 }
 
 .main-sessions-box-work {
-    border-color: var(--work-btn-color);
-    border-style: solid;
-    border-width: 0 0px 5px;
+    background-color: var(--work-btn-color);
 }
 
 .main-sessions-box-short {
-    border-color: var(--short-btn-color);
-    border-style: solid;
-    border-width: 0 0px 5px;
+    background-color: var(--short-btn-color);
 }
 
 .main-sessions-box-long {
-    border-color: var(--long-btn-color);
-    border-style: solid;
-    border-width: 0 0px 5px;
+    background-color: var(--long-btn-color);
 }
 
-.session-btns-div {
-    height: 30px;
-    display: flex;
-    align-items: center;
+.session-text {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.session-dur-text {
+    font-size: 0.8rem;
+    opacity: 0.9;
 }
 
 .session-button {
-    width: 20px;
-    height: 20px;
     background: none;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid white;
+    border-radius: 2px;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    padding: 0;
+    color: inherit;
 }
 
-.session-button.lBreak {
-    border-color: var(--long-btn-color);
-}
-
-.session-button.work {
-    border-color: var(--work-btn-color);
-}
-
-.session-button.sBreak {
-    border-color: var(--short-btn-color);
+.session-btns-div {
+    display: flex;
+    flex-direction: column;
 }
 
 .session-button.decrease {
-    border-width: 1px 1 1px 1px;
-    border-radius: 5px 0 0 5px;
-}
-
-.session-button.increase {
-    border-width: 1px 1px 1px 0;
-    border-radius: 0 5px 5px 0;
+    order: 1;
+    margin-top: 5px;
 }
 
 /* --- main buttons --- */
