@@ -59,14 +59,15 @@ var controller = (function () {
     }
 
     function changeResumePauseButton() {
-        let props = data.getPlayingProps();
+        let started = data.getTimerStarted();
+        let playing = data.getTimerPlaying();
         let action;
 
-        if (props.started === false) {
+        if (started === false) {
             view.setStartTimerButton();
-        } else if (props.started === true && props.playing === false) {
+        } else if (started === true && playing === false) {
             view.setResumeTimerButton();
-        } else if (props.started === true && props.playing === true) {
+        } else if (started === true && playing === true) {
             view.setPauseTimerButton();
         } else {
             console.log("Error in controller: props gives wrong session playing information");
@@ -140,10 +141,10 @@ var controller = (function () {
     }
     
     function checkIfShouldPause() {
-        let props = data.getPlayingProps();
-        if (props.isPlaying === true) {
+        let playing = data.getTimerPlaying();
+        if (playing === true) {
             return true;
-        } else if (props.isPlaying === false) {
+        } else if (playing === false) {
             return false;
         }
     }
@@ -172,8 +173,7 @@ var controller = (function () {
     }
 
     function skipSession() {
-        let props = data.getPlayingProps();
-        if (props.playing === true) {
+        if (checkIfShouldPause() === true) {
             pause();
         }
         data.skipSession();
@@ -237,9 +237,6 @@ var controller = (function () {
         init: init,
         determineResumePauseButton: determineResumePauseButton,
         changeResumePauseButton: changeResumePauseButton,
-        start: start,
-        resume: resume,
-        pause: pause,
         changeDuration: changeDuration,
         resetDurations: resetDurations,
         changeCycle: changeCycle,

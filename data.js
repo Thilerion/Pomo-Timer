@@ -161,20 +161,17 @@ var data = (function() {
             }
             timerData.intervalTime = interval;
         },
-        getPlayingProps() {
-            console.log("Started: " + timerData.started, "Playing: " + timerData.playing);
-            return {
-                started: timerData.started,
-                playing: timerData.playing
-            };
+        getTimerStarted() {
+            return timerData.started;
         },
-        setPlayingProps(s,p) {
-            if (s !== null) {
-                timerData.started = s;
-            }
-            if (p !== null) {
-                timerData.playing = p;
-            }
+        getTimerPlaying() {
+            return timerData.playing;
+        },
+        setTimerStarted(bool) {
+            timerData.started = bool;
+        },
+        setTimerPlaying(bool) {
+            timerData.playing = bool;
         },
         getCycleLength() {
             return timerData.cycle.length;
@@ -335,21 +332,26 @@ var data = (function() {
     }   
     
     return {
-        //controller
+        //runs one time, when all modules are loaded, from controller
         init: init,
+        //when a session is started from 0 time passed, from controller
         start: function() {
             timerData.setPlayingProps(true, true);
             timerData.setCurrentSessionStarted(true);
             timerData.setCurrentSessionRunning(true);
         },
+        //when a session is resumed, when some time has already passed, from controller
         resume: function() {
             timerData.setPlayingProps(true, true);
             timerData.setCurrentSessionRunning(true);
         },
+        //when a session is paused, when timer has already started, from controller
         pause: function() {
             timerData.setPlayingProps(null, false);
             timerData.setCurrentSessionRunning(false);
         },
+        //when a session is finished, the decreaseTimeLeft function passes this to the control and the controller activates this function
+        //set timer to not playing and not started, current session to finished and not running, and go to the next session
         finish: function() {
             timerData.setPlayingProps(false, false);
             timerData.setCurrentSessionFinished(true);
@@ -357,13 +359,20 @@ var data = (function() {
             timerData.goToNextSession();
             timerData.resetTimeLeft();
         },
-        getPlayingProps: timerData.getPlayingProps,
-        getTimeLeft: timerData.getTimeLeft,
-        convertToMS: convertToMS,
-        convertToMinSec: convertToMinSec,
-        getCycleLength: timerData.getCycleLength,
-        setCycleLength: timerData.setCycleLength,
-        getAllCurrentDurations: sessionTypes.getAllCurrentDurations,
+        //when the entire timer is reset, a new cycle is generated and the timer is set to not playing and not started, from controller
+        resetAll: function() {
+            timerData.restartCycle();
+            timerData.resetTimeLeft();
+            timerData.setPlayingProps(false, false);
+        },
+        //when a single session is reset, the timer is not playing and not running, and the current session is not started and not running, from controller
+        resetSession: function() {
+            timerData.resetTimeLeft();
+            timerData.setCurrentSessionStarted(false);
+            timerData.setCurrentSessionRunning(false);
+            timerData.setPlayingProps(false, false);
+        },
+        //changes duration of a sessionType, from controller
         changeDuration: function(sess, amount) {
             if (amount > 0) {
                 sessionTypes[sess].increaseDur(amount);
@@ -371,38 +380,38 @@ var data = (function() {
                 sessionTypes[sess].decreaseDur(amount*-1);
             }
         },
+        //when a session is "skipped", timeLeft is set to 3 seconds, from controller
+        skipSession: function() {
+            timerData.timeLeft = 3000;
+        },
+        //the eventhandler sends whether sound should be turned on or off to the controller, activating this function
+        toggleSound: function(soundOn) {
+            timerData.sound = soundOn;
+        },
+        //the controller requests the status of sound, muted or not
+        getSoundStatus: function() {
+            return timerData.sound;
+        },
+        getTimerStarted: timerData.getTimerStarted,
+        getTimerPlaying: timerData.getTimerPlaying,
+        getTimeLeft: timerData.getTimeLeft,
+        convertToMS: convertToMS,
+        convertToMinSec: convertToMinSec,
+        getCycleLength: timerData.getCycleLength,
+        setCycleLength: timerData.setCycleLength,
+        getAllCurrentDurations: sessionTypes.getAllCurrentDurations,        
         resetAllDurations: sessionTypes.resetAllDurations,
         getIntervalTime: timerData.getIntervalTime,
         getSpeedMult: timerData.getSpeedMult,
         decreaseTimeLeft: timerData.decreaseTimeLeft,
-        resetAll: function() {
-            timerData.restartCycle();
-            timerData.resetTimeLeft();
-            timerData.setPlayingProps(false, false);
-        },
-        resetSession: function() {
-            timerData.resetTimeLeft();
-            timerData.setCurrentSessionStarted(false);
-            timerData.setCurrentSessionRunning(false);
-            timerData.setPlayingProps(false, false);
-        },
         getCurrentSessionInfo: function() {
             return {
                 n: timerData.current,
                 s: timerData.cycle.sessions[timerData.current],
                 p: timerData.cycle.sessions[timerData.current].getPercentage()
             };
-        },
-        skipSession: function() {
-            timerData.timeLeft = 3000;
-        },
+        },        
         getCycleInfo: timerData.getCycleInfo,
-        toggleSound: function(soundOn) {
-            timerData.sound = soundOn;
-        },
-        getSoundStatus: function() {
-            return timerData.sound;
-        },
         getCurrentDur: timerData.getCurrentSessionDur
     };
 })();
