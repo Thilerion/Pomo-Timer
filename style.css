@@ -14,12 +14,19 @@ html, body {
 body {
     --box-color: #2980b9;
     --box-button-color: #1e6b9f;
-    --work-btn-color: #2ecc71;
     --work-btn-color: #2980b9;
-    --short-btn-color: #e67e22;
     --short-btn-color: #28acb8;
-    --long-btn-color: #9b59bb;
     --long-btn-color: #28b896;
+    
+    --work-color-bright: #53a7df;
+    --work-color-dark: #246a99;
+    --work-color-darker: #103d5b;
+    
+    --short-color-bright: #3fc3cf;
+    --short-color-dark: #1f98a3;
+    
+    --long-color-bright: #3bc9a8;
+    --long-color-dark: #1ea485;
 }
 
 
@@ -343,7 +350,7 @@ button {
 }
 
 .flex-circle {
-    background-color: cadetblue;
+    background-color: var(--short-color-dark);
     height: 20px;
     width: 20px;
     border-radius: 40%;    
@@ -360,7 +367,7 @@ button {
 
 .flex-line {
     height: 6px;
-    background: black;
+    background: var(--work-color-darker);
     min-width: 10px;    
     flex: 1 1 auto;
     position: relative;
@@ -371,7 +378,7 @@ button {
     height: 8px;
     max-width: 100%;
     width: 0%;
-    background: #00796B;
+    background: var(--work-color-bright);
     position: absolute;
     left: 0;
     top: -1px;
@@ -400,6 +407,18 @@ button {
     top: 3px;
 }
 
-.circle-running {
-    background-color: purple;
+.circle-running.flex-circle-start {
+    background: var(--long-color-bright);
+}
+
+.circle-running.flex-small-circle {
+    background: var(--short-color-bright);
+}
+
+.flex-circle-end {
+    background: var(--long-color-dark);    
+}
+
+.circle-running.flex-circle-end {
+    background: var(--long-color-bright);
 }
