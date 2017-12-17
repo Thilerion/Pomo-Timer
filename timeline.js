@@ -15,7 +15,8 @@ var timeline = (function () {
         });
 
         //remove running and finished
-        circleStart.classList.remove("circle-running");
+        circleStart.classList.remove("circle-finished");
+        circleStart.classList.add("circle-running");
         circleEnd.classList.remove("circle-running", "circle-finished");
     }
 
@@ -59,42 +60,9 @@ var timeline = (function () {
             circle.classList.toggle("circle-running", el.running);
             circle.classList.toggle("circle-finished", el.finished);
         });
-        /*let smallCircles = document.querySelectorAll(".flex-small-circle");
-        
-        props[0].forEach(function(e, ind) {
-            if (e.name === "short") {
-                let n = e.typeNumber - 1;
-                console.log(flexDiv);
-                console.log(smallCircles[n]);
-                if (e.timeline.circleFinished === true) {
-                    smallCircles[n].classList.add("circle-finished");
-                } else {
-                    smallCircles[n].classList.remove("circle-finished");
-                }
-                
-                if (e.timeline.circleRunning === true) {
-                    smallCircles[n].classList.add("circle-running");
-                } else {
-                    smallCircles[n].classList.remove("circle-running");
-                }                
-            } else if (e.name === "long") {
-                let longInd = ind;
-                if (e.timeline.circleFinished === true) {
-                    circleEnd.classList.add("circle-finished");
-                } else {
-                    circleEnd.classList.remove("circle-finished");
-                }
-                
-                if (e.timeline.circleRunning === true) {
-                    circleEnd.classList.add("circle-running");
-                } else {
-                    circleEnd.classList.remove("circle-running");
-                }
-            }
-        });*/
     }
     
-    function updateLine(workN, percentage) {
+    function updateAllLines() {
         /*let lineN = workN;
         let line = document.querySelectorAll(".flex-line-running")[lineN];
         percentage *= 100;
@@ -107,6 +75,6 @@ var timeline = (function () {
     return {
         initTimeline: initTimeline,
         updateCircleStates: updateAllCircleStates,
-        updateLine: updateLine
+        updateLine: updateAllLines
     };
 })();
