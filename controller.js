@@ -33,7 +33,7 @@ var controller = (function () {
 
     function resume() {
         timer.resume();
-        data.start();
+        data.resume();
         changeResumePauseButton();
         updateTimeView();
         updateTimeline();

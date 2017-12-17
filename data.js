@@ -127,15 +127,18 @@ var data = (function() {
         decreaseTimeLeft(ms) {
             if (timerData.timeLeft - ms < 200) {
                 timerData.timeLeft = 0;
-                timerData.cycle.sessions[timerData.current].timeline.timeLeft = 0;
                 controller.finishedSession();
             } else {
                 timerData.timeLeft -= ms;
-                timerData.cycle.sessions[timerData.current].timeline.timeLeft = timerData.timeLeft;
             }
         },
-        decreaseTimeLeftCurSes(ms) {
-            
+        getCurrentSessionInitialTimeAndTimeLeft() {
+            let cSess = timerData.current;
+            let initialDur = timerData.cycle.sessions[cSess].initialDur;
+            let initialDurMS = convertToMS(initialDur);
+            let currentLeft = timerData.getTimeLeft();
+            console.log("Initial dur: " + initialDurMS + " and current time left: " + currentLeft);
+            return [initialDurMS, currentLeft];
         },
         getSpeedMult() {
             return timerData.speedMult;
@@ -236,13 +239,20 @@ var data = (function() {
         },
         setCurrentSessionFinished(bool) {
             let c = timerData.current;
-            timerData.cycle.sessions[c].timeline.circleFinished = bool;
+            timerData.cycle.sessions[c].timeline.sessionFinished = bool;
+            console.log("The cycle now looks like:");
+            console.log(timerData.cycle.sessions);
+        },
+        setCurrentSessionRunning(bool) {
+            let c = timerData.current;
+            timerData.cycle.sessions[c].timeline.sessionRunning = bool;
             console.log("The cycle now looks like:");
             console.log(timerData.cycle.sessions);
         },
         setCurrentSessionStarted(bool) {
             let c = timerData.current;
-            timerData.cycle.sessions[c].timeline.circleRunning = bool;
+            timerData.cycle.sessions[c].timeline.sessionStarted = bool;
+            timerData.cycle.sessions[c].setInitialDur();
             console.log("The cycle now looks like:");
             console.log(timerData.cycle.sessions);
         }
@@ -252,11 +262,12 @@ var data = (function() {
     function CycleItem(type, typeNumber) {
         this.name = type;
         this.typeNumber = typeNumber;
+        this.initialDur = null;
         this.timeline = {
             circleType: "",
-            circleRunning: false,
-            circleFinished: false,
-            lineTotalTime: 0
+            sessionRunning: false,
+            sessionFinished: false,
+            sessionStarted: false
         };
         
         if (type === "work") {
@@ -266,18 +277,38 @@ var data = (function() {
         } else if (type === "long") {
             this.timeline.circleType = "end";
         }
-        
-        if (type === "work") {
-            this.timeline.lineTotalTime = convertToMS(sessionTypes.getAllCurrentDurations().work);
-        }
     }
     
+    CycleItem.prototype.setInitialDur = function() {
+        //sets an initial duration when a certain session starts
+        //because when durations are changed in the view, the current session max duration should not
+        let n = this.name;
+        this.initialDur = sessionTypes[this.name].dur.current;
+        console.log("Session initial duration set at: " + this.initialDur);
+    };
+    
     CycleItem.prototype.getPercentage = function() {
-        let timePast = this.timeline.lineTotalTime - this.timeline.timeLeft;
-        let p = timePast / this.timeline.lineTotalTime;
-        console.log("Percentage: " + p);
-        
-        return p;
+        if (this.name !== "work") {
+            console.log("This is not a work session, so no percentage!");
+            return;
+        } else if (this.timeline.sessionFinished === true) {
+            console.log("Session is finished, so percentage is 100%");
+            return 1;
+        } else if (this.timeline.sessionStarted === false) {
+            console.log("Session has not been started yet, so percentage is 0%");
+            return 0;
+        } else {
+            console.log("This is the current session, which has been started, so a percentage must be calculated");
+            let inf = timerData.getCurrentSessionInitialTimeAndTimeLeft();
+            let total = inf[0];
+            let left = inf[1];
+            console.log("Current session lasts for " + total + " ms, and " + left + "ms are left");
+            let curr = total - left;
+            console.log("This means that " + curr + " ms have passed.");
+            let p = curr / total;
+            console.log("Resulting in a percentage of " + p);
+            return p;
+        }
     };
     
     //init function, only to be used when all modules are loaded
@@ -309,13 +340,20 @@ var data = (function() {
         start: function() {
             timerData.setPlayingProps(true, true);
             timerData.setCurrentSessionStarted(true);
+            timerData.setCurrentSessionRunning(true);
+        },
+        resume: function() {
+            timerData.setPlayingProps(true, true);
+            timerData.setCurrentSessionRunning(true);
         },
         pause: function() {
             timerData.setPlayingProps(null, false);
+            timerData.setCurrentSessionRunning(false);
         },
         finish: function() {
             timerData.setPlayingProps(false, false);
             timerData.setCurrentSessionFinished(true);
+            timerData.setCurrentSessionRunning(false);
             timerData.goToNextSession();
             timerData.resetTimeLeft();
         },
@@ -345,6 +383,7 @@ var data = (function() {
         resetSession: function() {
             timerData.resetTimeLeft();
             timerData.setCurrentSessionStarted(false);
+            timerData.setCurrentSessionRunning(false);
             timerData.setPlayingProps(false, false);
         },
         getCurrentSessionInfo: function() {
