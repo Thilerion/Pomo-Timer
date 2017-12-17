@@ -392,27 +392,34 @@ var data = (function() {
         getSoundStatus: function() {
             return timerData.sound;
         },
+        //returns whether the timer has started the session, from timer and controller (button)
         getTimerStarted: timerData.getTimerStarted,
-        getTimerPlaying: timerData.getTimerPlaying,
-        getTimeLeft: timerData.getTimeLeft,
-        convertToMS: convertToMS,
-        convertToMinSec: convertToMinSec,
-        getCycleLength: timerData.getCycleLength,
+        //returns whether the timer is currently playing, from controller (button and shouldPause?)
+        getTimerPlaying: timerData.getTimerPlaying,        
+        //used by controller to set a new cyclelength
         setCycleLength: timerData.setCycleLength,
+        //////only used by controller to show current length as default for when new length can be chosen
+        getCycleLength: timerData.getCycleLength,
+        //////only used for controller getting the time to send to the view, and is converted to min and secs first
+        getTimeLeft: timerData.getTimeLeft,
+        //////not used by other modules
+        convertToMS: convertToMS,
+        //////not used by other modules except controller for converting the getTimeLeft
+        convertToMinSec: convertToMinSec,
+        //used by controller to update a single session duration view, and all session duration views
         getAllCurrentDurations: sessionTypes.getAllCurrentDurations,        
+        //used when a button is pressed to reset all durations, from controller
         resetAllDurations: sessionTypes.resetAllDurations,
+        //used by timer.js to know the interval time
         getIntervalTime: timerData.getIntervalTime,
+        //timer wants to know the speedMult, and controller to show as default when changing
         getSpeedMult: timerData.getSpeedMult,
+        //by controller to change the speed multiplier
+        setSpeedMult: timerData.setSpeedMult,
+        //decrease time left, done by timer.js
         decreaseTimeLeft: timerData.decreaseTimeLeft,
-        getCurrentSessionInfo: function() {
-            return {
-                n: timerData.current,
-                s: timerData.cycle.sessions[timerData.current],
-                p: timerData.cycle.sessions[timerData.current].getPercentage()
-            };
-        },        
-        getCycleInfo: timerData.getCycleInfo,
-        getCurrentDur: timerData.getCurrentSessionDur
+        //////by controller, only needs length, to init a new timeline. also by controller to update circle states (needs name, finished, running)
+        getCycleInfo: timerData.getCycleInfo
     };
 })();
 

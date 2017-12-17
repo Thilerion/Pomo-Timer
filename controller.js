@@ -193,24 +193,7 @@ var controller = (function () {
     }
     
     function updateLineWidth() {
-        let curSes = data.getCurrentSessionInfo();
-        let name = curSes.s.name;
-        
-        if (name !== "work") {
-            return;
-        }
-        
-        console.log(curSes);
-        let n = curSes.n;
-        console.log(n);
-        let percentage = data.getCurrentSessionInfo().p;
-        
-        if (percentage > 99.5 && percentage < 99.8) {
-            percentage = 99.5;
-        }
-        
-        console.log(percentage);                                   
-        timeline.updateLine(n, percentage);    
+        //TODO   
     }
 
     function createNewTimeline() {
