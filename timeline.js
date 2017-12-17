@@ -82,8 +82,9 @@ var timeline = (function () {
     }
     
     function updateLine(workN, percentage) {
-        let lineN = workN - 1;
+        let lineN = workN;
         let line = document.querySelectorAll(".flex-line-running")[lineN];
+        percentage *= 100;
         
         console.log(line);
         

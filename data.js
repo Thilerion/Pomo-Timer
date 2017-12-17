@@ -127,9 +127,11 @@ var data = (function() {
         decreaseTimeLeft(ms) {
             if (timerData.timeLeft - ms < 200) {
                 timerData.timeLeft = 0;
+                timerData.cycle.sessions[timerData.current].timeline.timeLeft = 0;
                 controller.finishedSession();
             } else {
                 timerData.timeLeft -= ms;
+                timerData.cycle.sessions[timerData.current].timeline.timeLeft = timerData.timeLeft;
             }
         },
         decreaseTimeLeftCurSes(ms) {
@@ -266,9 +268,17 @@ var data = (function() {
         }
         
         if (type === "work") {
-            this.timeline.lineTotalTime = sessionTypes.getAllCurrentDurations().work;
+            this.timeline.lineTotalTime = convertToMS(sessionTypes.getAllCurrentDurations().work);
         }
     }
+    
+    CycleItem.prototype.getPercentage = function() {
+        let timePast = this.timeline.lineTotalTime - this.timeline.timeLeft;
+        let p = timePast / this.timeline.lineTotalTime;
+        console.log("Percentage: " + p);
+        
+        return p;
+    };
     
     //init function, only to be used when all modules are loaded
     function init() {
@@ -340,7 +350,8 @@ var data = (function() {
         getCurrentSessionInfo: function() {
             return {
                 n: timerData.current,
-                s: timerData.cycle.sessions[timerData.current]
+                s: timerData.cycle.sessions[timerData.current],
+                p: timerData.cycle.sessions[timerData.current].getPercentage()
             };
         },
         skipSession: function() {

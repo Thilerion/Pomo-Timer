@@ -203,7 +203,7 @@ var controller = (function () {
         console.log(curSes);
         let n = curSes.n;
         console.log(n);
-        let percentage = data.getCurrentSessionInfo().s.timeline.linePercentage;
+        let percentage = data.getCurrentSessionInfo().p;
         
         if (percentage > 99.5 && percentage < 99.8) {
             percentage = 99.5;
