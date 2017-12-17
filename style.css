@@ -175,87 +175,80 @@ button {
     border: 1px solid #fbfbfb;
 }
 
+/* --- session duration box --- */
+
 .main-sessions-box-flex {
     display: flex;
+    justify-content: space-around;
+    border: 1px solid #aaa;
+    height: 30px;
+    font-size: 0.9rem;
 }
 
 .main-sessions-box-child {
     text-align: center;
+    width: 170px;
     display: flex;
-    width: 33.4%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 3px;
 }
 
 .main-sessions-box-work {
-    margin-right: 9px;
+    border-color: var(--work-btn-color);
+    border-style: solid;
+    border-width: 0 0px 5px;
 }
 
 .main-sessions-box-short {
-    margin-right: 9px;
-    position:relative;
+    border-color: var(--short-btn-color);
+    border-style: solid;
+    border-width: 0 0px 5px;
 }
 
 .main-sessions-box-long {
-    position: relative;
+    border-color: var(--long-btn-color);
+    border-style: solid;
+    border-width: 0 0px 5px;
 }
 
-.main-sessions-box-long:before, .main-sessions-box-short:before {
-    content: "";
-    background-color: #18486d;
-    position: absolute;
-    width: 1px;
-    bottom: 20%;
-    left: -5px;
-    height: 60%;
+.session-btns-div {
+    height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .session-button {
-    background-color: inherit;
-    color: #18486d;
-    border: 1px solid #18486d;
-    width: 35px;
-    margin: 3px;
-    border-radius: 3px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    padding: 0;
-    text-align: center;
+    width: 20px;
+    height: 20px;
+    background: none;
+    border-width: 1px;
+    border-style: solid;
 }
 
-.material-dur-size {
-    font-size: 18px;
+.session-button.lBreak {
+    border-color: var(--long-btn-color);
 }
 
-@keyframes fadeInOut {
-    20% {
-        background-color: rgba(0,0,0,0.05);
-    }
+.session-button.work {
+    border-color: var(--work-btn-color);
 }
 
-.session-button:disabled .material-icons {
-    color: black;
-    opacity: 0.3;
+.session-button.sBreak {
+    border-color: var(--short-btn-color);
 }
 
-.session-button:disabled {
-    border-color: rgba(0,0,0,0.3);
-    cursor: default;
+.session-button.decrease {
+    border-width: 1px 1 1px 1px;
+    border-radius: 5px 0 0 5px;
 }
 
-.session-button:disabled:hover, .session-button:disabled:active {
-    animation: fadeInOut 1s ease-in-out;
+.session-button.increase {
+    border-width: 1px 1px 1px 0;
+    border-radius: 0 5px 5px 0;
 }
 
-.session-button:enabled:hover {
-    background-color: #2674af;
-    color: #fbfbfb;
-}
-
-.session-button:enabled:active {
-    background-color: #2688af;
-}
-
-.session-text {
-    margin: auto;
-}
+/* --- main buttons --- */
 
 .main-buttons-flex-outer {
     display: flex;
