@@ -10,23 +10,26 @@ html, body {
 }
 
 /* --- main colors --- */
+/* --- http://www.0to255.com/28acb8 --- */
 
 body {
-    --box-color: #2980b9;
-    --box-button-color: #1e6b9f;
-    --work-btn-color: #2980b9;
-    --short-btn-color: #28acb8;
-    --long-btn-color: #28b896;
+    --work-color-3: #5ca9db;
+    --work-color-4: #409ad5;
+    --work-color-5: #2980b9;
+    --work-color-6: #236d9d;
+    --work-color-7: #1d5a81;
     
-    --work-color-bright: #53a7df;
-    --work-color-dark: #246a99;
-    --work-color-darker: #103d5b;
-    
-    --short-color-bright: #3fc3cf;
-    --short-color-dark: #1f98a3;
-    
-    --long-color-bright: #3bc9a8;
-    --long-color-dark: #1ea485;
+    --long-color-3: #4cd8b7;
+    --long-color-4: #30d2ac;
+    --long-color-5: #28b896;
+    --long-color-6: #229c7f;
+    --long-color-7: #1c8069;
+        
+    --short-color-3: #4cccd8;
+    --short-color-4: #30c4d2;
+    --short-color-5: #28acb8;
+    --short-color-6: #22929c;
+    --short-color-7: #1c7880;
 }
 
 
@@ -133,7 +136,7 @@ button {
 .main-time-box {
     height: 550px;
     flex: 0 0 auto;
-    background-color: var(--box-color);
+    background-color: var(--work-color-5);
     position: relative;
     box-shadow: 0 -1px 6px rgba(0,0,0,0.2), 0 -1px 3px rgba(0,0,0,0.3);
 }
@@ -174,7 +177,7 @@ button {
     width: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: var(--box-button-color);
+    background-color: var(--work-color-6);
     color: #fbfbfb;
     font-size: 2.6em;
     transition: background-color 400ms ease-in-out, border 400ms ease-in-out, font-size 300ms ease-in-out, color 1500ms ease-in-out;
@@ -207,15 +210,15 @@ button {
 }
 
 .main-sessions-box-work {
-    background-color: var(--work-btn-color);
+    background-color: var(--work-color-5);
 }
 
 .main-sessions-box-short {
-    background-color: var(--short-btn-color);
+    background-color: var(--short-color-5);
 }
 
 .main-sessions-box-long {
-    background-color: var(--long-btn-color);
+    background-color: var(--long-color-5);
 }
 
 .session-text {
@@ -412,25 +415,25 @@ button {
 }
 
 .flex-line-running {
-    background: var(--work-color-dark);
+    background: var(--work-color-6);
 }
 
 .flex-small-circle.circle-finished {
-    background: var(--short-color-bright);
+    background: var(--short-color-4);
 }
 
 .flex-small-circle.circle-running {
-    border-color: var(--work-color-dark);
+    border-color: var(--work-color-6);
 }
 
 .flex-circle-start.circle-running {
-    border-color: var(--work-color-dark);
+    border-color: var(--work-color-6);
 }
 
 .flex-circle-start.circle-finished {
-    background: var(--work-color-dark);
+    background: var(--work-color-6);
 }
 
 .flex-circle-end.circle-running {
-    border-color: var(--work-color-dark);
+    border-color: var(--work-color-6);
 }
