@@ -53,6 +53,7 @@ var controller = (function () {
         changeResumePauseButton();
         updateTimeView();
         updateTimeline();
+        updateTimeBackgroundColor();
         if (data.getSoundStatus() === true) {
             view.playFinishedSessionSound();
         }       
@@ -207,6 +208,12 @@ var controller = (function () {
         console.log(cStats);
         timeline.updateCircleStates(cStats);
         updateLineWidth();
+    }
+    
+    function updateTimeBackgroundColor() {
+        let curSes = data.getCurrentSessionName();
+        console.log(curSes);
+        view.setBoxColor(curSes);
     }
     
     function checkDurationDisabled(session, disable, sign) {

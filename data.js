@@ -468,7 +468,9 @@ var data = (function() {
         //gets all session percentages from all work sessions in the cycle
         getAllSessionPercentages: getAllSessionPercentages,
         //gets all circle statuses and amounts
-        getCircleStatuses: getCircleStatuses
+        getCircleStatuses: getCircleStatuses,
+        //gets current session name, for changing the view of what the current session is
+        getCurrentSessionName: timerData.getCurrentSessionName
     };
 })();
 
