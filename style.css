@@ -9,6 +9,11 @@ html, body {
     width: 100%;
 }
 
+@font-face {
+    font-family: Norwester;
+    src: url("fonts/norwester.otf");
+}
+
 /* --- main colors --- */
 /* --- http://www.0to255.com/28acb8 --- */
 
@@ -31,6 +36,9 @@ body {
     --short-color-6: #22929c;
     --short-color-7: #1c7880;
     
+    --blue-grey-color-8: #37474f;
+    --blue-grey-color-6: #546e7a;
+    
     --box-color: var(--work-color-5);
     --box-color-light: var(--work-color-4);
     --box-color-dark: var(--work-color-6);
@@ -49,8 +57,11 @@ body {
 }
 
 .heading-logo {
-    text-transform: lowercase;
-    color: #555;
+    color: var(--blue-grey-color-6);
+    font-family: Norwester, sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 3px;
+    font-weight: 100;
 }
 
 .time-text {
@@ -105,13 +116,13 @@ button {
 }
 
 .header-flex-inner {
-    height: 100px;
+    height: 80px;
     width: 100%;
     flex: 0 0 auto;
 }
 
 .main-flex-inner {
-    height: calc(100% - 200px);
+    height: calc(100% - 110px);
     width: 80%;
     max-width: 1000px;
     flex: 1 0 auto;
