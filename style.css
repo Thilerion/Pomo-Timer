@@ -62,9 +62,7 @@ body {
 button {
     cursor: pointer;
     outline: none;
-    padding: 5px 10px;
     text-align: center;
-    line-height: 1.1rem;
 }
 
 .debug-btn {
@@ -292,19 +290,21 @@ button {
 }
 
 .main-buttons {
-    height: 60px;
-    min-width: 160px;
-    width: 160px;
+    height: 50px;
+    min-width: 120px;
+    width: 140px;
     margin: 0 15px;
     background-color: inherit;
     border: 1px solid #18486d;
     color: #18486d;
     text-transform: uppercase;
     border-radius: 5px;
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 6px;
+    line-height: 1rem;
 }
 
 .main-buttons > i {
