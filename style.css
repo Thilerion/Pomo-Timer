@@ -1,10 +1,51 @@
-html, body, span, object, iframe, h1, h2, h3, h4, h5, h6, p, a, code, img, em, ol, ul, li, dl, dt, dd, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, main, nav, section, div, button {
+html,
+body,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+code,
+img,
+em,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+form,
+label,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+footer,
+header,
+main,
+nav,
+section,
+div,
+button {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
 }
@@ -15,6 +56,7 @@ html, body {
 }
 
 /* --- main colors --- */
+
 /* --- http://www.0to255.com/28acb8 --- */
 
 body {
@@ -23,28 +65,33 @@ body {
     --work-color-5: #2980b9;
     --work-color-6: #236d9d;
     --work-color-7: #1d5a81;
-    
+
     --long-color-3: #4cd8b7;
     --long-color-4: #30d2ac;
     --long-color-5: #28b896;
     --long-color-6: #229c7f;
     --long-color-7: #1c8069;
-        
+
     --short-color-3: #4cccd8;
     --short-color-4: #30c4d2;
     --short-color-5: #28acb8;
     --short-color-6: #22929c;
     --short-color-7: #1c7880;
-    
+
     --blue-grey-color-8: #37474f;
     --blue-grey-color-6: #546e7a;
-    
+
     --box-color: var(--work-color-5);
     --box-color-light: var(--work-color-4);
     --box-color-dark: var(--work-color-6);
-    
+
     --background-color: #fbfbfb;
 }
+
+/* --- neon color invert
+filter: invert(100%);
+background-color: #050505;
+                            --- */
 
 
 /* --- general --- */
@@ -78,7 +125,7 @@ button {
 
 .debug-btn {
     background: none;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     position: absolute;
     right: 10px;
     top: 5px;
@@ -88,7 +135,7 @@ button {
 
 .sound-btn {
     background: none;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     position: absolute;
     right: 90px;
     top: 5px;
@@ -98,7 +145,7 @@ button {
 
 .speed-btn {
     background: none;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     position: absolute;
     right: 50px;
     top: 5px;
@@ -124,7 +171,7 @@ button {
 .main-flex-inner {
     height: calc(100% - 110px);
     width: 80%;
-    max-width: 1000px;
+    max-width: 1200px;
     flex: 1 0 auto;
 }
 
@@ -137,7 +184,7 @@ button {
 /* --- sub blocks --- */
 
 .header-flex-outer {
-    display:  flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -152,7 +199,7 @@ button {
     height: 550px;
     flex: 0 0 auto;
     position: relative;
-    box-shadow: 0 -1px 6px rgba(0,0,0,0.2), 0 -1px 3px rgba(0,0,0,0.3);
+    box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.2), 0 -1px 3px rgba(0, 0, 0, 0.3);
     background-color: var(--box-color);
     background: linear-gradient(to right, var(--box-color-light), var(--box-color-dark));
 }
@@ -200,6 +247,7 @@ button {
 }
 
 /* --- inner items --- */
+
 .main-time-box-flex {
     display: flex;
 }
@@ -217,14 +265,14 @@ button {
     width: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     color: #fbfbfb;
     font-size: 2.6em;
     transition: background-color 400ms ease-in-out, border 400ms ease-in-out, font-size 300ms ease-in-out, color 1500ms ease-in-out;
 }
 
 .main-time-box-playbutton:hover {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border: 1px solid #fbfbfb;
     animation: none;
 }
@@ -238,7 +286,8 @@ button {
     }
 }
 
-button[name="startTimer"], button[name="resumeTimer"] {
+button[name="startTimer"],
+button[name="resumeTimer"] {
     animation: pulse 3.25s infinite cubic-bezier(0.5, 0, 0, 0.7);
     box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.25);
 }
@@ -360,7 +409,7 @@ button[name="startTimer"], button[name="resumeTimer"] {
     transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
     position: relative;
     z-index: 1;
-    overflow:  hidden;
+    overflow: hidden;
 }
 
 .diagonal-close-effect::before {
@@ -372,7 +421,7 @@ button[name="startTimer"], button[name="resumeTimer"] {
     height: 100%;
     background: #18486d;
     z-index: -1;
-    transform: rotate3d(0,0,1,-45deg) translate3d(0, -3em, 0);
+    transform: rotate3d(0, 0, 1, -45deg) translate3d(0, -3em, 0);
     transform-origin: 0 110%;
     transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
 }
@@ -385,8 +434,8 @@ button[name="startTimer"], button[name="resumeTimer"] {
 .diagonal-close-effect:hover::before {
     opacity: 1;
     background-color: #18486d;
-    transform: rotate3d(0,0,1,0deg);
-    transition-timing-function: cubic-bezier(0.2,1,0.3,1);
+    transform: rotate3d(0, 0, 1, 0deg);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
 
 .diagonal-close-effect:active::before {
@@ -394,6 +443,7 @@ button[name="startTimer"], button[name="resumeTimer"] {
 }
 
 /* --- timeline flex --- */
+
 .main-timeline {
     font-size: 11px;
     padding: 5px;
@@ -407,7 +457,7 @@ button[name="startTimer"], button[name="resumeTimer"] {
 .timeline-flex-container {
     height: 60px;
     width: 85%;
-    margin: auto;  
+    margin: auto;
     display: flex;
     align-items: center;
 }
@@ -415,20 +465,21 @@ button[name="startTimer"], button[name="resumeTimer"] {
 .flex-circle {
     height: 28px;
     width: 28px;
-    border-radius: 50%;    
+    border-radius: 50%;
     flex: 0 0 auto;
     border: 3px solid black;
     position: relative;
 }
 
-.flex-circle-start, .flex-circle-end {
+.flex-circle-start,
+.flex-circle-end {
     height: 36px;
     width: 36px;
 }
 
 .flex-line {
     height: 6px;
-    min-width: 10px;    
+    min-width: 10px;
     flex: 1 1 auto;
     position: relative;
 }
@@ -458,7 +509,8 @@ button[name="startTimer"], button[name="resumeTimer"] {
     top: 2px;
 }
 
-.flex-circle-start.circle-finished:before, .flex-circle-end.circle-finished:before {
+.flex-circle-start.circle-finished:before,
+.flex-circle-end.circle-finished:before {
     width: 12px;
     height: 12px;
     left: 6px;
@@ -496,4 +548,25 @@ button[name="startTimer"], button[name="resumeTimer"] {
 
 .flex-circle-end.circle-running {
     border-color: var(--long-color-5);
+}
+
+@media only screen and (max-width: 690px) {
+    .main-flex-inner {
+        max-width: 100%;
+        width: 100%;
+        height: calc(100% - 60px);
+        max-height: calc(100% - 60px);
+    }
+
+    .header-flex-inner {
+        height: 50px;
+        max-width: 100%;
+        flex: 0 0 auto;
+    }
+
+    .footer-flex-inner {
+        height: 10px;
+        max-width: 100%;
+        flex: 0 0 auto;
+    }
 }
