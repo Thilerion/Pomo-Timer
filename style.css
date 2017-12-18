@@ -302,12 +302,12 @@ button {
     color: #18486d;
     text-transform: uppercase;
     border-radius: 5px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 6px;
-    line-height: 1rem;
+    line-height: 1.1rem;
 }
 
 .main-buttons > i {
