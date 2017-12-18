@@ -30,13 +30,19 @@ body {
     --short-color-5: #28acb8;
     --short-color-6: #22929c;
     --short-color-7: #1c7880;
+    
+    --box-color: var(--work-color-5);
+    --box-color-light: var(--work-color-4);
+    --box-color-dark: var(--work-color-6);
+    
+    --background-color: #fbfbfb;
 }
 
 
 /* --- general --- */
 
 body {
-    background-color: #fbfbfb;
+    background-color: --var(background-color);
     font-size: 100%;
     font-family: "Open Sans", sans-serif;
     color: #222;
@@ -136,7 +142,8 @@ button {
 .main-time-box {
     height: 550px;
     flex: 0 0 auto;
-    background-color: var(--work-color-5);
+    background-color: var(--box-color);
+    background: linear-gradient(to right, var(--box-color-light), var(--box-color-dark));
     position: relative;
     box-shadow: 0 -1px 6px rgba(0,0,0,0.2), 0 -1px 3px rgba(0,0,0,0.3);
 }
@@ -175,7 +182,7 @@ button {
     width: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: var(--work-color-6);
+    background-color: var(--box-color-dark);
     color: #fbfbfb;
     font-size: 2.6em;
     transition: background-color 400ms ease-in-out, border 400ms ease-in-out, font-size 300ms ease-in-out, color 1500ms ease-in-out;
