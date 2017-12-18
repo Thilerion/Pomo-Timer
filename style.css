@@ -144,8 +144,6 @@ button {
 .main-sessions-box {
     height: 40px;
     flex: 0 0 auto;
-    z-index: 1;
-    background-color: #fbfbfb;
 }
 
 .main-timeline-box {
@@ -419,11 +417,11 @@ button {
 }
 
 .flex-small-circle.circle-finished {
-    background: var(--short-color-4);
+    background: var(--short-color-5);
 }
 
 .flex-small-circle.circle-running {
-    border-color: var(--work-color-6);
+    border-color: var(--short-color-5);
 }
 
 .flex-circle-start.circle-running {
@@ -435,5 +433,5 @@ button {
 }
 
 .flex-circle-end.circle-running {
-    border-color: var(--work-color-6);
+    border-color: var(--long-color-5);
 }
