@@ -142,10 +142,35 @@ button {
 .main-time-box {
     height: 550px;
     flex: 0 0 auto;
-    background-color: var(--box-color);
-    background: linear-gradient(to right, var(--box-color-light), var(--box-color-dark));
     position: relative;
     box-shadow: 0 -1px 6px rgba(0,0,0,0.2), 0 -1px 3px rgba(0,0,0,0.3);
+    background-color: var(--box-color);
+    background: linear-gradient(to right, var(--box-color-light), var(--box-color-dark));
+}
+
+.main-time-box-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+.main-time-box-bg-work {
+    background-color: var(--work-color-5);
+    background: linear-gradient(to right, var(--work-color-4), var(--work-color-6));
+    transition: opacity 2s;
+}
+
+.main-time-box-bg-short {
+    background-color: var(--short-color-5);
+    background: linear-gradient(to right, var(--short-color-4), var(--short-color-6));
+    transition: opacity 2s;
+}
+
+.main-time-box-bg-long {
+    background-color: var(--long-color-5);
+    background: linear-gradient(to right, var(--long-color-4), var(--long-color-6));
+    transition: opacity 2s;
 }
 
 .main-sessions-box {
@@ -172,6 +197,7 @@ button {
 
 .time-text {
     margin: auto;
+    z-index: 1;
 }
 
 .main-time-box-playbutton {
@@ -182,14 +208,14 @@ button {
     width: 100px;
     border: 1px solid transparent;
     border-radius: 5px;
-    background-color: var(--box-color-dark);
+    background-color: rgba(0,0,0,0.2);
     color: #fbfbfb;
     font-size: 2.6em;
     transition: background-color 400ms ease-in-out, border 400ms ease-in-out, font-size 300ms ease-in-out, color 1500ms ease-in-out;
 }
 
 .main-time-box-playbutton:hover {
-    background-color: transparent;
+    background-color: rgba(255,255,255,0.2);
     border: 1px solid #fbfbfb;
 }
 

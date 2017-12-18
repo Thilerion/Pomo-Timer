@@ -76,6 +76,36 @@ var view = (function () {
     function playFinishedSessionSound() {
         alarmSound.play();      
     }
+    
+    let mainTimeBox = document.querySelector(".main-time-box");
+    let workBackground = document.querySelector(".main-time-box-bg-work");
+    let shortBackground = document.querySelector(".main-time-box-bg-short");
+    let longBackground = document.querySelector(".main-time-box-bg-long");
+    
+    function setBoxColor(session) {
+        if (session === "work") {
+            mainTimeBox.style.setProperty("--box-color", "var(--work-color-5)");
+            mainTimeBox.style.setProperty("--box-color-light", "var(--work-color-4)");
+            mainTimeBox.style.setProperty("--box-color-dark", "var(--work-color-6)");
+            workBackground.style.opacity = 1;
+            longBackground.style.opacity = 0;
+            shortBackground.style.opacity = 0;
+        } else if (session === "short") {
+            mainTimeBox.style.setProperty("--box-color", "var(--short-color-5)");
+            mainTimeBox.style.setProperty("--box-color-light", "var(--short-color-4)");
+            mainTimeBox.style.setProperty("--box-color-dark", "var(--short-color-6)");
+            workBackground.style.opacity = 0;
+            longBackground.style.opacity = 0;
+            shortBackground.style.opacity = 1;
+        } else if (session === "long") {
+            mainTimeBox.style.setProperty("--box-color", "var(--long-color-5)");
+            mainTimeBox.style.setProperty("--box-color-light", "var(--long-color-4)");
+            mainTimeBox.style.setProperty("--box-color-dark", "var(--long-color-6)");
+            workBackground.style.opacity = 0;
+            longBackground.style.opacity = 1;
+            shortBackground.style.opacity = 0;
+        }
+    }
 
     return {
         setStartTimerButton: setStartTimerButton,
@@ -84,7 +114,8 @@ var view = (function () {
         updateTime: updateTime,
         updateSingleDurationTime: updateSingleDurationTime,
         disableDurationButton: disableDurationButton,
-        playFinishedSessionSound: playFinishedSessionSound
+        playFinishedSessionSound: playFinishedSessionSound,
+        setBoxColor: setBoxColor
     };
 
 })();
