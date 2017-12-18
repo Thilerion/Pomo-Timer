@@ -219,7 +219,7 @@ button {
 }
 
 @keyframes pulse {
-    80% {
+    70% {
         box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.25);
     }
     100% {
@@ -228,7 +228,7 @@ button {
 }
 
 button[name="startTimer"], button[name="resumeTimer"] {
-    animation: pulse 4.25s infinite cubic-bezier(0.5, 0, 0, 0.7);
+    animation: pulse 3.25s infinite cubic-bezier(0.5, 0, 0, 0.7);
     box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.25);
 }
 
