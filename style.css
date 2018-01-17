@@ -89,16 +89,23 @@ button {
 }
 
 .flex-header {
-    flex: 0 0 10%;
+    flex: 0 0 60px;
 }
 
 .flex-main {
-    flex: 1 1 80%;
+    flex: 1 1 auto;
 }
 
 .flex-footer {
-    flex: 0 0 10%;
+    flex: 0 0 60px;
 }
+
+/* --- typography --- */
+
+
 
 /* --- test --- */
 
+.nav-top, .nav-bottom {
+    background: #ccc;
+}
