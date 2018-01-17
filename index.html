@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <header>
+<body class="flex-body">
+    <header class="flex-header">
         <h1>Pomodoro</h1>
     </header>
     
-    <main>
+    <main class="flex-main">
         <div>
             <p id="time">25:00</p>
             <button type="button" id="resumePauseTimer" name="startTimer" onclick="eventHandling.resumePauseTimerEvent(this)">Resume/Pause</button>
@@ -27,7 +27,9 @@
         
     </main>
     
-    <footer>Pomodoro Timer by Michael van Meerwijk</footer>
+    <footer class="flex-footer">
+        <p>Pomodoro Timer by Michael van Meerwijk</p>
+    </footer>
     
     <script src="eventhandler.js"></script>
     <script src="timeline.js"></script>
