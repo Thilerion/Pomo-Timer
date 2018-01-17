@@ -113,7 +113,10 @@ button {
 }
 
 /* --- test --- */
+body {
+    background-color: #3498db;
+}
 
 .nav-top, .nav-bottom {
-    background: #ccc;
+    background-color: rgba(0,0,0,0.1);
 }
