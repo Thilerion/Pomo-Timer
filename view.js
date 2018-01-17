@@ -1,9 +1,6 @@
 /*jshint devel: true, esversion: 6, browser: true*/
 
-/*
-things to change in display:
-    disable resetsession button
-*/
+
 
 var view = (function () {
     //module whose only function is to change the view
@@ -25,17 +22,18 @@ var view = (function () {
     
     function changeResumePauseButton(action) {
         if (action === "start" || action === "resume") {
-            documentElements.resumePauseButton.innerHTML = '<i class="fa fa-play"></i>';
+            documentElements.resumePauseButton.innerHTML = 'Play';
         } else if (action === "pause") {
-            documentElements.resumePauseButton.innerHTML = '<i class="fa fa-pause"></i>';
+            documentElements.resumePauseButton.innerHTML = 'Pause';
         }
         
         documentElements.resumePauseButton.name = action + "Timer";
     }
     
     function updateSingleDurationTime(sess, dur) {
-        console.log("Changing view of " + sess + " to " + dur);
-        documentElements.duration[sess].innerHTML = dur;
+        /*console.log("Changing view of " + sess + " to " + dur);
+        documentElements.duration[sess].innerHTML = dur;*/
+        console.log("This function should update the view of session durations.");
     }
     
     function setStartTimerButton() {
@@ -55,7 +53,7 @@ var view = (function () {
     }
     
     function disableDurationButton(session, disable, sign) {        
-        if (session == "short") {
+        /*if (session == "short") {
             session = "sBreak";
         } else if (session == "long") {
             session = "lBreak";
@@ -70,7 +68,8 @@ var view = (function () {
         let query = "." + sign + "." + session;
         
         let toDisable = document.querySelector(query);
-        toDisable.disabled = disable;
+        toDisable.disabled = disable;*/
+        console.log("This function should disable or enable the duration change buttons.");
     }
     
     function playFinishedSessionSound() {
@@ -83,7 +82,7 @@ var view = (function () {
     let longBackground = document.querySelector(".main-time-box-bg-long");
     
     function setBoxColor(session) {
-        if (session === "work") {
+        /*if (session === "work") {
             mainTimeBox.style.setProperty("--box-color", "var(--work-color-5)");
             mainTimeBox.style.setProperty("--box-color-light", "var(--work-color-4)");
             mainTimeBox.style.setProperty("--box-color-dark", "var(--work-color-6)");
@@ -105,6 +104,8 @@ var view = (function () {
             longBackground.style.opacity = 1;
             shortBackground.style.opacity = 0;
         }
+        */
+        console.log("Tried to change box color, but there is no box.");
     }
 
     return {

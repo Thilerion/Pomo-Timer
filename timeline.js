@@ -6,6 +6,7 @@ var timeline = (function () {
     let circleEnd = document.querySelector(".flex-circle-end");
 
     function returnToBaseline() {
+        /*
         let generatedChildren = flexDiv.querySelectorAll("div.flex-small-circle, div.flex-line");
         console.log(generatedChildren);
 
@@ -17,10 +18,12 @@ var timeline = (function () {
         //remove running and finished
         circleStart.classList.remove("circle-finished");
         circleStart.classList.add("circle-running");
-        circleEnd.classList.remove("circle-running", "circle-finished");
+        circleEnd.classList.remove("circle-running", "circle-finished"); */
+        console.log("Tries to update timeline to default, but there is no timeline.");
     }
 
     function initTimeline(length) {
+        /*
         let nSmallCircles = length - 1;
 
         returnToBaseline();
@@ -44,9 +47,12 @@ var timeline = (function () {
         lastLine.appendChild(lastLineRunning);
         
         flexDiv.insertBefore(lastLine, circleEnd);
+        */
+        console.log("Tries to initiate timeline, but this is not possible.");
     }
     
     function updateAllCircleStates(props) {
+        /*
         let circleSmallArr = document.querySelectorAll(".flex-small-circle");
         
         circleStart.classList.toggle("circle-finished", props.start.finished);
@@ -59,10 +65,12 @@ var timeline = (function () {
             let circle = circleSmallArr[el.n];
             circle.classList.toggle("circle-running", el.running);
             circle.classList.toggle("circle-finished", el.finished);
-        });
+        });*/
+        console.log("Tries to update circle states on timeline, but there is no timeline.");
     }
     
     function updateAllLines(props) {
+        /*
         let lines = document.querySelectorAll(".flex-line-running");
         props.forEach(function(el, i) {
             let percentage = (el * 100).toFixed(2);
@@ -77,14 +85,8 @@ var timeline = (function () {
                 percentage = 99.5;
             }
             lines[i].style.width = percentage + "%";
-        });
-        /*let lineN = workN;
-        let line = document.querySelectorAll(".flex-line-running")[lineN];
-        percentage *= 100;
-        
-        console.log(line);
-        
-        line.style.width = percentage + "%";*/
+        });*/
+        console.log("Tries to update lines on the timeline, but there is no timeline.");
     }
 
     return {

@@ -4,32 +4,57 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="shortcut icon" sizes="512x512" href="icon/web_hi_res_512.png">
     <link rel="shortcut icon" sizes="96x96" href="icon/pomo-timer-96.png">
     <link rel="manifest" href="manifest.json">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://use.fontawesome.com/593ce00b08.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="body-flex">
+<body>
+    <header>
+        <h1>Pomodoro</h1>
+    </header>
+    
+    <main>
+        <div>
+            <p id="time">25:00</p>
+            <button type="button" id="resumePauseTimer" name="startTimer" onclick="eventHandling.resumePauseTimerEvent(this)">Resume/Pause</button>
+        </div>
+        
+        <div>
+            
+        </div>
+        
+    </main>
+    
+    <footer>Pomodoro Timer by Michael van Meerwijk</footer>
+    
+    <script src="eventhandler.js"></script>
+    <script src="timeline.js"></script>
+    <script src="data.js"></script>
+    <script src="statistics.js"></script>
+    <script src="view.js"></script>
+    <script src="timer.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>
 
-    <header class="header-flex-inner header-flex-outer">
-        <h1 class="heading-logo">Pomodoro</h1>
+
+<!--
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://use.fontawesome.com/593ce00b08.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+
         <button type="button" class="sound-btn" id="toggleSoundBtn" onclick="eventHandling.toggleSound(this)" alt="Toggle sound"><i class="fa fa-volume-off"></i></button>
         <button type="button" class="speed-btn" id="changeSpeedBtn" onclick="eventHandling.changeSpeedEvent()" alt="Change the timer speed"><i class="fa fa-forward"></i></button>
         <button type="button" class="debug-btn" id="skipSessionBtn" onclick="eventHandling.skipSessionEvent()" alt="Skip to end of session"><i class="fa fa-step-forward"></i></button>
-    </header>
-    <main class="main-flex-inner main-flex-outer">
-        <div class="main-time-box main-time-box-flex">
             
             <div class="main-time-box-bg-short main-time-box-bg"></div>
             <div class="main-time-box-bg-long main-time-box-bg"></div>
             <div class="main-time-box-bg-work main-time-box-bg"></div>
-            <p class="time-text" id="time">25:00</p>
-            <button class="main-time-box-playbutton" type="button" id="resumePauseTimer" name="startTimer" onclick="eventHandling.resumePauseTimerEvent(this)"><i class="fa fa-play"></i></button>
 
 
         </div>

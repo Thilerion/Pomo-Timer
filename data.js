@@ -295,7 +295,7 @@ var data = (function() {
             ret = (tPast / tot).toFixed(4);
         }
         
-        console.log(ret);
+        console.log("Percentage of session to be send to timeline: " + ret);
         return ret;
     };
     
