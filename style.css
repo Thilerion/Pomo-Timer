@@ -89,7 +89,7 @@ button {
 }
 
 .flex-header {
-    flex: 0 0 60px;
+    flex: 0 0 auto;
 }
 
 .flex-main {
@@ -97,7 +97,7 @@ button {
 }
 
 .flex-footer {
-    flex: 0 0 60px;
+    flex: 0 0 56px;
 }
 
 /* --- typography --- */
