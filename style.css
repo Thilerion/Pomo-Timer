@@ -75,6 +75,8 @@ h1 {
 }
 
 button {
+    background: none;
+    border: none;
     cursor: pointer;
     outline: none;
     text-align: center;
@@ -90,6 +92,9 @@ button {
 
 .flex-header {
     flex: 0 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .flex-main {
@@ -97,12 +102,15 @@ button {
 }
 
 .flex-footer {
-    flex: 0 0 56px;
+    flex: 0 0 auto;
 }
 
 /* --- typography --- */
 
-
+/* --- nav-top --- */
+.nav-btn {
+    padding: 16px;
+}
 
 /* --- test --- */
 
