@@ -24,7 +24,7 @@ var view = (function () {
         if (action === "start" || action === "resume") {
             documentElements.resumePauseButton.innerHTML = '<i class="material-icons md-72 md-play-arrow">play_arrow</i>';
         } else if (action === "pause") {
-            documentElements.resumePauseButton.innerHTML = '<i class="material-icons md-72 md-play-arrow">pause</i>';
+            documentElements.resumePauseButton.innerHTML = '<i class="material-icons md-72">pause</i>';
         }
         
         documentElements.resumePauseButton.name = action + "Timer";
