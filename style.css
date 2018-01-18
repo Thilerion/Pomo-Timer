@@ -63,15 +63,6 @@ body {
     background-color: #fff;
     font-size: 100%;
     font-family: "Open Sans", sans-serif;
-    color: #222;
-}
-
-h1 {    
-    font-family: Norwester, sans-serif;
-}
-
-.time-text {
-    font-family: "Droid Sans Mono", monospace;
 }
 
 button {
@@ -112,7 +103,15 @@ button {
 /* --- typography --- */
 
 #time {
-    
+    font-size: 80px;
+}
+
+h1 {    
+    font-family: Norwester, sans-serif;
+}
+
+.time-text {
+    font-family: "Droid Sans Mono", monospace;
 }
 
 /* --- nav-top --- */
@@ -128,9 +127,9 @@ button {
 /* --- test --- */
 
 body {
-    background-color: #3498db;
+    background-color: #eee;
 }
 
 .nav-top, .nav-bottom {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.01);
 }
