@@ -22,9 +22,9 @@ var view = (function () {
     
     function changeResumePauseButton(action) {
         if (action === "start" || action === "resume") {
-            documentElements.resumePauseButton.innerHTML = 'Play';
+            documentElements.resumePauseButton.innerHTML = '<i class="material-icons md-72 md-play-arrow">play_arrow</i>';
         } else if (action === "pause") {
-            documentElements.resumePauseButton.innerHTML = 'Pause';
+            documentElements.resumePauseButton.innerHTML = '<i class="material-icons md-72 md-play-arrow">pause</i>';
         }
         
         documentElements.resumePauseButton.name = action + "Timer";
