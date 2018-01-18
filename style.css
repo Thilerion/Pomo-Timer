@@ -148,6 +148,37 @@ body, .material-icons {
     /* --- adjust when resizing! --- */
 }
 
+.main-timeline {
+    display: flex;
+}
+
+p#main-session {
+    margin-bottom: 4px;
+    font-style: italic;
+}
+
+.timeline-circle {
+    margin: 0 4px;
+    padding: 0;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.timeline-circle-empty {
+    background: none;
+}
+
+.timeline-circle-finished {
+    background: white;
+}
+
+.timeline-circle-current {
+    background: white;
+    box-shadow: 0px 0px 14px -2px rgba(255,255,255,1);
+}
+
 /* --- test --- */
 
 body {
