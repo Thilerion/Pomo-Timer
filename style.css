@@ -116,6 +116,10 @@ h1 {
     font-family: "Droid Sans Mono", monospace;
 }
 
+body, .material-icons {
+    color: white;
+}
+
 .material-icons.md-72 {
     font-size: 72px;
 }
@@ -145,7 +149,7 @@ h1 {
 /* --- test --- */
 
 body {
-    background-color: #eee;
+    background-color: #5691c8;
 }
 
 .nav-top, .nav-bottom {
