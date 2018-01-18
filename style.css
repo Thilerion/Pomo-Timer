@@ -112,9 +112,10 @@ button {
 }
 
 h1 {    
-    font-family: Norwester, sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 100;
     text-transform: lowercase;
+    font-size: 1.5em;
 }
 
 .time-text {
