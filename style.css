@@ -132,7 +132,15 @@ h1 {
 
 /* --- main section --- */
 
+.flex-main {
+    position: relative;
+}
 
+.flex-main-top {
+    position: absolute;
+    top: 20px;
+    /* --- adjust when resizing! --- */
+}
 
 /* --- test --- */
 
