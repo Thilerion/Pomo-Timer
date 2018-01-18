@@ -91,7 +91,7 @@ button {
 }
 
 .flex-header {
-    flex: 0 0 auto;
+    flex: 0 0 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,20 +99,34 @@ button {
 
 .flex-main {
     flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-footer {
-    flex: 0 0 auto;
+    flex: 0 0 64px;
 }
 
 /* --- typography --- */
 
+#time {
+    
+}
+
 /* --- nav-top --- */
+
 .nav-btn {
     padding: 16px;
 }
 
+/* --- main section --- */
+
+
+
 /* --- test --- */
+
 body {
     background-color: #3498db;
 }
